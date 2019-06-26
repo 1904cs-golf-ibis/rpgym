@@ -4,13 +4,38 @@ Overview:
 We will be combining a fitness app with an Role Play Game, where a user can level up their character through running. A user can also
 battle other users through turn based combat. The ultimatel goal is to gamify fitness to incentivize gamers to go outside and get fit.
 
-MVP:
+MVP (Tier 1):
 A user's data should be pulled from the Strava API. This
 data will be used to determine the speed stat. A character
 will have 3 stats: Speed, HP and Energy. During battle, a user can
 Attack (using 1 of 3 moves), Block (take a %tage of the
 attack), and Charge (gain energy at the cost of a turn.
 Energy is used to attack). All users will only be 1 class.
+
+-Access data from Strava API
+-Create character associated with a user
+  -make page that displays character data
+-A character has 3 stats (Speed, HP and Energy)
+  -Speed is associated with a user's fastest mile
+-A user can battle other users
+  -Only "Sprint" battles wll be available (short battles, faster timeout)
+  -A user can have 3 moves
+  -A user can block damage
+  -A user can Charge to gain energy
+
+Tier 2:
+-Leveling up
+-More classes (sub classes), more moves
+ (Think of more move names)
+-Leaderboard
+-Battle history
+-Achievements / Bounties / Quests
+
+Tier 3:
+-Distinction between types of exercises (run, bike, etc)
+-Different types of battles (having the run BE the battle)
+-Accessibility features
+
 
 Stretch Goals:
 A user should be able to gain more energy by running and the energy cap should increase when a user levels up. A user can choose between 2 classes (Mage and Warrior), each with their own separate move list. A user should be able to increase their level through fitness, allowing their character to have access to new moves.
