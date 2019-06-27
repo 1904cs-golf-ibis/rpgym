@@ -42,4 +42,6 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
+router.use('/strava', require('./strava'))
+router.use('/activities', require('./strava-activities'))
 router.use('/google', require('./google'))
