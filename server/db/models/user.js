@@ -24,7 +24,7 @@ const User = db.define('user', {
       return () => this.getDataValue('salt')
     }
   },
-  googleId: {
+  stravaId: {
     type: Sequelize.STRING
   }
 })
