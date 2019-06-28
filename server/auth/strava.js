@@ -5,7 +5,7 @@ const {User} = require('../db/models')
 module.exports = router
 
 if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
-  console.log('Google client ID / secret not found. Skipping Google OAuth.')
+  console.log('Strava client ID / secret not found. Skipping Strava OAuth.')
 } else {
   const stravaConfig = {
     clientID: process.env.STRAVA_CLIENT_ID,
