@@ -8,13 +8,15 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:stravaId', (req, res, next) => {
-  console.log('STRAVA ------->', strava.athlete.listActivities)
-  strava.athlete.listActivities(req.params.stravaId, (err, payload, limits) => {
-    if (!err) {
-      res.json(payload)
-    } else {
-      console.error(err)
-      next(err)
+  strava.athlete.listActivities(
+    {access_token: '7cf56e94919813a090a2ddd8bb4f1bf9b653f8dd'},
+    (err, payload, limits) => {
+      if (!err) {
+        res.json(payload)
+      } else {
+        console.error(err)
+        next(err)
+      }
     }
-  })
+  )
 })
