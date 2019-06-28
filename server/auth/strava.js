@@ -22,6 +22,7 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
       const name = profile.displayName
       const email = profile.emails[0].value
       const userToken = accessToken
+      // console.log('userToken: >>>>>>>>>>>>>>>>>', userToken)
       // console.log("Profile inside STRAVA STRAT", profile)
       User.findOne({where: {stravaId}})
         //If user is found, need to update user with new access token
