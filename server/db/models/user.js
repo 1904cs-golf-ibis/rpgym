@@ -69,6 +69,10 @@ const User = db.define('user', {
   speed: {
     type: Sequelize.INTEGER,
     defaultValue: 0
+  },
+  userToken: {
+    type: Sequelize.TEXT,
+    defaultValue: 0
   }
 })
 
