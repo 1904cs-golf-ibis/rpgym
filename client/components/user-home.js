@@ -43,6 +43,7 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     stravaId: state.user.stravaId,
+    userToken: state.user.stravaId,
     nickname: state.user.nickname,
     imgUrl: state.user.imgUrl,
     lvl: state.user.lvl,
