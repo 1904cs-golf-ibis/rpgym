@@ -34,7 +34,7 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
               {returning: true, plain: true}
             )
             console.log('updatedFoundUser: >>>>>>>>>>>>>', updatedFoundUser)
-            const ifResult = done(null, foundUser)
+            const ifResult = done(null, updatedFoundUser)
             // console.log('ifResult: >>>>>>>>>>>>>', ifResult)
             return ifResult
           } else {
