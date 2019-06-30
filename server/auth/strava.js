@@ -29,7 +29,13 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
         .then(
           foundUser =>
             foundUser
-              ? done(null, foundUser)
+              ? done(
+                  null,
+                  foundUser.update(
+                    {userToken},
+                    {returning: true, plain: true}
+                  )[1]
+                )
               : User.create({name, email, stravaId, userToken}).then(
                   createdUser => done(null, createdUser)
                 )
