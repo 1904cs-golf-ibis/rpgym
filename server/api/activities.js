@@ -16,9 +16,9 @@ router.get('/:stravaId', async (req, res, next) => {
         stravaId: curUserStravaId
       }
     })
-    console.log('curUserData: ', curUserData)
+    // console.log('curUserData: ', curUserData)
     const curUserAccessToken = curUserData.userToken
-    console.log('curUserAccessToken: >>>>>>>>>>>>>>', curUserAccessToken)
+    // console.log('curUserAccessToken: >>>>>>>>>>>>>>', curUserAccessToken)
     strava.athlete.listActivities(
       {access_token: curUserAccessToken},
       (err, payload, limits) => {
