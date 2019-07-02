@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 // import {connect} from 'react-redux'
-import BattleActions from './battle-actions'
 
-export default class BattleRoom extends Component {
+export default class BattleMessages extends Component {
   render() {
     return (
       <div>
-        <h1>Battle Room</h1>
+        <h1>Battle Messages</h1>
       </div>
     )
   }

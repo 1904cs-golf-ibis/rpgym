@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const battleActions = props => {
+export const BattleActions = props => {
   return (
     <div>
       <button type="submit">Rock</button>
