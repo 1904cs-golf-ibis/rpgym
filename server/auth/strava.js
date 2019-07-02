@@ -27,13 +27,13 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
       User.findOne({where: {stravaId}})
         //If user is found, need to update user with new access token
         .then(async foundUser => {
-          console.log('foundUser: >>>>>>>>>>>>>', foundUser)
+          // console.log('foundUser: >>>>>>>>>>>>>', foundUser)
           if (foundUser) {
             const updatedFoundUser = await foundUser.update(
               {userToken},
               {returning: true, plain: true}
             )
-            console.log('updatedFoundUser: >>>>>>>>>>>>>', updatedFoundUser)
+            // console.log('updatedFoundUser: >>>>>>>>>>>>>', updatedFoundUser)
             const ifResult = done(null, updatedFoundUser)
             // console.log('ifResult: >>>>>>>>>>>>>', ifResult)
             return ifResult
