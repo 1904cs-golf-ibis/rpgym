@@ -8,11 +8,21 @@ class Users extends Component {
   }
 
   render() {
-    console.log('PROPS!!', this.props)
-
+    // console.log('PROPS!!', this.props)
+    const {users} = this.props
+    console.log('users', users)
     return (
       <div>
-        {/* {this.props.users ? <h1>{this.props.users[0]}</h1> : <h1>Loading...</h1>} */}
+        <h2>Global Users</h2>
+        {users.map(user => {
+          return (
+            <div key={user.id}>
+              <h5>
+                {user.nickname} {user.lvl}
+              </h5>
+            </div>
+          )
+        })}
       </div>
     )
   }
