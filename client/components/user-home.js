@@ -60,19 +60,19 @@ export class UserHome extends Component {
  */
 const mapState = state => {
   return {
-    stravaId: state.user.stravaId,
-    userToken: state.user.userToken,
-    nickname: state.user.nickname,
-    imgUrl: state.user.imgUrl,
-    lvl: state.user.lvl,
-    xpCurrent: state.user.xpCurrent,
-    xpToNextLvl: state.user.xpToNextLvl,
-    energyCurrent: state.user.energyCurrent,
-    energyTotal: state.user.energyTotal,
-    hpCurrent: state.user.hpCurrent,
-    hpTotal: state.user.hpTotal,
-    speed: state.user.speed,
-    memberSince: state.user.createdAt
+    stravaId: state.user.singleUser.stravaId,
+    userToken: state.user.singleUser.userToken,
+    nickname: state.user.singleUser.nickname,
+    imgUrl: state.user.singleUser.imgUrl,
+    lvl: state.user.singleUser.lvl,
+    xpCurrent: state.user.singleUser.xpCurrent,
+    xpToNextLvl: state.user.singleUser.xpToNextLvl,
+    energyCurrent: state.user.singleUser.energyCurrent,
+    energyTotal: state.user.singleUser.energyTotal,
+    hpCurrent: state.user.singleUser.hpCurrent,
+    hpTotal: state.user.singleUser.hpTotal,
+    speed: state.user.singleUser.speed,
+    memberSince: state.user.singleUser.createdAt
   }
 }
 

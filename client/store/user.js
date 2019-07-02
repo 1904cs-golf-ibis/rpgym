@@ -6,17 +6,22 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const GET_ALL_USERS = 'GET_ALL_USERS'
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const initialState = {
+  allUsers: [],
+  singleUser: {}
+}
 
 /**
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const getAllUsers = users => ({type: GET_ALL_USERS, users})
 
 /**
  * THUNK CREATORS
@@ -24,8 +29,16 @@ const removeUser = () => ({type: REMOVE_USER})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    // console.log('me res.data: ', res.data)
-    dispatch(getUser(res.data || defaultUser))
+    dispatch(getUser(res.data || initialState.singleUser))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const allUsersThunk = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/users')
+    dispatch(getAllUsers(res.data))
   } catch (err) {
     console.error(err)
   }
@@ -41,7 +54,6 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    // console.log('auth res.data: ', res.data)
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -61,12 +73,14 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      return {...state, singleUser: action.user}
+    case GET_ALL_USERS:
+      return {...state, allUsers: action.users}
     case REMOVE_USER:
-      return defaultUser
+      return {...state, singleUser: {}}
     default:
       return state
   }
