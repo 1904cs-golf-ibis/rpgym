@@ -17,9 +17,9 @@ class Users extends Component {
         {users.map(user => {
           return (
             <div key={user.id}>
-              <h5>
+              <h3>
                 {user.nickname} {user.lvl}
-              </h5>
+              </h3>
             </div>
           )
         })}
