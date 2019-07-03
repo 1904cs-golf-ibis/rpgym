@@ -9,11 +9,15 @@ socket.on('connect', () => {
 })
 
 socket.on('new-message', message => {
-  console.log('message: ', message)
+  console.log('message =====> ', message)
   store.dispatch(gotNewBattleMessageActionCreator(message))
   // console.log('IN THE SOCKET.JS')
   // console.log('socket: >>>>>>>>>>>>>>>>>>>>', socket)
   // socket.broadcast.emit('broadcast', message)
+})
+
+socket.on('new-round', message => {
+  console.log('ROUND IN CLIENT ====>', message)
 })
 
 export default socket

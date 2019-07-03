@@ -1,4 +1,4 @@
-export const moveSets = {
+module.exports = {
   charge: {
     energy: -50,
     damage: 0,
