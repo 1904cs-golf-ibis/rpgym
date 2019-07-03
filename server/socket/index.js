@@ -4,6 +4,9 @@ module.exports = io => {
 
     socket.on('new-message', message => {
       socket.broadcast.emit('new-message', message)
+
+      console.log('socket.broadcast: >>>>>>>>>>>>>>>>>>>>', socket.broadcast)
+      socket.broadcast.emit('broadcast', message)
     })
 
     // socket.on('new-channel', channel => {

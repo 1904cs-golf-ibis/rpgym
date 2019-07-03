@@ -37,6 +37,9 @@ export const getNewBattleMessageThunkCreator = message => {
       // const {data} = await axios.post('/api/')
       dispatch(gotNewBattleMessageActionCreator(message))
       socket.emit('new-message', message)
+      console.log('IN THE BATTLE REDUCER')
+      console.log('socket: >>>>>>>>>>>>>>>>>>>>', socket)
+      // socket.broadcast.emit('broadcast', message)
     } catch (error) {
       console.error(error)
     }
