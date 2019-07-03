@@ -7,6 +7,7 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
+const UPDATE_USER_SPEED = 'UPDATE_USER_SPEED'
 
 /**
  * INITIAL STATE
@@ -22,6 +23,7 @@ const initialState = {
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const getAllUsers = users => ({type: GET_ALL_USERS, users})
+const updateUserSpeed = speed => ({type: UPDATE_USER_SPEED, speed})
 
 /**
  * THUNK CREATORS
@@ -67,6 +69,15 @@ export const logout = () => async dispatch => {
     history.push('/login')
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const updateSpeedThunkCreator = speed => async dispatch => {
+  try {
+    await axios.put('/auth/me', {speed})
+    dispatch(updateUserSpeed(speed))
+  } catch (err) {
+    console.err(err)
   }
 }
 
