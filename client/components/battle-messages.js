@@ -44,17 +44,21 @@ class BattleMessages extends Component {
             Spirit Bomb
           </button>
         </div>
+        <div>
+          {this.props.messages.map((message, idx) => {
+            return <h5 key={idx}>{message}</h5>
+          })}
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  messages: state.battles
+  messages: state.battle
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllMessages: messages => dispatch(getBattleMessagesThunkCreator()),
   fetchNewMessage: message => dispatch(getNewBattleMessageThunkCreator(message))
 })
 
