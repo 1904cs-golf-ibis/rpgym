@@ -8,27 +8,42 @@ import {
 class BattleMessages extends Component {
   constructor() {
     super()
-    this.state = ''
+    this.state = {
+      curAttack: 'Charge'
+    }
   }
 
-  handleSumbit = event => {
+  handleClick = event => {
     event.preventDefault()
-    console.log(event.target.innerText)
+    console.log(event.target.value)
+    const curAttack = event.target.value
+    this.setState({
+      curAttack
+    })
     this.props.fetchNewMessage(event.target.innerText)
   }
+
   componentDidMount() {}
   render() {
     return (
       <div>
         <h1>Battle Messages</h1>
-        <form onSubmit={this.handleSumbit}>
-          <button type="submit" value="Rock" onChange={this.handleChange}>
-            Rock
+        <div>
+          <button type="button" value="Charge" onClick={this.handleClick}>
+            Charge
           </button>
-          {/* <button type="submit" value="Paper" onChange={this.handleChange}>
-            Paper
-          </button> */}
-        </form>
+          <button type="button" value="Ki Blast" onClick={this.handleClick}>
+            Ki Blast
+          </button>
+        </div>
+        <div>
+          <button type="button" value="Kamehameha" onClick={this.handleClick}>
+            Kamehameha
+          </button>
+          <button type="button" value="Spirit Bomb" onClick={this.handleClick}>
+            Spirit Bomb
+          </button>
+        </div>
       </div>
     )
   }

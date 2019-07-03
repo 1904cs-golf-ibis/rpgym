@@ -1,4 +1,5 @@
-import axios from 'axios'
+// import axios from 'axios'
+import socket from '../socket'
 
 //Initial State
 const initialState = []
@@ -8,12 +9,12 @@ const GOT_BATTLE_MESSAGES = 'GOT_BATTLE_MESSAGES'
 const NEW_BATTLE_MESSAGE = 'NEW_BATTLE_MESSAGE'
 
 //Action Creators
-const gotBattleMessagesActionCreator = messages => ({
+export const gotBattleMessagesActionCreator = messages => ({
   type: GOT_BATTLE_MESSAGES,
   messages
 })
 
-const gotNewBattleMessageActionCreator = message => ({
+export const gotNewBattleMessageActionCreator = message => ({
   type: NEW_BATTLE_MESSAGE,
   message
 })
@@ -35,6 +36,7 @@ export const getNewBattleMessageThunkCreator = message => {
     try {
       // const {data} = await axios.post('/api/')
       dispatch(gotNewBattleMessageActionCreator(message))
+      socket.emit('new-message', message)
     } catch (error) {
       console.error(error)
     }
