@@ -51,6 +51,10 @@ const User = db.define('user', {
   userToken: {
     type: Sequelize.TEXT,
     defaultValue: 0
+  },
+  wins: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
