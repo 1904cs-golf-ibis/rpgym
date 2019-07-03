@@ -20,7 +20,7 @@ class Users extends Component {
           <Link to="/toplvl">Top Level</Link>
           <Link to="/topspeed">Top Speed</Link>
         </div>
-        <div>
+        <div className="leaderBoardList">
           {users
             .sort((a, b) => {
               let keyA = a.wins
@@ -34,17 +34,25 @@ class Users extends Component {
                 return 0
               }
             })
-            .map(user => {
+            .map((user, index) => {
               return (
                 <div key={user.id} className="lbUserTabs">
+                  <div>{index + 1}</div>
                   <div>
                     <img src={user.imgUrl} />
                   </div>
-                  <div>
-                    <h4>{user.nickname}</h4>
-                    <h5>LV: {user.lvl}</h5>
-                    <h5>Speed: {user.speed}</h5>
-                    <h5>Wins: {user.wins}</h5>
+                  <div className="lbUserInfo">
+                    <h3>{user.nickname}</h3>
+                    {/* <p>LV: {user.lvl}</p>
+                    <p>Speed: {user.speed}</p>
+                    <p>Wins: {user.wins}</p> */}
+                    <p>
+                      LV: {user.lvl}
+                      <br />
+                      Speed: {user.speed}
+                      <br />
+                      Wins: {user.wins}
+                    </p>
                   </div>
                 </div>
               )
