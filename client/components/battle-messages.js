@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getNewBattleMessageThunkCreator} from '../store/battle'
+import {
+  getNewBattleMessageThunkCreator,
+  gotMyStatsActionCreator
+} from '../store/battle'
 
 const atkDict = {
   charge: {
@@ -27,15 +30,26 @@ class BattleMessages extends Component {
     this.state = {
       curAttack: 'Charge',
       curHp: 0,
-      curEnergy: 0
+      curEnergy: 0,
+      speed: 0
     }
   }
 
   componentDidMount() {
     this.setState({
       curHp: this.props.avatar.hpCurrent,
-      curEnergy: this.props.avatar.energyCurrent
+      curEnergy: this.props.avatar.energyCurrent,
+      speed: this.props.avatar.speed
     })
+    // console.log('HP TOTAL', this.props.avatar.hpTotal)
+    const myStats = {
+      hpTotal: this.props.avatar.hpTotal,
+      hpCurrent: this.props.avatar.hpCurrent,
+      energyTotal: this.props.avatar.energyTotal,
+      energyCurrent: this.props.avatar.energyCurrent,
+      speed: this.props.avatar.speed
+    }
+    this.props.fetchMyStats(myStats)
   }
 
   handleClick = event => {
@@ -78,6 +92,7 @@ class BattleMessages extends Component {
         <div>
           {`Energy: ${this.state.curEnergy} / ${this.props.avatar.energyTotal}`}
         </div>
+        <div>{`Speed: ${this.state.speed}`}</div>
         <h1>Battle Messages</h1>
         <div>
           <button type="button" value="charge" onClick={this.handleClick}>
@@ -120,7 +135,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchNewMessage: message => dispatch(getNewBattleMessageThunkCreator(message))
+  fetchNewMessage: message =>
+    dispatch(getNewBattleMessageThunkCreator(message)),
+  fetchMyStats: myStats => dispatch(gotMyStatsActionCreator(myStats))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BattleMessages)

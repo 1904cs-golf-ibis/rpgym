@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import {updateSpeedThunkCreator} from '../store/user'
 
 /**
  * COMPONENT
@@ -19,6 +20,7 @@ export class UserHome extends Component {
       const {data} = await axios.get(`/api/activities/${this.props.stravaId}`)
       const speedData = data.map(el => el.max_speed)
       const maxSpeed = Math.max(...speedData)
+      this.props.updateSpeed(maxSpeed)
       this.setState({
         speed: maxSpeed
       })
@@ -84,7 +86,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = dispatch => ({
+  updateSpeed: speed => dispatch(updateSpeedThunkCreator(speed))
+})
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
