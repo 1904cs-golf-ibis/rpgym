@@ -2,11 +2,17 @@
 import socket from '../socket'
 
 //Initial State
-const initialState = []
+const initialState = {
+  myStats: {},
+  opponentStats: {},
+  battleMessages: []
+}
 
 //Action Types
 const GOT_BATTLE_MESSAGES = 'GOT_BATTLE_MESSAGES'
 const NEW_BATTLE_MESSAGE = 'NEW_BATTLE_MESSAGE'
+const GOT_MY_STATS = 'GOT_MY_STATS'
+const GOT_OPPONENT_STATS = 'GOT_OPPONENT_STATS'
 
 //Action Creators
 export const gotBattleMessagesActionCreator = messages => ({
@@ -17,6 +23,16 @@ export const gotBattleMessagesActionCreator = messages => ({
 export const gotNewBattleMessageActionCreator = message => ({
   type: NEW_BATTLE_MESSAGE,
   message
+})
+
+export const gotMyStatsActionCreator = stats => ({
+  type: GOT_MY_STATS,
+  stats
+})
+
+export const gotOpponentStatsActionCreator = stats => ({
+  type: GOT_OPPONENT_STATS,
+  stats
 })
 
 //Thunks
@@ -50,10 +66,19 @@ export const getNewBattleMessageThunkCreator = message => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_BATTLE_MESSAGES: {
-      return action.messages
+      return {...state, battleMessages: action.messages}
     }
     case NEW_BATTLE_MESSAGE: {
-      return [...state, action.message]
+      return {
+        ...state,
+        battleMessages: [...state.battleMessages, action.message]
+      }
+    }
+    case GOT_MY_STATS: {
+      return {...state, myStats: action.stats}
+    }
+    case GOT_OPPONENT_STATS: {
+      return {...state, opponentStats: action.stats}
     }
     default:
       return state

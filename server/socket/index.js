@@ -55,12 +55,8 @@ module.exports = io => {
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
         // socket.broadcast.emit('broadcast', playersObj)
         // socket.emit('new-round', playersObj)
-        io
-          .to(playersObj.playerOne.socketId)
-          .emit('new-round', playersObj.playerOne)
-        io
-          .to(playersObj.playerTwo.socketId)
-          .emit('new-round', playersObj.playerTwo)
+        io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
+        io.to(playersObj.playerTwo.socketId).emit('new-round', playersObj)
         playersObj.playerOne.damage = 0
         playersObj.playerOne.energy = 0
         playersObj.playerTwo.damage = 0

@@ -17,6 +17,7 @@ socket.on('new-message', message => {
 })
 
 socket.on('new-round', message => {
+  console.log('THIS IS MY SOCKET ID ===>', socket.id)
   console.log('ROUND IN CLIENT ====>', message)
 })
 

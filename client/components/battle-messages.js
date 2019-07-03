@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {
-  getNewBattleMessageThunkCreator,
-  getBattleMessagesThunkCreator
-} from '../store/battle'
+import {getNewBattleMessageThunkCreator} from '../store/battle'
 
 const atkDict = {
   charge: {
@@ -99,9 +96,9 @@ class BattleMessages extends Component {
           </button>
         </div>
         <div>
-          {this.props.messages.map((message, idx) => {
+          {/* {this.props.messages.map((message, idx) => {
             return <h5 key={idx}>{message}</h5>
-          })}
+          })} */}
         </div>
       </div>
     )
@@ -109,7 +106,7 @@ class BattleMessages extends Component {
 }
 
 const mapStateToProps = state => ({
-  messages: state.battle,
+  // messages: state.battle,
   avatar: {
     nickname: state.user.singleUser.nickname,
     lvl: state.user.singleUser.lvl,
