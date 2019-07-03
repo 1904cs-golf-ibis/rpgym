@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
-import store, {gotNewBattleMessageActionCreator} from './store'
+import store from './store'
+import {gotNewBattleMessageActionCreator} from './store/battle'
 
 const socket = io(window.location.origin)
 
