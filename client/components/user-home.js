@@ -46,12 +46,16 @@ export class UserHome extends Component {
     return (
       <div>
         <h3>{`Welcome, ${nickname}!`}</h3>
-        <img src={imgUrl} alt="Your Avatar" />
-        <div>{`Level: ${lvl}`}</div>
-        <div>{`XP: ${xpCurrent} / ${xpToNextLvl}`}</div>
-        <div>{`Energy: ${energyCurrent} / ${energyTotal}`}</div>
-        <div>{`HP: ${hpCurrent} / ${hpTotal}`}</div>
-        <div>{`Speed: ${this.state.speed}`}</div>
+        <div className="profileCard">
+          <div>
+            <img src={imgUrl} alt="Your Avatar" />
+          </div>
+          <div>{`Level: ${lvl}`}</div>
+          <div>{`XP: ${xpCurrent} / ${xpToNextLvl}`}</div>
+          <div className="stats">{`Energy: ${energyCurrent} / ${energyTotal}`}</div>
+          <div className="stats">{`HP: ${hpCurrent} / ${hpTotal}`}</div>
+          <div className="stats">{`Speed: ${this.state.speed}`}</div>
+        </div>
         <br />
         <div>{`You have been a member since ${memberSince.slice(0, 10)}.`}</div>
       </div>
