@@ -13,11 +13,11 @@ class Users extends Component {
     console.log('users', users)
     return (
       <div>
-        <h2>Global Users</h2>
+        <h2>Top Levels</h2>
         {users
           .sort((a, b) => {
-            let keyA = a.wins
-            let keyB = b.wins
+            let keyA = a.lvl
+            let keyB = b.lvl
             if (keyA > keyB) {
               return -1
             }

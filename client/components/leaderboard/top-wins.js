@@ -13,7 +13,7 @@ class Users extends Component {
     console.log('users', users)
     return (
       <div>
-        <h2>Global Users</h2>
+        <h2>Top Wins</h2>
         {users
           .sort((a, b) => {
             let keyA = a.wins
