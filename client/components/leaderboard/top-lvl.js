@@ -16,7 +16,7 @@ class TopLvl extends Component {
       <div>
         <h1>Leaderboard</h1>
         <h2>Global Users</h2>
-        <Link to="/topwins">Top Wins</Link>
+        <Link to="/leaderboard">Top Wins</Link>
         <Link to="/toplvl">Top Level</Link>
         <Link to="/topspeed">Top Speed</Link>
         <h2>Top Levels</h2>
@@ -37,6 +37,7 @@ class TopLvl extends Component {
             return (
               <div key={user.id}>
                 <h3>
+                  <img src={user.imgUrl} />
                   {user.nickname} {user.lvl} {user.speed} {user.wins}
                 </h3>
               </div>

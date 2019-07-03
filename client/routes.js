@@ -8,7 +8,6 @@ import {
   UserHome,
   Leaderboard,
   BattleRoom,
-  TopWins,
   TopLvl,
   TopSpeed
 } from './components'
@@ -36,7 +35,6 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route path="/battle" component={BattleRoom} />
             <Route path="/leaderboard" component={Leaderboard} />
-            <Route path="/topwins" component={TopWins} />
             <Route path="/toplvl" component={TopLvl} />
             <Route path="/topspeed" component={TopSpeed} />
           </Switch>

@@ -14,10 +14,12 @@ class Users extends Component {
     console.log('users', users)
     return (
       <div>
-        <h2>Global Users</h2>
-        <Link to="/topwins">Top Wins</Link>
-        <Link to="/toplvl">Top Level</Link>
-        <Link to="/topspeed">Top Speed</Link>
+        <h2 align="center">Global Users</h2>
+        <div className="leaderBoardTabs">
+          <Link to="/leaderboard">Top Wins</Link>
+          <Link to="/toplvl">Top Level</Link>
+          <Link to="/topspeed">Top Speed</Link>
+        </div>
         <div>
           {users
             .sort((a, b) => {
@@ -34,10 +36,16 @@ class Users extends Component {
             })
             .map(user => {
               return (
-                <div key={user.id}>
-                  <h3>
-                    {user.nickname} {user.lvl} {user.speed} {user.wins}
-                  </h3>
+                <div key={user.id} className="lbUserTabs">
+                  <div>
+                    <img src={user.imgUrl} />
+                  </div>
+                  <div>
+                    <h4>{user.nickname}</h4>
+                    <h5>LV: {user.lvl}</h5>
+                    <h5>Speed: {user.speed}</h5>
+                    <h5>Wins: {user.wins}</h5>
+                  </div>
                 </div>
               )
             })}

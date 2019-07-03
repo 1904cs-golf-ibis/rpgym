@@ -47,3 +47,26 @@ form div {
   /* border-radius: 5px; */
   padding: 5px;
 }
+
+.leaderBoardTabs {
+  display: flex;
+  justify-content: space-evenly;
+  background: linear-gradient(#728bc9, #ffffff);
+  /* opacity: 0.5; */
+  border: 5px solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 1%;
+}
+
+.lbUserTabs {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(#ffffff, #728bc9);
+  /* opacity: 0.5; */
+  border-width: 1px;
+  border-radius: 5px;
+  width: 40%;
+  box-shadow: 5px 5px 5px grey;
+  padding: 1%;
+}
