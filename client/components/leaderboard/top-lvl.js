@@ -14,35 +14,50 @@ class TopLvl extends Component {
     console.log('users', users)
     return (
       <div>
-        <h1>Leaderboard</h1>
-        <h2>Global Users</h2>
-        <Link to="/leaderboard">Top Wins</Link>
-        <Link to="/toplvl">Top Level</Link>
-        <Link to="/topspeed">Top Speed</Link>
-        <h2>Top Levels</h2>
-        {users
-          .sort((a, b) => {
-            let keyA = a.lvl
-            let keyB = b.lvl
-            if (keyA > keyB) {
-              return -1
-            }
-            if (keyA < keyB) {
-              return 1
-            } else {
-              return 0
-            }
-          })
-          .map(user => {
-            return (
-              <div key={user.id}>
-                <h3>
-                  <img src={user.imgUrl} />
-                  {user.nickname} {user.lvl} {user.speed} {user.wins}
-                </h3>
-              </div>
-            )
-          })}
+        <h2 align="center">Global Users</h2>
+        <div className="leaderBoardTabs">
+          <Link to="/leaderboard">Top Wins</Link>
+          <Link to="/toplvl">Top Level</Link>
+          <Link to="/topspeed">Top Speed</Link>
+        </div>
+        <div className="leaderBoardList">
+          {users
+            .sort((a, b) => {
+              let keyA = a.lvl
+              let keyB = b.lvl
+              if (keyA > keyB) {
+                return -1
+              }
+              if (keyA < keyB) {
+                return 1
+              } else {
+                return 0
+              }
+            })
+            .map((user, index) => {
+              return (
+                <div key={user.id} className="lbUserTabs">
+                  <div>{index + 1}</div>
+                  <div>
+                    <img src={user.imgUrl} width="25%" />
+                  </div>
+                  <div className="lbUserInfo">
+                    <h3>{user.nickname}</h3>
+                    {/* <p>LV: {user.lvl}</p>
+                    <p>Speed: {user.speed}</p>
+                    <p>Wins: {user.wins}</p> */}
+                    <p>
+                      LV: {user.lvl}
+                      <br />
+                      Speed: {user.speed}
+                      <br />
+                      Wins: {user.wins}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+        </div>
       </div>
     )
   }

@@ -13,8 +13,7 @@ const User = db.define('user', {
   },
   imgUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      'https://vignette.wikia.nocookie.net/supersmashbrosfanon/images/b/b5/Kid_goku_sprite.png/revision/latest/scale-to-width-down/148?cb=20180112013230'
+    defaultValue: 'http://pixelartmaker.com/art/6bb9673b65fade0.png'
   },
   lvl: {
     type: Sequelize.INTEGER,
