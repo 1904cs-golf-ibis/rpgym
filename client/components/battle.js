@@ -1,3 +1,6 @@
+// not importing the io
+// connect the front end component, it is using event listeners to manipulate the dom
+
 document.addEventListener('DOMContentLoaded', () => {
   const socket = io(window.location.origin)
   const button = document.getElementById('message-send')
