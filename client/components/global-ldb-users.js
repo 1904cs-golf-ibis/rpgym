@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {allUsersThunk} from '../store/user'
+import {Link} from 'react-router-dom'
 
 class Users extends Component {
   componentDidMount() {
@@ -14,28 +15,33 @@ class Users extends Component {
     return (
       <div>
         <h2>Global Users</h2>
-        {users
-          .sort((a, b) => {
-            let keyA = a.wins
-            let keyB = b.wins
-            if (keyA > keyB) {
-              return -1
-            }
-            if (keyA < keyB) {
-              return 1
-            } else {
-              return 0
-            }
-          })
-          .map(user => {
-            return (
-              <div key={user.id}>
-                <h3>
-                  {user.nickname} {user.lvl} {user.speed} {user.wins}
-                </h3>
-              </div>
-            )
-          })}
+        <Link to="/topwins">Top Wins</Link>
+        <Link to="/toplvl">Top Level</Link>
+        <Link to="/topspeed">Top Speed</Link>
+        <div>
+          {users
+            .sort((a, b) => {
+              let keyA = a.wins
+              let keyB = b.wins
+              if (keyA > keyB) {
+                return -1
+              }
+              if (keyA < keyB) {
+                return 1
+              } else {
+                return 0
+              }
+            })
+            .map(user => {
+              return (
+                <div key={user.id}>
+                  <h3>
+                    {user.nickname} {user.lvl} {user.speed} {user.wins}
+                  </h3>
+                </div>
+              )
+            })}
+        </div>
       </div>
     )
   }

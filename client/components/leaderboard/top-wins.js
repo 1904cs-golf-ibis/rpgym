@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {allUsersThunk} from '../store/user'
+import {allUsersThunk} from '../../store/user'
+import {Link} from 'react-router-dom'
 
-class Users extends Component {
+class TopWins extends Component {
   componentDidMount() {
     this.props.fetchAllUsers()
   }
@@ -13,6 +14,11 @@ class Users extends Component {
     console.log('users', users)
     return (
       <div>
+        <h1>Leaderboard</h1>
+        <h2>Global Users</h2>
+        <Link to="/topwins">Top Wins</Link>
+        <Link to="/toplvl">Top Level</Link>
+        <Link to="/topspeed">Top Speed</Link>
         <h2>Top Wins</h2>
         {users
           .sort((a, b) => {
@@ -49,4 +55,4 @@ const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(allUsersThunk())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(TopWins)
