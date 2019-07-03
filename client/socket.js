@@ -9,6 +9,7 @@ socket.on('connect', () => {
 })
 
 socket.on('new-message', message => {
+  console.log('message: ', message)
   store.dispatch(gotNewBattleMessageActionCreator(message))
 })
 

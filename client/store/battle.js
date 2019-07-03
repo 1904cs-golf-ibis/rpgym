@@ -1,4 +1,5 @@
-import axios from 'axios'
+// import axios from 'axios'
+import socket from '../socket'
 
 //Initial State
 const initialState = []
@@ -35,6 +36,7 @@ export const getNewBattleMessageThunkCreator = message => {
     try {
       // const {data} = await axios.post('/api/')
       dispatch(gotNewBattleMessageActionCreator(message))
+      socket.emit('new-message', message)
     } catch (error) {
       console.error(error)
     }
