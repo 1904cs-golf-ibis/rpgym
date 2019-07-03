@@ -14,11 +14,13 @@ class Users extends Component {
     console.log('users', users)
     return (
       <div>
-        <h2>Global Users</h2>
-        <Link to="/topwins">Top Wins</Link>
-        <Link to="/toplvl">Top Level</Link>
-        <Link to="/topspeed">Top Speed</Link>
-        <div>
+        <h2 align="center">Global Users</h2>
+        <div className="leaderBoardTabs">
+          <Link to="/leaderboard">Top Wins</Link>
+          <Link to="/toplvl">Top Level</Link>
+          <Link to="/topspeed">Top Speed</Link>
+        </div>
+        <div className="leaderBoardList">
           {users
             .sort((a, b) => {
               let keyA = a.wins
@@ -32,12 +34,26 @@ class Users extends Component {
                 return 0
               }
             })
-            .map(user => {
+            .map((user, index) => {
               return (
-                <div key={user.id}>
-                  <h3>
-                    {user.nickname} {user.lvl} {user.speed} {user.wins}
-                  </h3>
+                <div key={user.id} className="lbUserTabs">
+                  <div>{index + 1}</div>
+                  <div>
+                    <img src={user.imgUrl} />
+                  </div>
+                  <div className="lbUserInfo">
+                    <h3>{user.nickname}</h3>
+                    {/* <p>LV: {user.lvl}</p>
+                    <p>Speed: {user.speed}</p>
+                    <p>Wins: {user.wins}</p> */}
+                    <p>
+                      LV: {user.lvl}
+                      <br />
+                      Speed: {user.speed}
+                      <br />
+                      Wins: {user.wins}
+                    </p>
+                  </div>
                 </div>
               )
             })}

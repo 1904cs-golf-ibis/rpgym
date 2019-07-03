@@ -6,7 +6,7 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <div>
-        <h1>Leaderboard</h1>
+        <h1 align="center">Leaderboard</h1>
         <GlobalUsers />
       </div>
     )
