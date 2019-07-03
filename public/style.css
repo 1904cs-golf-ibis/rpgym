@@ -19,3 +19,31 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.profileCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(#728bc9, #ffffff);
+  /* opacity: 0.5; */
+  border-width: 1px;
+  border-radius: 5px;
+  width: 25%;
+  height: 50%;
+  box-shadow: 5px 5px 5px grey;
+  padding: 1%;
+}
+
+.statsBox {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-evenly;
+}
+
+.stats {
+  display: flex;
+  align-content: space-between;
+  border-left: 2px solid red;
+  /* border-radius: 5px; */
+  padding: 5px;
+}
