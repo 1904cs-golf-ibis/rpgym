@@ -8,12 +8,12 @@ const GOT_BATTLE_MESSAGES = 'GOT_BATTLE_MESSAGES'
 const NEW_BATTLE_MESSAGE = 'NEW_BATTLE_MESSAGE'
 
 //Action Creators
-const gotBattleMessagesActionCreator = messages => ({
+export const gotBattleMessagesActionCreator = messages => ({
   type: GOT_BATTLE_MESSAGES,
   messages
 })
 
-const gotNewBattleMessageActionCreator = message => ({
+export const gotNewBattleMessageActionCreator = message => ({
   type: NEW_BATTLE_MESSAGE,
   message
 })
