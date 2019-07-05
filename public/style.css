@@ -4,6 +4,10 @@ body {
   background-color: #212121;
 }
 
+*:visited {
+  color: white;
+}
+
 a {
   text-decoration: none;
 }
