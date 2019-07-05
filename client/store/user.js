@@ -72,12 +72,14 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const updateSpeedThunkCreator = speed => async dispatch => {
+export const updateSpeedThunkCreator = speedObj => async dispatch => {
   try {
-    await axios.put('/auth/me', {speed})
-    dispatch(updateUserSpeed(speed))
+    const {data} = await axios.put(`/api/users/${speedObj.stravaId}`, {
+      speed: speedObj.speed
+    })
+    dispatch(updateUserSpeed(speedObj.speed))
   } catch (err) {
-    console.err(err)
+    console.error(err)
   }
 }
 
