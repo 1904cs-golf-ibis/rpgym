@@ -18,7 +18,6 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
   const strategy = new StravaStrategy(
     stravaConfig,
     (accessToken, refreshToken, profile, done) => {
-      console.log('PROFILE======', profile)
       const stravaId = profile.id
       const nickname =
         profile.name.givenName[0] +
