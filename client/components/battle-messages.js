@@ -6,25 +6,6 @@ import {
   getOpponentStatsThunkCreator
 } from '../store/battle'
 
-const atkDict = {
-  charge: {
-    dmg: 0,
-    energy: 10
-  },
-  kiBlast: {
-    dmg: 10,
-    energy: -10
-  },
-  kamehameha: {
-    dmg: 30,
-    energy: -30
-  },
-  spiritBomb: {
-    dmg: 150,
-    energy: -80
-  }
-}
-
 class BattleMessages extends Component {
   constructor() {
     super()
@@ -61,62 +42,83 @@ class BattleMessages extends Component {
       }
     })
     // console.log('HP TOTAL', this.props.avatar.hpTotal)
-    const myStats = {
-      hpTotal: this.props.avatar.hpTotal,
-      hpCurrent: this.props.avatar.hpCurrent,
-      energyTotal: this.props.avatar.energyTotal,
-      energyCurrent: this.props.avatar.energyCurrent,
-      speed: this.props.avatar.speed
-    }
-    this.props.fetchMyStats(myStats)
+    // const myStats = {
+    //   hpTotal: this.props.avatar.hpTotal,
+    //   hpCurrent: this.props.avatar.hpCurrent,
+    //   energyTotal: this.props.avatar.energyTotal,
+    //   energyCurrent: this.props.avatar.energyCurrent,
+    //   speed: this.props.avatar.speed
+    // }
+    // this.props.fetchMyStats(myStats)
+
+    // if (this.props.avatar.isDefeated) {
+    //   console.log(
+    //     'this.props.avatar.isDefeated: ',
+    //     this.props.avatar.isDefeated
+    //   )
+    //   alert('YOU LOSE...')
+    // } else if (this.props.opponent.isDefeated) {
+    //   console.log(
+    //     'this.props.opponent.isDefeated: ',
+    //     this.props.opponent.isDefeated
+    //   )
+    //   alert('YOU WIN!')
+    // }
   }
 
   handleClick = event => {
     // console.log(event.target.value)
     const curAttack = event.target.value
-    // this.setState({
-    //   curAttack
-    // })
-
-    // const curHp = this.state.myStats.curHp
-    // const curEnergy = this.state.myStats.curEnergy
-
-    // switch (curAttack) {
-    //   case 'charge':
-    //     this.setState({
-    //       curEnergy: curEnergy + atkDict.charge.energy
-    //     })
-    //     break
-    //   case 'kiBlast':
-    //     this.setState({
-    //       curHp: curHp - atkDict.kiBlast.dmg,
-    //       curEnergy: curEnergy + atkDict.kiBlast.energy
-    //     })
-    //     break
-    //   default:
-    //     console.log('NOT A VALID MOVE')
-    // }
 
     this.props.fetchNewMessage(curAttack)
+    this.forceUpdate()
   }
 
   render() {
-    console.log('curHp: ', this.state.myStats.curHp)
-    console.log('curEnergy: ', this.state.myStats.curEnergy)
-    console.log('Opp curHp: ', this.state.opponentStats.curHp)
-    console.log('Opp curEnergy: ', this.state.opponentStats.curEnergy)
-    console.log('PROPS FOR OPPONENT', this.props.opponent)
+    // console.log('curHp: ', this.state.myStats.curHp)
+    // console.log('curEnergy: ', this.state.myStats.curEnergy)
+    // console.log('Opp curHp: ', this.state.opponentStats.curHp)
+    // console.log('Opp curEnergy: ', this.state.opponentStats.curEnergy)
+    // console.log('PROPS FOR OPPONENT', this.props.opponent)
+    // console.log('this.props.avatar.isDefeated: ', this.props.avatar.isDefeated)
+    // console.log(
+    //   'this.props.opponent.isDefeated: ',
+    //   this.props.opponent.isDefeated
+    // )
+
+    if (this.props.avatar.isDefeated) {
+      console.log(
+        'this.props.avatar.isDefeated: ',
+        this.props.avatar.isDefeated
+      )
+      alert('YOU LOSE...')
+    } else if (this.props.opponent.isDefeated) {
+      console.log(
+        'this.props.opponent.isDefeated: ',
+        this.props.opponent.isDefeated
+      )
+      alert('YOU WIN!')
+    }
+
     return (
       <div>
         <div>
           <div id="battleStats">
             <h1 align="center">My Stats</h1>
             <h3>{this.state.myStats.nickname}</h3>
-            <div>{`HP: ${this.state.myStats.curHp} / ${
+            {/* <div>{`HP: ${this.state.myStats.curHp} / ${
+              this.props.avatar.hpTotal
+            }`}</div> */}
+            <div>{`HP: ${this.props.avatar.hpCurrent} / ${
               this.props.avatar.hpTotal
             }`}</div>
-            <div>
+            {/* <div>
               {`Energy: ${this.state.myStats.curEnergy} / ${
+                this.props.avatar.energyTotal
+              }`}
+            </div> */}
+            <div>
+              {`Energy: ${this.props.avatar.energyCurrent} / ${
                 this.props.avatar.energyTotal
               }`}
             </div>
@@ -125,11 +127,19 @@ class BattleMessages extends Component {
           <div>
             <h1>Opponent Stats</h1>
             <h3>{this.state.opponentStats.nickname}</h3>
-            <div>{`HP: ${this.state.opponentStats.curHp} / ${
+            {/* <div>{`HP: ${this.state.opponentStats.curHp} / ${
+              this.props.opponent.hpTotal
+            }`}</div> */}
+            <div>{`HP: ${this.props.opponent.hpCurrent} / ${
               this.props.opponent.hpTotal
             }`}</div>
-            <div>
+            {/* <div>
               {`Energy: ${this.state.opponentStats.curEnergy} / ${
+                this.props.avatar.energyTotal
+              }`}
+            </div> */}
+            <div>
+              {`Energy: ${this.props.opponent.energyCurrent} / ${
                 this.props.avatar.energyTotal
               }`}
             </div>
@@ -194,12 +204,17 @@ const mapStateToProps = state => ({
   avatar: {
     nickname: state.user.singleUser.nickname,
     lvl: state.user.singleUser.lvl,
-    energyTotal: state.user.singleUser.energyTotal,
-    energyCurrent: state.user.singleUser.energyCurrent,
-    hpTotal: state.user.singleUser.hpTotal,
-    hpCurrent: state.user.singleUser.hpCurrent,
     imgUrl: state.user.singleUser.imgUrl,
-    speed: state.user.singleUser.speed
+    speed: state.user.singleUser.speed,
+    // energyTotal: state.user.singleUser.energyTotal,
+    // energyCurrent: state.user.singleUser.energyCurrent,
+    // hpTotal: state.user.singleUser.hpTotal,
+    // hpCurrent: state.user.singleUser.hpCurrent,
+    energyTotal: state.battle.myStats.energyTotal,
+    energyCurrent: state.battle.myStats.energyCurrent,
+    hpTotal: state.battle.myStats.hpTotal,
+    hpCurrent: state.battle.myStats.hpCurrent,
+    isDefeated: state.battle.myStats.isDefeated
   },
   opponent: {
     nickname: state.battle.opponentStats.nickname,
@@ -209,7 +224,8 @@ const mapStateToProps = state => ({
     hpTotal: state.battle.opponentStats.hpTotal,
     hpCurrent: state.battle.opponentStats.hpCurrent,
     imgUrl: state.battle.opponentStats.imgUrl,
-    speed: state.battle.opponentStats.speed
+    speed: state.battle.opponentStats.speed,
+    isDefeated: state.battle.opponentStats.isDefeated
   }
 })
 

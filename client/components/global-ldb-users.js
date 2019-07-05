@@ -2,15 +2,20 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {allUsersThunk} from '../store/user'
 import {Link} from 'react-router-dom'
-import {getOpponentStatsThunkCreator} from '../store/battle'
+import {
+  getOpponentStatsThunkCreator,
+  getMyStatsThunkCreator
+} from '../store/battle'
 
 class Users extends Component {
   componentDidMount() {
     this.props.fetchAllUsers()
   }
   handleClick = event => {
+    const myStravaId = this.props.singleUser.stravaId
+    this.props.fetchMyStats(myStravaId)
     const currentOpponentStravaId = event.target.value
-    console.log(currentOpponentStravaId)
+    // console.log(currentOpponentStravaId)
     this.props.fetchOpponentStats(currentOpponentStravaId)
   }
   render() {
@@ -73,13 +78,15 @@ class Users extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.user.allUsers
+  users: state.user.allUsers,
+  singleUser: state.user.singleUser
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(allUsersThunk()),
   fetchOpponentStats: stravaId =>
-    dispatch(getOpponentStatsThunkCreator(stravaId))
+    dispatch(getOpponentStatsThunkCreator(stravaId)),
+  fetchMyStats: stravaId => dispatch(getMyStatsThunkCreator(stravaId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)
