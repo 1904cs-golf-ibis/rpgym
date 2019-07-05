@@ -98,6 +98,7 @@ class BattleMessages extends Component {
     // }
 
     this.props.fetchNewMessage(curAttack)
+    this.forceUpdate()
   }
 
   render() {
@@ -112,11 +113,19 @@ class BattleMessages extends Component {
           <div id="battleStats">
             <h1 align="center">My Stats</h1>
             <h3>{this.state.myStats.nickname}</h3>
-            <div>{`HP: ${this.state.myStats.curHp} / ${
+            {/* <div>{`HP: ${this.state.myStats.curHp} / ${
+              this.props.avatar.hpTotal
+            }`}</div> */}
+            <div>{`HP: ${this.props.avatar.hpCurrent} / ${
               this.props.avatar.hpTotal
             }`}</div>
-            <div>
+            {/* <div>
               {`Energy: ${this.state.myStats.curEnergy} / ${
+                this.props.avatar.energyTotal
+              }`}
+            </div> */}
+            <div>
+              {`Energy: ${this.props.avatar.energyCurrent} / ${
                 this.props.avatar.energyTotal
               }`}
             </div>
@@ -125,11 +134,19 @@ class BattleMessages extends Component {
           <div>
             <h1>Opponent Stats</h1>
             <h3>{this.state.opponentStats.nickname}</h3>
-            <div>{`HP: ${this.state.opponentStats.curHp} / ${
+            {/* <div>{`HP: ${this.state.opponentStats.curHp} / ${
+              this.props.opponent.hpTotal
+            }`}</div> */}
+            <div>{`HP: ${this.props.opponent.hpCurrent} / ${
               this.props.opponent.hpTotal
             }`}</div>
-            <div>
+            {/* <div>
               {`Energy: ${this.state.opponentStats.curEnergy} / ${
+                this.props.avatar.energyTotal
+              }`}
+            </div> */}
+            <div>
+              {`Energy: ${this.props.opponent.energyCurrent} / ${
                 this.props.avatar.energyTotal
               }`}
             </div>
@@ -202,12 +219,16 @@ const mapStateToProps = state => ({
   avatar: {
     nickname: state.user.singleUser.nickname,
     lvl: state.user.singleUser.lvl,
-    energyTotal: state.user.singleUser.energyTotal,
-    energyCurrent: state.user.singleUser.energyCurrent,
-    hpTotal: state.user.singleUser.hpTotal,
-    hpCurrent: state.user.singleUser.hpCurrent,
     imgUrl: state.user.singleUser.imgUrl,
-    speed: state.user.singleUser.speed
+    speed: state.user.singleUser.speed,
+    // energyTotal: state.user.singleUser.energyTotal,
+    // energyCurrent: state.user.singleUser.energyCurrent,
+    // hpTotal: state.user.singleUser.hpTotal,
+    // hpCurrent: state.user.singleUser.hpCurrent,
+    energyTotal: state.battle.myStats.energyTotal,
+    energyCurrent: state.battle.myStats.energyCurrent,
+    hpTotal: state.battle.myStats.hpTotal,
+    hpCurrent: state.battle.myStats.hpCurrent
   },
   opponent: {
     nickname: state.battle.opponentStats.nickname,

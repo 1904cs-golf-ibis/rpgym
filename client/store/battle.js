@@ -75,6 +75,17 @@ export const getNewBattleMessageThunkCreator = message => {
   }
 }
 
+export const getMyStatsThunkCreator = stravaId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/users/${stravaId}`)
+      dispatch(gotMyStatsActionCreator(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 export const getOpponentStatsThunkCreator = stravaId => {
   return async dispatch => {
     try {
@@ -108,6 +119,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         myStats: {
+          ...state.myStats,
           energyCurrent:
             state.myStats.energyCurrent - action.updatedStats.energy,
           hpCurrent: state.myStats.hpCurrent - action.updatedStats.damage
@@ -118,6 +130,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         opponentStats: {
+          ...state.opponentStats,
           energyCurrent:
             state.opponentStats.energyCurrent - action.updatedStats.energy,
           hpCurrent: state.opponentStats.hpCurrent - action.updatedStats.damage
