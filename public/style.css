@@ -1,8 +1,8 @@
-@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+/* @import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
 
 * {
   font-family: 'Press Start 2P';
-}
+} */
 
 body {
   font-family: sans-serif;
@@ -12,7 +12,6 @@ body {
 
 *:visited {
   color: white;
-
 }
 
 a {
@@ -35,8 +34,8 @@ form div {
 
 .homePage {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* flex-direction: column; */
+  justify-content: space-around;
   /* align-content: center; */
   background: linear-gradient(#728bc9, #ffffff);
   /* opacity: 0.5; */
@@ -45,8 +44,13 @@ form div {
   border-radius: 5px;
   padding: 1%;
   width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
+  /* margin-left: 15%;
+  margin-right: 15%; */
+  margin: auto;
+}
+
+#cardFont {
+  font-size: 12px;
 }
 
 .profileCard {
@@ -55,12 +59,22 @@ form div {
   justify-content: center;
   align-content: center;
   background: linear-gradient(#424242, #ffffff);
-  /* opacity: 0.5; */
   border-width: 1px;
   border-radius: 5px;
   width: 25%;
-  height: 50%;
+  /* height: 50%; */
   box-shadow: 5px 5px 5px grey;
+  padding: 1%;
+}
+.profileCardInfo {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-evenly;
+  background-color: rgba(103, 103, 103, 0.5);
+  border-width: 1px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px grey;
+  width: 65%;
   padding: 1%;
 }
 
@@ -73,13 +87,15 @@ form div {
   border-radius: 5px;
   box-shadow: 5px 5px 5px grey;
   padding: 1%;
+  margin: auto;
 }
 
 .stats {
   display: flex;
   align-content: space-between;
-  /* border-radius: 5px; */
   padding: 5px;
+  width: 30%;
+  margin: auto;
 }
 
 .leaderBoardTabs {
@@ -134,4 +150,70 @@ form div {
   border-radius: 5px;
   box-shadow: 5px 5px 5px grey;
   padding: 1%;
+}
+
+/* BATTLE ROOM CSS */
+
+#battleRoom {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#arenaImage {
+  border: 5px solid white;
+  border-radius: 5px;
+}
+
+#battleStats {
+  display: flex;
+  flex-direction: column;
+  /* align-content: space-between; */
+  /* justify-content: space-evenly; */
+  background-color: rgba(103, 103, 103, 0.5);
+  border: 5px solid white;
+  /* border-width: 1px; */
+  border-radius: 5px;
+  /* box-shadow: 5px 5px 5px grey; */
+  padding: 5%;
+  margin: auto;
+}
+
+#battleMenu {
+  display: flex;
+  flex-direction: column;
+  /* align-content: space-between; */
+  /* justify-content: space-evenly; */
+  background-color: rgba(103, 103, 103, 0.5);
+  border: 5px solid white;
+  /* border-width: 1px; */
+  border-radius: 5px;
+  padding: 2%;
+  margin: auto;
+}
+
+.battleButtonSet {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 2%;
+  margin: auto;
+}
+
+.battleButton {
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  border-left: 5px solid #fc4c02;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.battleButton:hover {
+  background-color: #4caf50; /* Green */
+  color: white;
 }
