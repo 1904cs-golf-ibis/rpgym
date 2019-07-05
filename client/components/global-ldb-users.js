@@ -6,6 +6,7 @@ import {
   getOpponentStatsThunkCreator,
   getMyStatsThunkCreator
 } from '../store/battle'
+import history from '../history'
 
 class Users extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class Users extends Component {
     const currentOpponentStravaId = event.target.value
     // console.log(currentOpponentStravaId)
     this.props.fetchOpponentStats(currentOpponentStravaId)
+    history.push('/battle')
   }
   render() {
     // console.log('PROPS!!', this.props)
