@@ -32,6 +32,10 @@ form div {
   display: inline-block;
 }
 
+.navBar:hover {
+  background-color: blue;
+}
+
 .homePage {
   display: flex;
   /* flex-direction: column; */
@@ -117,9 +121,8 @@ form div {
   flex-direction: column;
   justify-content: center;
   /* align-content: center; */
-  background: linear-gradient(#424242, #ffffff);
+  background-color: rgba(103, 103, 103, 0.5);
   /* opacity: 0.5; */
-  border: 5px solid black;
   border-width: 1px;
   border-radius: 5px;
   padding: 1%;
@@ -132,10 +135,10 @@ form div {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: linear-gradient(#ffffff, #728bc9);
-  border-width: 1px;
+  /* background: linear-gradient(#ffffff, #728bc9); */
+  background-color: rgba(103, 103, 103, 0.5);
+  border: 3px solid white;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px grey;
   padding: 1%;
 }
 
@@ -220,6 +223,7 @@ form div {
   border: none;
   padding: 15px 32px;
   text-align: center;
+  width: 200px;
   border-left: 5px solid #fc4c02;
   border-radius: 8px;
   text-decoration: none;
