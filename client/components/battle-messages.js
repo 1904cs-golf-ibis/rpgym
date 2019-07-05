@@ -104,7 +104,10 @@ class BattleMessages extends Component {
       <div>
         <div>
           <div id="battleStats">
-            <h1 align="center">My Stats</h1>
+            {/* <h1 align="center">My Stats</h1> */}
+            <div>
+              <img src={this.props.avatar.imgUrl} width="20%" />
+            </div>
             <h3>{this.state.myStats.nickname}</h3>
             {/* <div>{`HP: ${this.state.myStats.curHp} / ${
               this.props.avatar.hpTotal
@@ -123,27 +126,6 @@ class BattleMessages extends Component {
               }`}
             </div>
             <div>{`Speed: ${this.props.avatar.speed}`}</div>
-          </div>
-          <div>
-            <h1>Opponent Stats</h1>
-            <h3>{this.state.opponentStats.nickname}</h3>
-            {/* <div>{`HP: ${this.state.opponentStats.curHp} / ${
-              this.props.opponent.hpTotal
-            }`}</div> */}
-            <div>{`HP: ${this.props.opponent.hpCurrent} / ${
-              this.props.opponent.hpTotal
-            }`}</div>
-            {/* <div>
-              {`Energy: ${this.state.opponentStats.curEnergy} / ${
-                this.props.avatar.energyTotal
-              }`}
-            </div> */}
-            <div>
-              {`Energy: ${this.props.opponent.energyCurrent} / ${
-                this.props.avatar.energyTotal
-              }`}
-            </div>
-            <div>{`Speed: ${this.props.opponent.speed}`}</div>
           </div>
         </div>
 
@@ -189,6 +171,34 @@ class BattleMessages extends Component {
             <br />
           </div>
         </div>
+
+        <br />
+
+        <div id="opponentStats">
+          <h3>Opponent</h3>
+          <h3>{this.state.opponentStats.nickname}</h3>
+          {/* <div>{`HP: ${this.state.opponentStats.curHp} / ${
+              this.props.opponent.hpTotal
+            }`}</div> */}
+          <div>
+            <img src={this.props.opponent.imgUrl} width="20%" />
+          </div>
+          <div>{`HP: ${this.props.opponent.hpCurrent} / ${
+            this.props.opponent.hpTotal
+          }`}</div>
+          {/* <div>
+              {`Energy: ${this.state.opponentStats.curEnergy} / ${
+                this.props.avatar.energyTotal
+              }`}
+            </div> */}
+          <div>
+            {`Energy: ${this.props.opponent.energyCurrent} / ${
+              this.props.avatar.energyTotal
+            }`}
+          </div>
+          <div>{`Speed: ${this.props.opponent.speed}`}</div>
+        </div>
+
         <div>
           {/* {this.props.messages.map((message, idx) => {
             return <h5 key={idx}>{message}</h5>
