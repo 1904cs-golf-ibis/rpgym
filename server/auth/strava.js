@@ -20,7 +20,9 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
     (accessToken, refreshToken, profile, done) => {
       console.log('PROFILE======', profile)
       const stravaId = profile.id
-      const nickname = profile.name.givenName
+      const nickname =
+        profile.name.givenName[0] +
+        profile.name.givenName.slice(1).toLowerCase()
       const email = profile.emails[0].value
       const userToken = accessToken
       // console.log('userToken: >>>>>>>>>>>>>>>>>', userToken)
