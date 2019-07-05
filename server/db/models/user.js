@@ -12,7 +12,7 @@ const User = db.define('user', {
     defaultValue: 'Goku'
   },
   imgUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue: 'http://pixelartmaker.com/art/6bb9673b65fade0.png'
   },
   lvl: {

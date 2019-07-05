@@ -19,15 +19,17 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
     stravaConfig,
     (accessToken, refreshToken, profile, done) => {
       const stravaId = profile.id
-      const name = profile.displayName
+      const nickname =
+        profile.name.givenName[0] +
+        profile.name.givenName.slice(1).toLowerCase()
       const email = profile.emails[0].value
       const userToken = accessToken
       // console.log('userToken: >>>>>>>>>>>>>>>>>', userToken)
-      console.log('Profile inside STRAVA STRAT', profile)
+      // console.log('Profile inside STRAVA STRAT', profile)
       User.findOne({where: {stravaId}})
         //If user is found, need to update user with new access token
         .then(async foundUser => {
-          console.log('foundUser: >>>>>>>>>>>>>', foundUser)
+          // console.log('foundUser: >>>>>>>>>>>>>', foundUser)
           if (foundUser) {
             const updatedFoundUser = await foundUser.update(
               {userToken},
@@ -39,7 +41,7 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
             return ifResult
           } else {
             const elseResult = User.create({
-              name,
+              nickname,
               email,
               stravaId,
               userToken

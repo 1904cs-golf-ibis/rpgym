@@ -14,6 +14,7 @@ class TopLvl extends Component {
     console.log('users', users)
     return (
       <div>
+        <h1 align="center">Leaderboard</h1>
         <h2 align="center">Global Users</h2>
         <div className="leaderBoardTabs">
           <Link to="/leaderboard">Top Wins</Link>
@@ -38,14 +39,11 @@ class TopLvl extends Component {
               return (
                 <div key={user.id} className="lbUserTabs">
                   <div>{index + 1}</div>
-                  <div>
-                    <img src={user.imgUrl} width="25%" />
+                  <div align="center">
+                    <img src={user.imgUrl} width="35%" />
                   </div>
                   <div className="lbUserInfo">
                     <h3>{user.nickname}</h3>
-                    {/* <p>LV: {user.lvl}</p>
-                    <p>Speed: {user.speed}</p>
-                    <p>Wins: {user.wins}</p> */}
                     <p>
                       LV: {user.lvl}
                       <br />
