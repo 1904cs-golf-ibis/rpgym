@@ -87,28 +87,58 @@ class BattleMessages extends Component {
     console.log('curEnergy: ', this.state.curEnergy)
     return (
       <div>
-        <h1>My Stats</h1>
-        <div>{`HP: ${this.state.curHp} / ${this.props.avatar.hpTotal}`}</div>
-        <div>
-          {`Energy: ${this.state.curEnergy} / ${this.props.avatar.energyTotal}`}
+        <div id="battleStats">
+          <h3 align="center">My Stats</h3>
+          <div>{`HP: ${this.state.curHp} / ${this.props.avatar.hpTotal}`}</div>
+          <div>
+            {`Energy: ${this.state.curEnergy} / ${
+              this.props.avatar.energyTotal
+            }`}
+          </div>
+          <div>{`Speed: ${this.state.speed}`}</div>
+          <br />
         </div>
-        <div>{`Speed: ${this.state.speed}`}</div>
-        <h1>Battle Messages</h1>
-        <div>
-          <button type="button" value="charge" onClick={this.handleClick}>
-            Charge
-          </button>
-          <button type="button" value="kiBlast" onClick={this.handleClick}>
-            Ki Blast
-          </button>
-        </div>
-        <div>
-          <button type="button" value="kamehameha" onClick={this.handleClick}>
-            Kamehameha
-          </button>
-          <button type="button" value="spiritBomb" onClick={this.handleClick}>
-            Spirit Bomb
-          </button>
+        <br />
+        <div id="battleMenu">
+          <h3 align="center">Commands</h3>
+          <div className="battleButtonSet">
+            <button
+              className="battleButton"
+              type="button"
+              value="charge"
+              onClick={this.handleClick}
+            >
+              Charge
+            </button>
+            <br />
+            <button
+              className="battleButton"
+              type="button"
+              value="kiBlast"
+              onClick={this.handleClick}
+            >
+              Ki Blast
+            </button>
+            <br />
+            <button
+              className="battleButton"
+              type="button"
+              value="kamehameha"
+              onClick={this.handleClick}
+            >
+              Kamehameha
+            </button>
+            <br />
+            <button
+              className="battleButton"
+              type="button"
+              value="spiritBomb"
+              onClick={this.handleClick}
+            >
+              Spirit Bomb
+            </button>
+            <br />
+          </div>
         </div>
         <div>
           {/* {this.props.messages.map((message, idx) => {

@@ -59,15 +59,21 @@ export class UserHome extends Component {
               <img src={imgUrl} alt="Your Avatar" width="50%" />
             </h1>
           </div>
-          <div className="statsInfoBox">{`XP: ${xpCurrent} / ${xpToNextLvl}`}</div>
+          <div className="statsInfoBox">{`XP: ${xpCurrent}/${xpToNextLvl}`}</div>
+          <br />
           <div className="statsInfoBox">
-            <div className="statsInfoBox">{`Energy: ${energyCurrent} / ${energyTotal}`}</div>
-            <div className="statsInfoBox">{`HP: ${hpCurrent} / ${hpTotal}`}</div>
-            <div className="statsInfoBox">{`Speed: ${this.state.speed}`}</div>
+            <p id="cardFont">
+              {`Energy: ${energyCurrent}/${energyTotal}`}
+              <br />
+              {`HP: ${hpCurrent}/${hpTotal}`}
+              <br />
+              {`Speed: ${this.state.speed}`}
+            </p>
           </div>
         </div>
-        <br />
-        <div>{`You have been a member since ${memberSince.slice(0, 10)}.`}</div>
+        <div className="profileCardInfo">
+          {`You have been a member since ${memberSince.slice(0, 10)}.`}
+        </div>
       </div>
     )
   }
