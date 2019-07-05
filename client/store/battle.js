@@ -4,8 +4,12 @@ import axios from 'axios'
 
 //Initial State
 const initialState = {
-  myStats: {},
-  opponentStats: {},
+  myStats: {
+    isDefeated: false
+  },
+  opponentStats: {
+    isDefeated: false
+  },
   battleMessages: []
 }
 
@@ -75,6 +79,17 @@ export const getNewBattleMessageThunkCreator = message => {
   }
 }
 
+export const getMyStatsThunkCreator = stravaId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/users/${stravaId}`)
+      dispatch(gotMyStatsActionCreator(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 export const getOpponentStatsThunkCreator = stravaId => {
   return async dispatch => {
     try {
@@ -99,28 +114,38 @@ export default function(state = initialState, action) {
       }
     }
     case GOT_MY_STATS: {
-      return {...state, myStats: action.stats}
+      return {...state, myStats: {...state.myStats, ...action.stats}}
     }
     case GOT_OPPONENT_STATS: {
-      return {...state, opponentStats: action.stats}
+      return {
+        ...state,
+        opponentStats: {...state.opponentStats, ...action.stats}
+      }
     }
     case UPDATE_MY_STATS: {
+      const myUpdatedHp = state.myStats.hpCurrent - action.updatedStats.damage
       return {
         ...state,
         myStats: {
+          ...state.myStats,
           energyCurrent:
             state.myStats.energyCurrent - action.updatedStats.energy,
-          hpCurrent: state.myStats.hpCurrent - action.updatedStats.damage
+          hpCurrent: myUpdatedHp > 0 ? myUpdatedHp : 0,
+          isDefeated: !(myUpdatedHp > 0)
         }
       }
     }
     case UPDATE_OPPONENT_STATS: {
+      const opponentUpdatedHp =
+        state.opponentStats.hpCurrent - action.updatedStats.damage
       return {
         ...state,
         opponentStats: {
+          ...state.opponentStats,
           energyCurrent:
             state.opponentStats.energyCurrent - action.updatedStats.energy,
-          hpCurrent: state.opponentStats.hpCurrent - action.updatedStats.damage
+          hpCurrent: opponentUpdatedHp > 0 ? opponentUpdatedHp : 0,
+          isDefeated: !(opponentUpdatedHp > 0)
         }
       }
     }
