@@ -12,7 +12,6 @@ body {
 
 *:visited {
   color: white;
-
 }
 
 a {
@@ -132,6 +131,7 @@ form div {
   width: 50%;
   border-width: 1px;
   border-radius: 5px;
+  min-width: 350px;
   box-shadow: 5px 5px 5px grey;
   padding: 1%;
 }
