@@ -14,6 +14,8 @@ const GOT_BATTLE_MESSAGES = 'GOT_BATTLE_MESSAGES'
 const NEW_BATTLE_MESSAGE = 'NEW_BATTLE_MESSAGE'
 const GOT_MY_STATS = 'GOT_MY_STATS'
 const GOT_OPPONENT_STATS = 'GOT_OPPONENT_STATS'
+const UPDATE_MY_STATS = 'UPDATE_MY_STATS'
+const UPDATE_OPPONENT_STATS = 'UPDATE_OPPONEN_STATS'
 
 //Action Creators
 export const gotBattleMessagesActionCreator = messages => ({
@@ -34,6 +36,16 @@ export const gotMyStatsActionCreator = stats => ({
 export const gotOpponentStatsActionCreator = stats => ({
   type: GOT_OPPONENT_STATS,
   stats
+})
+
+export const updateMyStatsActionCreator = updatedStats => ({
+  type: UPDATE_MY_STATS,
+  updatedStats
+})
+
+export const updateOpponentStatsActionCreator = updatedStats => ({
+  type: UPDATE_OPPONENT_STATS,
+  updatedStats
 })
 
 //Thunks
@@ -91,6 +103,26 @@ export default function(state = initialState, action) {
     }
     case GOT_OPPONENT_STATS: {
       return {...state, opponentStats: action.stats}
+    }
+    case UPDATE_MY_STATS: {
+      return {
+        ...state,
+        myStats: {
+          energyCurrent:
+            state.myStats.energyCurrent - action.updatedStats.energy,
+          hpCurrent: state.myStats.hpCurrent - action.updatedStats.damage
+        }
+      }
+    }
+    case UPDATE_OPPONENT_STATS: {
+      return {
+        ...state,
+        opponentStats: {
+          energyCurrent:
+            state.opponentStats.energyCurrent - action.updatedStats.energy,
+          hpCurrent: state.opponentStats.hpCurrent - action.updatedStats.damage
+        }
+      }
     }
     default:
       return state

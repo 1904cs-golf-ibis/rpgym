@@ -72,30 +72,30 @@ class BattleMessages extends Component {
   }
 
   handleClick = event => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     const curAttack = event.target.value
-    this.setState({
-      curAttack
-    })
+    // this.setState({
+    //   curAttack
+    // })
 
-    const curHp = this.state.myStats.curHp
-    const curEnergy = this.state.myStats.curEnergy
+    // const curHp = this.state.myStats.curHp
+    // const curEnergy = this.state.myStats.curEnergy
 
-    switch (curAttack) {
-      case 'charge':
-        this.setState({
-          curEnergy: curEnergy + atkDict.charge.energy
-        })
-        break
-      case 'kiBlast':
-        this.setState({
-          curHp: curHp - atkDict.kiBlast.dmg,
-          curEnergy: curEnergy + atkDict.kiBlast.energy
-        })
-        break
-      default:
-        console.log('NOT A VALID MOVE')
-    }
+    // switch (curAttack) {
+    //   case 'charge':
+    //     this.setState({
+    //       curEnergy: curEnergy + atkDict.charge.energy
+    //     })
+    //     break
+    //   case 'kiBlast':
+    //     this.setState({
+    //       curHp: curHp - atkDict.kiBlast.dmg,
+    //       curEnergy: curEnergy + atkDict.kiBlast.energy
+    //     })
+    //     break
+    //   default:
+    //     console.log('NOT A VALID MOVE')
+    // }
 
     this.props.fetchNewMessage(curAttack)
   }
