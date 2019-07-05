@@ -43,9 +43,6 @@ class Users extends Component {
                   </div>
                   <div className="lbUserInfo">
                     <h3>{user.nickname}</h3>
-                    {/* <p>LV: {user.lvl}</p>
-                    <p>Speed: {user.speed}</p>
-                    <p>Wins: {user.wins}</p> */}
                     <p>
                       LV: {user.lvl}
                       <br />
