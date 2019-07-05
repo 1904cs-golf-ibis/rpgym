@@ -72,10 +72,12 @@ module.exports = io => {
 
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`)
-      if (socket.id === playersObj.playerOne) {
+      if (socket.id === playersObj.playerOne.socketId) {
         playersObj.playerOne.socketId = ''
-      } else if (socket.id === playersObj.playerTwo) {
+        console.log('PLAYER ONE DISC SOCKET ID SHOULD BE EMPTY')
+      } else if (socket.id === playersObj.playerTwo.socketId) {
         playersObj.playerTwo.socketId = ''
+        console.log('PLAYER TWO DISC SOCKET ID SHOULD BE EMPTY')
       }
 
       console.log('disconnecting player', playersObj)
