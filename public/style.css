@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  color: white;
+  background-color: #212121;
 }
 
 a {
@@ -20,11 +22,28 @@ form div {
   display: inline-block;
 }
 
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-content: center; */
+  background: linear-gradient(#728bc9, #ffffff);
+  /* opacity: 0.5; */
+  border: 5px solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 1%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 .profileCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(#728bc9, #ffffff);
+  align-content: center;
+  background: linear-gradient(#424242, #ffffff);
   /* opacity: 0.5; */
   border-width: 1px;
   border-radius: 5px;
@@ -34,16 +53,20 @@ form div {
   padding: 1%;
 }
 
-.statsBox {
+.statsInfoBox {
   display: flex;
   align-content: space-between;
   justify-content: space-evenly;
+  background-color: rgba(103, 103, 103, 0.5);
+  border-width: 1px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px grey;
+  padding: 1%;
 }
 
 .stats {
   display: flex;
   align-content: space-between;
-  border-left: 2px solid red;
   /* border-radius: 5px; */
   padding: 5px;
 }
@@ -67,7 +90,7 @@ form div {
   flex-direction: column;
   justify-content: center;
   /* align-content: center; */
-  background: linear-gradient(#728bc9, #ffffff);
+  background: linear-gradient(#424242, #ffffff);
   /* opacity: 0.5; */
   border: 5px solid black;
   border-width: 1px;
@@ -94,7 +117,7 @@ form div {
   flex-direction: column;
   /* justify-content: space-between; */
   /* background: linear-gradient(#ffffff, gray); */
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(103, 103, 103, 0.5);
   width: 50%;
   border-width: 1px;
   border-radius: 5px;

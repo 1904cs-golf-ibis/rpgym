@@ -46,17 +46,21 @@ export class UserHome extends Component {
       memberSince
     } = this.props
     return (
-      <div>
-        <h3>{`Welcome, ${nickname}!`}</h3>
+      <div className="homePage">
+        {/* <h3>{`Welcome, ${nickname}!`}</h3> */}
         <div className="profileCard">
+          <div className="statsInfoBox">{`Level: ${lvl}`}</div>
           <div>
-            <img src={imgUrl} alt="Your Avatar" />
+            <h1 align="center">
+              <img src={imgUrl} alt="Your Avatar" width="50%" />
+            </h1>
           </div>
-          <div>{`Level: ${lvl}`}</div>
-          <div>{`XP: ${xpCurrent} / ${xpToNextLvl}`}</div>
-          <div className="stats">{`Energy: ${energyCurrent} / ${energyTotal}`}</div>
-          <div className="stats">{`HP: ${hpCurrent} / ${hpTotal}`}</div>
-          <div className="stats">{`Speed: ${this.state.speed}`}</div>
+          <div className="statsInfoBox">{`XP: ${xpCurrent} / ${xpToNextLvl}`}</div>
+          <div className="statsInfoBox">
+            <div className="statsInfoBox">{`Energy: ${energyCurrent} / ${energyTotal}`}</div>
+            <div className="statsInfoBox">{`HP: ${hpCurrent} / ${hpTotal}`}</div>
+            <div className="statsInfoBox">{`Speed: ${this.state.speed}`}</div>
+          </div>
         </div>
         <br />
         <div>{`You have been a member since ${memberSince.slice(0, 10)}.`}</div>
