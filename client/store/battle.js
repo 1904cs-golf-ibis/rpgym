@@ -1,5 +1,6 @@
 // import axios from 'axios'
 import socket from '../socket'
+import axios from 'axios'
 
 //Initial State
 const initialState = {
@@ -58,6 +59,17 @@ export const getNewBattleMessageThunkCreator = message => {
       // socket.broadcast.emit('broadcast', message)
     } catch (error) {
       console.error(error)
+    }
+  }
+}
+
+export const getOpponentStatsThunkCreator = stravaId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/users/${stravaId}`)
+      dispatch(gotOpponentStatsActionCreator(data))
+    } catch (err) {
+      console.log(err)
     }
   }
 }
