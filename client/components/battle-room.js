@@ -7,9 +7,9 @@ export default class BattleRoom extends Component {
   render() {
     return (
       <div>
+        <h1 align="center">Battle Room</h1>
         <div id="battleRoom">
           <div>
-            <h1>Battle Room</h1>
             <BattleMessages />
           </div>
           <div id="arenaImage">

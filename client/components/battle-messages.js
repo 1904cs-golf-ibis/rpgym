@@ -136,15 +136,7 @@ class BattleMessages extends Component {
             <div>{`Speed: ${this.props.opponent.speed}`}</div>
           </div>
         </div>
-        <h1>Battle Messages</h1>
-        <div>
-          <button type="button" value="charge" onClick={this.handleClick}>
-            Charge
-          </button>
-          <button type="button" value="kiBlast" onClick={this.handleClick}>
-            Ki Blast
-          </button>
-        </div>
+
         <br />
         <div id="battleMenu">
           <h3 align="center">Commands</h3>
