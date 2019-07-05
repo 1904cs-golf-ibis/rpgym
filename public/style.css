@@ -157,7 +157,7 @@ form div {
 
 #battleRoom {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
 }
 
 #arenaImage {
