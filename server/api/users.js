@@ -23,3 +23,72 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// router.post('/', async (req, res, next) => {
+//   try {
+//     const newUserData = {
+//       id: req.body.id,
+//       stravaId: req.body.stravaId,
+//       lvl: req.body.lvl,
+//       nickname: req.body.nickname,
+//       speed: req.body.speed,
+//       wins: req.body.wins,
+//       imgUrl: req.body.imgUrl
+//     }
+//     const newUser = await User.create(newUserData)
+//     res.json(newUser)
+//   } catch (error) {
+//     console.error(error)
+//     next(error)
+//   }
+// })
+
+router.get('/:stravaId', async (req, res, next) => {
+  try {
+    const curUserStravaId = req.params.stravaId
+    const curUser = await User.findOne({
+      where: {
+        stravaId: curUserStravaId
+      }
+    })
+    res.json(curUser)
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
+})
+
+router.put('/:stravaId', async (req, res, next) => {
+  try {
+    const curUserStravaId = req.params.stravaId
+    const updatedUserData = {
+      speed: req.body.speed
+    }
+    const updatedCurUser = await User.update(updatedUserData, {
+      where: {stravaId: curUserStravaId},
+      returning: true,
+      plain: true
+    })
+    res.json(updatedCurUser)
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
+})
+
+router.delete('/:stravaId', async (req, res, next) => {
+  try {
+    const curUserStravaId = req.params.stravaId
+    const deletedCurUser = await User.destroy({
+      where: {
+        stravaId: curUserStravaId
+      },
+      returning: true,
+      plain: true
+    })
+    res.json(deletedCurUser)
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
+})
