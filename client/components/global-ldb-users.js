@@ -43,14 +43,11 @@ class Users extends Component {
               return (
                 <div key={user.id} className="lbUserTabs">
                   <div>{index + 1}</div>
-                  <div>
-                    <img src={user.imgUrl} width="25%" />
+                  <div align="center">
+                    <img src={user.imgUrl} width="35%" />
                   </div>
                   <div className="lbUserInfo">
                     <h3>{user.nickname}</h3>
-                    {/* <p>LV: {user.lvl}</p>
-                    <p>Speed: {user.speed}</p>
-                    <p>Wins: {user.wins}</p> */}
                     <p>
                       LV: {user.lvl}
                       <br />

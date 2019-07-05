@@ -109,8 +109,8 @@ class BattleMessages extends Component {
     return (
       <div>
         <div>
-          <div>
-            <h1>My Stats</h1>
+          <div id="battleStats">
+            <h1 align="center">My Stats</h1>
             <h3>{this.state.myStats.nickname}</h3>
             <div>{`HP: ${this.state.myStats.curHp} / ${
               this.props.avatar.hpTotal
@@ -145,13 +145,47 @@ class BattleMessages extends Component {
             Ki Blast
           </button>
         </div>
-        <div>
-          <button type="button" value="kamehameha" onClick={this.handleClick}>
-            Kamehameha
-          </button>
-          <button type="button" value="spiritBomb" onClick={this.handleClick}>
-            Spirit Bomb
-          </button>
+        <br />
+        <div id="battleMenu">
+          <h3 align="center">Commands</h3>
+          <div className="battleButtonSet">
+            <button
+              className="battleButton"
+              type="button"
+              value="charge"
+              onClick={this.handleClick}
+            >
+              Charge
+            </button>
+            <br />
+            <button
+              className="battleButton"
+              type="button"
+              value="kiBlast"
+              onClick={this.handleClick}
+            >
+              Ki Blast
+            </button>
+            <br />
+            <button
+              className="battleButton"
+              type="button"
+              value="kamehameha"
+              onClick={this.handleClick}
+            >
+              Kamehameha
+            </button>
+            <br />
+            <button
+              className="battleButton"
+              type="button"
+              value="spiritBomb"
+              onClick={this.handleClick}
+            >
+              Spirit Bomb
+            </button>
+            <br />
+          </div>
         </div>
         <div>
           {/* {this.props.messages.map((message, idx) => {
