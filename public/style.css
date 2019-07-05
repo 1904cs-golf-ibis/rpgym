@@ -157,15 +157,30 @@ form div {
 
 #battleRoom {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
 }
 
 #arenaImage {
   border: 5px solid white;
   border-radius: 5px;
+  height: 150%;
 }
 
 #battleStats {
+  display: flex;
+  flex-direction: column;
+  /* align-content: space-between; */
+  /* justify-content: space-evenly; */
+  background-color: rgba(103, 103, 103, 0.5);
+  border: 5px solid white;
+  /* border-width: 1px; */
+  border-radius: 5px;
+  /* box-shadow: 5px 5px 5px grey; */
+  padding: 5%;
+  margin: auto;
+}
+
+#opponentStats {
   display: flex;
   flex-direction: column;
   /* align-content: space-between; */
