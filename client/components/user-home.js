@@ -20,7 +20,11 @@ export class UserHome extends Component {
       const {data} = await axios.get(`/api/activities/${this.props.stravaId}`)
       const speedData = data.map(el => el.max_speed)
       const maxSpeed = Math.max(...speedData)
-      this.props.updateSpeed(maxSpeed)
+      const speedObj = {
+        stravaId: this.props.stravaId,
+        speed: maxSpeed
+      }
+      this.props.updateSpeedThunk(speedObj)
       this.setState({
         speed: maxSpeed
       })
@@ -87,7 +91,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  updateSpeed: speed => dispatch(updateSpeedThunkCreator(speed))
+  updateSpeedThunk: speedObj => dispatch(updateSpeedThunkCreator(speedObj))
 })
 
 export default connect(mapState, mapDispatch)(UserHome)
