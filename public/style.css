@@ -1,5 +1,11 @@
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+
+* {
+  font-family: 'Press Start 2P';
+}
+
 body {
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
 }
 
 a {

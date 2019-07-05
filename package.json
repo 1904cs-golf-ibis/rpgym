@@ -48,6 +48,7 @@
     "express-session": "^1.15.1",
     "history": "^4.9.0",
     "morgan": "^1.9.1",
+    "nes.css": "^2.2.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
     "passport-strava-oauth2": "^0.1.3",
