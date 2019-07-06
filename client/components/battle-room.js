@@ -18,6 +18,16 @@ export default class BattleRoom extends Component {
               align="center"
             />
           </div>
+          <div id="arenaAvatar">
+            <img
+              src="http://pixelartmaker.com/art/6bb9673b65fade0.png"
+              width="30%"
+            />
+          </div>
+
+          <div id="demo">
+            <p id="imageSprite" />
+          </div>
         </div>
       </div>
     )

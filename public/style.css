@@ -261,6 +261,49 @@ form div {
   border: 5px solid white;
   border-radius: 5px;
   height: 150%;
+  position: relative;
+}
+
+#arenaAvatar {
+  position: absolute;
+  top: 680px;
+  left: 1000px;
+}
+
+#imageSprite {
+  height: 256px;
+  width: 256px;
+  background: url('https://cdn.codeandweb.com/blog/2016/05/10/how-to-create-a-sprite-sheet/spritestrip.png')
+    0px 0px;
+  position: absolute;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: 'FlipH';
+  top: 565px;
+  left: 1275px;
+  -webkit-animation: idle 1s steps(6) infinite;
+  animation: idle 1s steps(6) infinite;
+}
+
+@-webkit-keyframes idle {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -1536px;
+  }
+}
+
+@keyframes idle {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -1536px;
+  }
 }
 
 #battleStats {
