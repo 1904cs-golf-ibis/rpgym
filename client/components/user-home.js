@@ -51,22 +51,27 @@ export class UserHome extends Component {
     } = this.props
     return (
       <div className="homePage">
-        {/* <h3>{`Welcome, ${nickname}!`}</h3> */}
         <div className="profileCard">
-          <div>{`Level: ${lvl}`}</div>
+          <div id="topCardContainer">
+            <div id="lvlIcon">
+              <h3>Lv: {lvl}</h3>
+            </div>
+            <div id="name">
+              <h3>{`${nickname}`}</h3>
+            </div>
+          </div>
           <div>
             <h1 align="center">
               <img src={imgUrl} alt="Your Avatar" width="50%" />
             </h1>
           </div>
           <div className="statsInfoBox">{`XP: ${xpCurrent}/${xpToNextLvl}`}</div>
-          <br />
           <div className="stats">
             <div className="eachCardStat">
               <div>
                 <img src="https://img.icons8.com/nolan/64/000000/lightning-bolt.png" />
               </div>
-              {`Energy: ${energyCurrent}/${energyTotal}`}
+              {`E: ${energyCurrent}/${energyTotal}`}
             </div>
             <div className="eachCardStat">
               <div>
@@ -81,6 +86,10 @@ export class UserHome extends Component {
               {`Speed: ${this.state.speed}`}
             </div>
           </div>
+          <div className="statsInfoBox">{`Member since ${memberSince.slice(
+            0,
+            10
+          )}.`}</div>
         </div>
         <div className="profileCardInfo">
           {`You have been a member since ${memberSince.slice(0, 10)}.`}

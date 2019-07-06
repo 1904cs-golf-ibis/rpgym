@@ -49,18 +49,11 @@ form div {
 
 .homePage {
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-around;
-  /* align-content: center; */
-  background: linear-gradient(#728bc9, #ffffff);
-  /* opacity: 0.5; */
-  border: 5px solid black;
   border-width: 1px;
   border-radius: 5px;
   padding: 1%;
   width: 80%;
-  /* margin-left: 15%;
-  margin-right: 15%; */
   margin: auto;
 }
 
@@ -75,15 +68,19 @@ form div {
   align-content: center;
   /* background: linear-gradient(#424242, #ffffff); */
   background-color: rgba(103, 103, 103, 0.5);
-  border-width: 1px;
+  border: 5px solid white;
+  /* border-width: 1px; */
   border-radius: 5px;
   width: 25%;
-  /* height: 50%; */
-  box-shadow: 5px 5px 5px grey;
   padding: 1%;
   margin: auto;
   /* border: 1px solid red; */
 }
+
+/* .profileCard:hover {
+  border-left: 5px; 
+} */
+
 .profileCardInfo {
   display: flex;
   align-content: space-between;
@@ -91,9 +88,47 @@ form div {
   background-color: rgba(103, 103, 103, 0.5);
   border-width: 1px;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px grey;
   width: 65%;
   padding: 1%;
+  /* border: 1px solid red; */
+}
+
+#topCardContainer {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
+  align-self: center;
+  /* background-color: rgba(103, 103, 103, 0.5); */
+  border-width: 1px;
+  border-radius: 5px;
+  width: 100%;
+  padding: 1%;
+  /* border: 1px solid red; */
+}
+
+#lvlIcon {
+  width: 0;
+  height: 0;
+  border-bottom: 25px solid transparent; /* left arrow slant */
+  border-top: 25px solid transparent; /* right arrow slant */
+  border-left: 25px solid #fc4c02; /* bottom, add background color here */
+  font-size: 0;
+  line-height: 0;
+}
+
+#name {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-evenly;
+  /* background-color: rgba(103, 103, 103, 0.5); */
+  border-width: 1px;
+  /* border-radius: 5px; */
+  /* border-top: 3px solid #fc4c02;
+  border-bottom: 3px solid #fc4c02; */
+  width: 65%;
+  padding: 1%;
+  margin: auto;
   /* border: 1px solid red; */
 }
 
@@ -101,10 +136,10 @@ form div {
   display: flex;
   align-content: space-between;
   justify-content: space-evenly;
-  background-color: rgba(103, 103, 103, 0.5);
+  background-color: rgba(103, 103, 103, 0.8);
   border-width: 1px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px grey;
+  border-radius: 3px;
+  width: 75%;
   padding: 1%;
   margin: auto;
   /* border: 1px solid red; */
@@ -113,11 +148,12 @@ form div {
 .stats {
   display: flex;
   align-content: space-between;
+  align-self: center;
   padding: 5px;
-  width: 90%;
+  width: 95%;
   color: black;
   border-width: 1px;
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.5);
   margin: auto;
   /* border: 1px solid red; */
