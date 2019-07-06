@@ -66,6 +66,16 @@ class Users extends Component {
                         <img src="https://img.icons8.com/nolan/64/000000/crown.png" />
                         <p align="center">Wins:{user.wins}</p>
                       </div>
+                      {/* {this.props.singleUser.stravaId !== user.stravaId ? (
+                        <button
+                          className="challengeButton"
+                          type="button"
+                          onClick={this.handleClick}
+                          value={user.stravaId}
+                        >
+                          Battle!
+                        </button>
+                      ) : null} */}
                       <button
                         className="challengeButton"
                         type="button"
