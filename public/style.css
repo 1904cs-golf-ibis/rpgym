@@ -105,41 +105,43 @@ form div {
 .leaderBoardTabs {
   display: flex;
   justify-content: space-evenly;
-  background: linear-gradient(#728bc9, #ffffff);
+  background-color: rgba(103, 103, 103, 0.5);
   /* opacity: 0.5; */
-  border: 5px solid black;
+  border: 5px;
   border-width: 1px;
   border-radius: 5px;
   padding: 1%;
   width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin: auto;
 }
 
 .leaderBoardList {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-content: center; */
   background-color: rgba(103, 103, 103, 0.5);
   /* opacity: 0.5; */
   border-width: 1px;
   border-radius: 5px;
   padding: 1%;
   width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin: auto;
 }
 
 .lbUserTabs {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   /* background: linear-gradient(#ffffff, #728bc9); */
   background-color: rgba(103, 103, 103, 0.5);
-  border: 3px solid white;
+  border: 1px solid white;
   border-radius: 5px;
   padding: 1%;
+}
+
+.rankingNum {
+  display: flex;
+  justify-content: center;
 }
 
 .lbUserInfo {
@@ -147,13 +149,36 @@ form div {
   flex-direction: column;
   /* justify-content: space-between; */
   /* background: linear-gradient(#ffffff, gray); */
-  background-color: rgba(103, 103, 103, 0.5);
-  width: 50%;
+  /* background-color: rgba(103, 103, 103, 0.5); */
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 70%;
   border-width: 1px;
   border-radius: 5px;
-  min-width: 350px;
-  box-shadow: 5px 5px 5px grey;
-  padding: 1%;
+  min-width: 100px;
+  padding: 2%;
+  margin: auto;
+}
+
+.challengeButton {
+  border: none;
+  padding: 10px 30px;
+  text-align: center;
+  width: 200px;
+  border-left: 5px solid #fc4c02;
+  border-right: 5px solid #fc4c02;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.challengeButton:hover {
+  background-color: #fc4c02;
+  color: white;
+  border-left: 5px solid white;
+  border-right: 5px solid white;
 }
 
 /* BATTLE ROOM CSS */
@@ -178,7 +203,6 @@ form div {
   border: 5px solid white;
   /* border-width: 1px; */
   border-radius: 5px;
-  /* box-shadow: 5px 5px 5px grey; */
   padding: 5%;
   margin: auto;
 }

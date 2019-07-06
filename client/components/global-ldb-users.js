@@ -48,28 +48,35 @@ class Users extends Component {
             })
             .map((user, index) => {
               return (
-                <div key={user.id} className="lbUserTabs">
-                  <div>{index + 1}</div>
-                  <div align="center">
-                    <img src={user.imgUrl} width="35%" />
+                <div>
+                  <div key={user.id} className="lbUserTabs">
+                    <div className="rankingNum">
+                      <img src="https://img.icons8.com/dusk/64/000000/fairytale.png" />
+                      {index + 1}
+                    </div>
+                    <div align="center">
+                      <img src={user.imgUrl} width="35%" />
+                    </div>
+                    <div className="lbUserInfo">
+                      <h3>
+                        {user.nickname} Lv: {user.lvl}
+                      </h3>
+                      <p>
+                        Speed: {user.speed}
+                        <br />
+                        Wins: {user.wins}
+                      </p>
+                      <button
+                        className="challengeButton"
+                        type="button"
+                        onClick={this.handleClick}
+                        value={user.stravaId}
+                      >
+                        Battle
+                      </button>
+                    </div>
                   </div>
-                  <div className="lbUserInfo">
-                    <h3>{user.nickname}</h3>
-                    <p>
-                      LV: {user.lvl}
-                      <br />
-                      Speed: {user.speed}
-                      <br />
-                      Wins: {user.wins}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={this.handleClick}
-                      value={user.stravaId}
-                    >
-                      Battle
-                    </button>
-                  </div>
+                  <br />
                 </div>
               )
             })}
