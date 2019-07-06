@@ -72,7 +72,7 @@ class Users extends Component {
                         onClick={this.handleClick}
                         value={user.stravaId}
                       >
-                        Battle!
+                        Join
                       </button>
                     </div>
                   </div>

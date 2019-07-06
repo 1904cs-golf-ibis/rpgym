@@ -35,17 +35,18 @@ module.exports = io => {
     */
     if (!playersObj.playerOne.socketId) {
       playersObj.playerOne.socketId = socket.id
-
       // joining player one's default room
       socket.join(playersObj.playerOne.socketId)
       //
     } else if (!playersObj.playerTwo.socketId) {
       playersObj.playerTwo.socketId = socket.id
-
       // joining player one's default room
       socket.join(playersObj.playerOne.socketId)
       //
     } else {
+      // joining player one's default room
+      socket.join(playersObj.playerOne.socketId)
+      //
       console.log('You are a spectator!')
     }
 
