@@ -43,12 +43,13 @@ module.exports = io => {
       // joining player one's default room
       socket.join(playersObj.playerOne.socketId)
       //
-    } else {
-      // joining player one's default room
-      socket.join(playersObj.playerOne.socketId)
-      //
-      console.log('You are a spectator!')
     }
+    // else {
+    //   // joining player one's default room
+    //   socket.join(playersObj.playerOne.socketId)
+    //   //
+    //   console.log('You are a spectator!')
+    // }
 
     // players check
     const playersCheck =
