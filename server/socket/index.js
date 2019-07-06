@@ -18,6 +18,8 @@ const playersObj = {
 }
 
 module.exports = io => {
+  // io.of('/battle').on('connection', socket => {
+  // socket.emit('Welcome', 'This is the Battle Room!')
   io.on('connection', socket => {
     console.log(`A socket connection to the server has been made: ${socket.id}`)
 
