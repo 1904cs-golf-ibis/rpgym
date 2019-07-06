@@ -53,7 +53,7 @@ export class UserHome extends Component {
       <div className="homePage">
         {/* <h3>{`Welcome, ${nickname}!`}</h3> */}
         <div className="profileCard">
-          <div className="statsInfoBox">{`Level: ${lvl}`}</div>
+          <div>{`Level: ${lvl}`}</div>
           <div>
             <h1 align="center">
               <img src={imgUrl} alt="Your Avatar" width="50%" />
@@ -61,14 +61,25 @@ export class UserHome extends Component {
           </div>
           <div className="statsInfoBox">{`XP: ${xpCurrent}/${xpToNextLvl}`}</div>
           <br />
-          <div className="statsInfoBox">
-            <p id="cardFont">
+          <div className="stats">
+            <div className="eachCardStat">
+              <div>
+                <img src="https://img.icons8.com/nolan/64/000000/lightning-bolt.png" />
+              </div>
               {`Energy: ${energyCurrent}/${energyTotal}`}
-              <br />
+            </div>
+            <div className="eachCardStat">
+              <div>
+                <img src="https://img.icons8.com/nolan/64/000000/heart-health.png" />
+              </div>
               {`HP: ${hpCurrent}/${hpTotal}`}
-              <br />
+            </div>
+            <div className="eachCardStat">
+              <div>
+                <img src="https://img.icons8.com/nolan/64/000000/fast-forward.png" />
+              </div>
               {`Speed: ${this.state.speed}`}
-            </p>
+            </div>
           </div>
         </div>
         <div className="profileCardInfo">

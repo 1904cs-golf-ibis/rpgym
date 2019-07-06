@@ -73,13 +73,16 @@ form div {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  background: linear-gradient(#424242, #ffffff);
+  /* background: linear-gradient(#424242, #ffffff); */
+  background-color: rgba(103, 103, 103, 0.5);
   border-width: 1px;
   border-radius: 5px;
   width: 25%;
   /* height: 50%; */
   box-shadow: 5px 5px 5px grey;
   padding: 1%;
+  margin: auto;
+  /* border: 1px solid red; */
 }
 .profileCardInfo {
   display: flex;
@@ -91,6 +94,7 @@ form div {
   box-shadow: 5px 5px 5px grey;
   width: 65%;
   padding: 1%;
+  /* border: 1px solid red; */
 }
 
 .statsInfoBox {
@@ -103,14 +107,31 @@ form div {
   box-shadow: 5px 5px 5px grey;
   padding: 1%;
   margin: auto;
+  /* border: 1px solid red; */
 }
 
 .stats {
   display: flex;
   align-content: space-between;
   padding: 5px;
-  width: 30%;
+  width: 90%;
+  color: black;
+  border-width: 1px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
   margin: auto;
+  /* border: 1px solid red; */
+}
+
+.eachCardStat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 30%;
+  padding: 3%;
+  /* border: 1px solid red; */
 }
 
 /* LEADER BOARD CSS */
@@ -153,7 +174,7 @@ form div {
 }
 
 .lbUserTabs:hover {
-  border-left: 5px solid red;
+  border-left: 5px solid #fc4c02;
   box-shadow: 2px 2px 2px grey;
 }
 
@@ -253,6 +274,7 @@ form div {
   border-radius: 5px;
   padding: 5%;
   margin: auto;
+  /* border: 1px solid red; */
 }
 
 #opponentStats {
@@ -280,6 +302,12 @@ form div {
   border-radius: 5px;
   padding: 2%;
   margin: auto;
+  /* border: 1px solid red; */
+}
+
+#battleMenu:hover {
+  border: 5px solid #fc4c02;
+  color: #fc4c02;
 }
 
 .battleButtonSet {
@@ -308,4 +336,5 @@ form div {
 .battleButton:hover {
   background-color: #4caf50; /* Green */
   color: white;
+  border: 0px;
 }
