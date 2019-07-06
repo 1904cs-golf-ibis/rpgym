@@ -48,8 +48,8 @@ class Users extends Component {
             })
             .map((user, index) => {
               return (
-                <div>
-                  <div key={user.id} className="lbUserTabs">
+                <div key={user.id}>
+                  <div className="lbUserTabs">
                     <div className="rankingNum">
                       <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" />
                       {index + 1}
