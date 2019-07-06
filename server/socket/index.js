@@ -4,23 +4,28 @@ const moveSets = require('../../client/data/moveSets')
  Player Object that holds the socketId, damage for the move they selected
  and energy cost for the move they selected
 */
-const playersObj = {
-  playerOne: {
-    socketId: '',
-    damage: 0,
-    energy: 0
-  },
-  playerTwo: {
-    socketId: '',
-    damage: 0,
-    energy: 0
+class Battle {
+  constructor() {
+    this.playerOne = {
+      socketId: '',
+      damage: 0,
+      energy: 0
+    }
+    this.playerTwo = {
+      socketId: '',
+      damage: 0,
+      energy: 0
+    }
   }
 }
 
+const playersObj = new Battle()
+
 module.exports = io => {
-  // io.of('/battle').on('connection', socket => {
-  // socket.emit('Welcome', 'This is the Battle Room!')
   io.on('connection', socket => {
+    // io.of('/battle').on('connection', socket => {
+    //   socket.emit('Welcome', 'This is the Battle Room!')
+
     console.log(`A socket connection to the server has been made: ${socket.id}`)
 
     /*
@@ -30,11 +35,25 @@ module.exports = io => {
     */
     if (!playersObj.playerOne.socketId) {
       playersObj.playerOne.socketId = socket.id
+
+      // joining player one's default room
+      socket.join(playersObj.playerOne.socketId)
+      //
     } else if (!playersObj.playerTwo.socketId) {
       playersObj.playerTwo.socketId = socket.id
+
+      // joining player one's default room
+      socket.join(playersObj.playerOne.socketId)
+      //
     } else {
       console.log('You are a spectator!')
     }
+
+    // players check
+    const playersCheck =
+      io.sockets.adapter.rooms[playersObj.playerOne.socketId].sockets
+    console.log('playersCheck: ', playersCheck)
+
     console.log('connecting player ====>', playersObj)
 
     //Socket is receiving a new battle message
@@ -57,8 +76,16 @@ module.exports = io => {
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
         // socket.broadcast.emit('broadcast', playersObj)
         // socket.emit('new-round', playersObj)
+
+        // io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
+        // io.to(playersObj.playerTwo.socketId).emit('new-round', playersObj)
+
+        // socket.broadcast
+        //   .to(playersObj.playerOne.socketId)
+        //   .emit('new-round', playersObj)
+
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
-        io.to(playersObj.playerTwo.socketId).emit('new-round', playersObj)
+
         playersObj.playerOne.damage = 0
         playersObj.playerOne.energy = 0
         playersObj.playerTwo.damage = 0
