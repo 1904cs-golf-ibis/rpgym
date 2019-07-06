@@ -6,8 +6,9 @@ import {
   updateOpponentStatsActionCreator
 } from './store/battle'
 
-const socket = io(window.location.origin)
-// const socket = io.connect('http://localhost:8080/battle')
+// const socket = io(window.location.origin)
+// const socket = io.connect('http://localhost:8080')
+const socket = io.connect('https://rpgym.herokuapp.com/')
 
 socket.on('connect', () => {
   console.log('Connected!')
