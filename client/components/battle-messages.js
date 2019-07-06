@@ -11,7 +11,7 @@ class BattleMessages extends Component {
     // const curAttack = event.target.value
     const attackObj = {
       curAttack: event.target.value,
-      myspeed: this.props.avatar.speed,
+      mySpeed: this.props.avatar.speed,
       myIsDefeated: this.props.avatar.isDefeated,
       opponentSpeed: this.props.opponent.speed,
       opponentIsDefeated: this.props.opponent.isDefeated

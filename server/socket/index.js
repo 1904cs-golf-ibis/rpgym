@@ -63,15 +63,24 @@ module.exports = io => {
       // console.log('IM SENDING THE MESSAGE!!!!!', socket.id)
       // console.log('IM THE MESSAGE!!!!!', message)
 
+      // destructure contents of message
+      const {
+        curAttack,
+        mySpeed,
+        myIsDefeated,
+        opponentSpeed,
+        opponentIsDefeated
+      } = message
+
       if (playersObj.playerOne.socketId === socket.id) {
         if (!playersObj.playerOne.energy) {
-          playersObj.playerOne.damage = moveSets[message].damage
-          playersObj.playerOne.energy = moveSets[message].energy
+          playersObj.playerOne.damage = moveSets[curAttack].damage
+          playersObj.playerOne.energy = moveSets[curAttack].energy
         }
       } else if (playersObj.playerTwo.socketId === socket.id) {
         if (!playersObj.playerTwo.energy) {
-          playersObj.playerTwo.damage = moveSets[message].damage
-          playersObj.playerTwo.energy = moveSets[message].energy
+          playersObj.playerTwo.damage = moveSets[curAttack].damage
+          playersObj.playerTwo.energy = moveSets[curAttack].energy
         }
       }
 
