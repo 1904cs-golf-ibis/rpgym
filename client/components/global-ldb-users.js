@@ -51,28 +51,40 @@ class Users extends Component {
                 <div>
                   <div key={user.id} className="lbUserTabs">
                     <div className="rankingNum">
-                      <img src="https://img.icons8.com/dusk/64/000000/fairytale.png" />
+                      <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" />
                       {index + 1}
                     </div>
-                    <div align="center">
+                    <div className="lbUserTabsImage">
                       <img src={user.imgUrl} width="35%" />
                     </div>
-                    <div className="lbUserInfo">
-                      <h3>
-                        {user.nickname} Lv: {user.lvl}
-                      </h3>
-                      <p>
-                        Speed: {user.speed}
-                        <br />
-                        Wins: {user.wins}
-                      </p>
+                    <div className="lbUserTabsName">
+                      <h2>{user.nickname}</h2>
+                    </div>
+
+                    <div className="lbUserInfoContainer">
+                      <div className="lbUserInfo">
+                        <p>
+                          <img
+                            src="https://img.icons8.com/nolan/64/000000/dumbbell.png"
+                            width="5%"
+                          />Lv: {user.lvl}
+                          <img
+                            src="https://img.icons8.com/nolan/64/000000/fast-forward.png"
+                            width="5%"
+                          />Speed: {user.speed}
+                          <img
+                            src="https://img.icons8.com/nolan/64/000000/crown.png"
+                            width="5%"
+                          />Wins: {user.wins}
+                        </p>
+                      </div>
                       <button
                         className="challengeButton"
                         type="button"
                         onClick={this.handleClick}
                         value={user.stravaId}
                       >
-                        Battle
+                        Battle!
                       </button>
                     </div>
                   </div>
