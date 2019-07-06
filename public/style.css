@@ -310,11 +310,12 @@ form div {
   color: white;
 }
 
+/* bounce animation */
+
 .ball {
   animation: bounce 0.5s;
   animation-direction: alternate;
-  animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
-  animation-iteration-count: infinite;
+  animation-iteration-count: 2;
 }
 
 @keyframes bounce {
@@ -322,26 +323,6 @@ form div {
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(0, 200px, 0);
-  }
-}
-
-/* Prefix Support */
-ball {
-  -webkit-animation-name: bounce;
-  -webkit-animation-duration: 0.5s;
-  -webkit-animation-direction: alternate;
-  -webkit-animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
-  -webkit-animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes bounce {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    -webkit-transform: translate3d(0, 200px, 0);
     transform: translate3d(0, 200px, 0);
   }
 }
