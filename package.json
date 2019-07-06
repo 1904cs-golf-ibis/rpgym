@@ -41,6 +41,7 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "animate.css": "^3.7.2",
     "axios": "^0.18.1",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
