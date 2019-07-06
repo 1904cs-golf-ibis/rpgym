@@ -63,20 +63,8 @@ class Users extends Component {
 
                     <div className="lbUserInfoContainer">
                       <div className="lbUserInfo">
-                        <p>
-                          <img
-                            src="https://img.icons8.com/nolan/64/000000/dumbbell.png"
-                            width="5%"
-                          />Lv: {user.lvl}
-                          <img
-                            src="https://img.icons8.com/nolan/64/000000/fast-forward.png"
-                            width="5%"
-                          />Speed: {user.speed}
-                          <img
-                            src="https://img.icons8.com/nolan/64/000000/crown.png"
-                            width="5%"
-                          />Wins: {user.wins}
-                        </p>
+                        <img src="https://img.icons8.com/nolan/64/000000/crown.png" />
+                        <p align="center">Wins:{user.wins}</p>
                       </div>
                       <button
                         className="challengeButton"

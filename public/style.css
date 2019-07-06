@@ -198,6 +198,8 @@ form div {
 
 .lbUserInfo {
   display: flex;
+  flex-direction: column;
+  align-content: center;
   justify-content: center;
   padding: 2%;
   margin: auto;
