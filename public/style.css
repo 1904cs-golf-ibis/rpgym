@@ -342,7 +342,7 @@ form div {
   /* width: 60%;
   height: 800px; */
   margin: auto;
-  border: 5px solid white;
+  /* border: 5px solid white; */
   border-radius: 5px;
   /* border: 1px solid red; */
 }
@@ -350,16 +350,32 @@ form div {
 #arena {
   display: flex;
   justify-content: center;
-  border: 5px solid white;
+  align-items: flex-end;
+  background-image: url('https://i.ytimg.com/vi/ucjk7FByCq8/maxresdefault.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  /* border: 5px solid white; */
+  height: 300px;
   border-radius: 5px;
   margin: auto;
   position: relative;
 }
 
-#arenaAvatar {
+/* #arenaAvatar {
   position: absolute;
   top: 350px;
   left: 350px;
+  margin: auto;
+} */
+
+#arenaOpponent {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: 'FlipH';
 }
 
 /* #imageSprite {
