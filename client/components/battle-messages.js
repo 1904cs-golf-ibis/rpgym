@@ -101,7 +101,7 @@ class BattleMessages extends Component {
     }
 
     return (
-      <div id="container">
+      <div id="theBattleContainer">
         <div id="battleInfoStatsContainer">
           <div id="battleInfoStats">
             <div id="yourBattleStatsBox">

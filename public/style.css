@@ -354,31 +354,31 @@ form div {
   }
 } */
 
-#container {
+#theBattleContainer {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  justify-content: space-between;
+  width: 90%;
   margin: auto;
-  padding: 5%;
-  border: 1px solid red;
+  padding: 1%;
+  /* border: 1px solid red; */
 }
 
 #battleInfoStatsContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 95%;
-  padding: 2%;
+  padding: 1%;
   margin: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #battleInfoStats {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
   margin: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #yourBattleStatsBox {
@@ -389,7 +389,7 @@ form div {
   background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
   border-radius: 5px;
-  width: 45%;
+  width: 40%;
   padding: 2%;
   margin: auto;
   /* border: 1px solid red; */
@@ -435,7 +435,7 @@ form div {
   background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
   border-radius: 5px;
-  width: 45%;
+  width: 40%;
   padding: 2%;
   margin: auto;
   /* border: 1px solid red; */
