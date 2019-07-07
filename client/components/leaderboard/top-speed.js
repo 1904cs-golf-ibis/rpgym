@@ -37,11 +37,11 @@ class TopSpeed extends Component {
             })
             .map((user, index) => {
               return (
-                <div>
-                  <div key={user.id} className="lbUserTabs">
+                <div key={user.id}>
+                  <div className="lbUserTabs">
                     <div className="rankingNum">
-                      <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" />
-                      {index + 1}
+                      {/* <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" /> */}
+                      <h2>{index + 1}</h2>
                     </div>
                     <div className="lbUserTabsImage">
                       <img src={user.imgUrl} width="35%" />
@@ -55,14 +55,35 @@ class TopSpeed extends Component {
                         <img src="https://img.icons8.com/nolan/64/000000/fast-forward.png" />
                         <p align="center">Speed:{user.speed}</p>
                       </div>
-                      <button
-                        className="challengeButton"
-                        type="button"
-                        onClick={this.handleClick}
-                        value={user.stravaId}
-                      >
-                        Battle!
-                      </button>
+                      {/* {this.props.singleUser.stravaId !== user.stravaId ? (
+                        <button
+                          className="challengeButton"
+                          type="button"
+                          onClick={this.handleClick}
+                          value={user.stravaId}
+                        >
+                          Battle!
+                        </button>
+                      ) : null} */}
+                      <div id="lbUserButtons">
+                        <button
+                          className="messageButton"
+                          type="button"
+                          onClick={this.handleClick}
+                          value={user.stravaId}
+                        >
+                          Message
+                        </button>
+                        <br />
+                        <button
+                          className="challengeButton"
+                          type="button"
+                          onClick={this.handleClick}
+                          value={user.stravaId}
+                        >
+                          Battle!
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <br />
