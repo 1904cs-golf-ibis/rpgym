@@ -2,90 +2,24 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {
   getNewBattleMessageThunkCreator,
-  gotMyStatsActionCreator,
-  getOpponentStatsThunkCreator
+  gotMyStatsActionCreator
 } from '../store/battle'
 
 class BattleMessages extends Component {
-  constructor() {
-    super()
-    this.state = {
-      curAttack: 'Charge',
-      myStats: {
-        nickname: '',
-        curHp: 0,
-        curEnergy: 0,
-        speed: 0
-      },
-      opponentStats: {
-        nickname: '',
-        curHp: 0,
-        curEnergy: 0,
-        speed: 0
-      }
-    }
-  }
-
-  componentDidMount() {
-    this.setState({
-      myStats: {
-        nickname: this.props.avatar.nickname,
-        curHp: this.props.avatar.hpCurrent,
-        curEnergy: this.props.avatar.energyCurrent,
-        speed: this.props.avatar.speed
-      },
-      opponentStats: {
-        nickname: this.props.opponent.nickname,
-        curHp: this.props.opponent.hpCurrent,
-        curEnergy: this.props.opponent.energyCurrent,
-        speed: this.props.opponent.speed
-      }
-    })
-    // console.log('HP TOTAL', this.props.avatar.hpTotal)
-    // const myStats = {
-    //   hpTotal: this.props.avatar.hpTotal,
-    //   hpCurrent: this.props.avatar.hpCurrent,
-    //   energyTotal: this.props.avatar.energyTotal,
-    //   energyCurrent: this.props.avatar.energyCurrent,
-    //   speed: this.props.avatar.speed
-    // }
-    // this.props.fetchMyStats(myStats)
-
-    // if (this.props.avatar.isDefeated) {
-    //   console.log(
-    //     'this.props.avatar.isDefeated: ',
-    //     this.props.avatar.isDefeated
-    //   )
-    //   alert('YOU LOSE...')
-    // } else if (this.props.opponent.isDefeated) {
-    //   console.log(
-    //     'this.props.opponent.isDefeated: ',
-    //     this.props.opponent.isDefeated
-    //   )
-    //   alert('YOU WIN!')
-    // }
-  }
-
   handleClick = event => {
     // console.log(event.target.value)
-    const curAttack = event.target.value
-
-    this.props.fetchNewMessage(curAttack)
+    const attackObj = {
+      curAttack: event.target.value,
+      mySpeed: this.props.avatar.speed,
+      myIsDefeated: this.props.avatar.isDefeated,
+      opponentSpeed: this.props.opponent.speed,
+      opponentIsDefeated: this.props.opponent.isDefeated
+    }
+    this.props.fetchNewMessage(attackObj)
     this.forceUpdate()
   }
 
   render() {
-    // console.log('curHp: ', this.state.myStats.curHp)
-    // console.log('curEnergy: ', this.state.myStats.curEnergy)
-    // console.log('Opp curHp: ', this.state.opponentStats.curHp)
-    // console.log('Opp curEnergy: ', this.state.opponentStats.curEnergy)
-    // console.log('PROPS FOR OPPONENT', this.props.opponent)
-    // console.log('this.props.avatar.isDefeated: ', this.props.avatar.isDefeated)
-    // console.log(
-    //   'this.props.opponent.isDefeated: ',
-    //   this.props.opponent.isDefeated
-    // )
-
     if (this.props.avatar.isDefeated) {
       console.log(
         'this.props.avatar.isDefeated: ',
@@ -110,7 +44,7 @@ class BattleMessages extends Component {
               </div>
               <div className="battleStatsNameAndLvl">
                 <div>
-                  {this.state.myStats.nickname} {`Lv: ${this.props.avatar.lvl}`}
+                  {this.props.avatar.nickname} {`Lv: ${this.props.avatar.lvl}`}
                 </div>
                 <div>
                   {`HP: ${this.props.avatar.hpCurrent} / ${
@@ -135,7 +69,7 @@ class BattleMessages extends Component {
               <div className="battleStatsNameAndLvl">
                 <div>
                   {this.state.opponentStats.nickname}{' '}
-                  {`Lv: ${this.state.opponentStats.lvl}`}
+                  {`Lv: ${this.props.opponent.lvl}`}
                 </div>
                 <div>
                   {`HP: ${this.props.opponent.hpCurrent} / ${
@@ -145,7 +79,7 @@ class BattleMessages extends Component {
               </div>
               <div className="battleStatsEnergy">
                 {`Energy: ${this.props.opponent.energyCurrent} / ${
-                  this.props.avatar.energyTotal
+                  this.props.opponent.energyTotal
                 }`}
               </div>
               <div className="battleStatsSpeed">
@@ -197,30 +131,23 @@ class BattleMessages extends Component {
               </button>
               <br />
             </div>
-          </div>
-
-          <div>
-            {/* {this.props.messages.map((message, idx) => {
+        {/* <div>
+          <h3>Battle Messages</h3>
+          {this.props.messages.map((message, idx) => {
             return <h5 key={idx}>{message}</h5>
-          })} */}
-          </div>
-        </div>
+          })}
+        </div> */}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  // messages: state.battle,
   avatar: {
     nickname: state.user.singleUser.nickname,
     lvl: state.user.singleUser.lvl,
     imgUrl: state.user.singleUser.imgUrl,
     speed: state.user.singleUser.speed,
-    // energyTotal: state.user.singleUser.energyTotal,
-    // energyCurrent: state.user.singleUser.energyCurrent,
-    // hpTotal: state.user.singleUser.hpTotal,
-    // hpCurrent: state.user.singleUser.hpCurrent,
     energyTotal: state.battle.myStats.energyTotal,
     energyCurrent: state.battle.myStats.energyCurrent,
     hpTotal: state.battle.myStats.hpTotal,
@@ -230,13 +157,13 @@ const mapStateToProps = state => ({
   opponent: {
     nickname: state.battle.opponentStats.nickname,
     lvl: state.battle.opponentStats.lvl,
+    imgUrl: state.battle.opponentStats.imgUrl,
+    speed: state.battle.opponentStats.speed,
+    isDefeated: state.battle.opponentStats.isDefeated,
     energyTotal: state.battle.opponentStats.energyTotal,
     energyCurrent: state.battle.opponentStats.energyCurrent,
     hpTotal: state.battle.opponentStats.hpTotal,
-    hpCurrent: state.battle.opponentStats.hpCurrent,
-    imgUrl: state.battle.opponentStats.imgUrl,
-    speed: state.battle.opponentStats.speed,
-    isDefeated: state.battle.opponentStats.isDefeated
+    hpCurrent: state.battle.opponentStats.hpCurrent
   }
 })
 

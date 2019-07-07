@@ -4,23 +4,28 @@ const moveSets = require('../../client/data/moveSets')
  Player Object that holds the socketId, damage for the move they selected
  and energy cost for the move they selected
 */
-const playersObj = {
-  playerOne: {
-    socketId: '',
-    damage: 0,
-    energy: 0
-  },
-  playerTwo: {
-    socketId: '',
-    damage: 0,
-    energy: 0
+class Battle {
+  constructor() {
+    this.playerOne = {
+      socketId: '',
+      damage: 0,
+      energy: 0
+    }
+    this.playerTwo = {
+      socketId: '',
+      damage: 0,
+      energy: 0
+    }
   }
 }
 
+const playersObj = new Battle()
+
 module.exports = io => {
-  // io.of('/battle').on('connection', socket => {
-  // socket.emit('Welcome', 'This is the Battle Room!')
   io.on('connection', socket => {
+    // io.of('/battle').on('connection', socket => {
+    //   socket.emit('Welcome', 'This is the Battle Room!')
+
     console.log(`A socket connection to the server has been made: ${socket.id}`)
 
     /*
@@ -30,11 +35,27 @@ module.exports = io => {
     */
     if (!playersObj.playerOne.socketId) {
       playersObj.playerOne.socketId = socket.id
+      // joining player one's default room
+      socket.join(playersObj.playerOne.socketId)
+      //
     } else if (!playersObj.playerTwo.socketId) {
       playersObj.playerTwo.socketId = socket.id
-    } else {
-      console.log('You are a spectator!')
+      // joining player one's default room
+      socket.join(playersObj.playerOne.socketId)
+      //
     }
+    // else {
+    //   // joining player one's default room
+    //   socket.join(playersObj.playerOne.socketId)
+    //   //
+    //   console.log('You are a spectator!')
+    // }
+
+    // players check
+    const playersCheck =
+      io.sockets.adapter.rooms[playersObj.playerOne.socketId].sockets
+    console.log('playersCheck: ', playersCheck)
+
     console.log('connecting player ====>', playersObj)
 
     //Socket is receiving a new battle message
@@ -42,34 +63,38 @@ module.exports = io => {
       // console.log('IM SENDING THE MESSAGE!!!!!', socket.id)
       // console.log('IM THE MESSAGE!!!!!', message)
 
+      // destructure contents of message
+      const {
+        curAttack,
+        mySpeed,
+        myIsDefeated,
+        opponentSpeed,
+        opponentIsDefeated
+      } = message
+
       if (playersObj.playerOne.socketId === socket.id) {
         if (!playersObj.playerOne.energy) {
-          playersObj.playerOne.damage = moveSets[message].damage
-          playersObj.playerOne.energy = moveSets[message].energy
+          playersObj.playerOne.damage = moveSets[curAttack].damage
+          playersObj.playerOne.energy = moveSets[curAttack].energy
         }
       } else if (playersObj.playerTwo.socketId === socket.id) {
         if (!playersObj.playerTwo.energy) {
-          playersObj.playerTwo.damage = moveSets[message].damage
-          playersObj.playerTwo.energy = moveSets[message].energy
+          playersObj.playerTwo.damage = moveSets[curAttack].damage
+          playersObj.playerTwo.energy = moveSets[curAttack].energy
         }
       }
 
+      playersObj.data = message
+
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
-        // socket.broadcast.emit('broadcast', playersObj)
-        // socket.emit('new-round', playersObj)
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
-        io.to(playersObj.playerTwo.socketId).emit('new-round', playersObj)
+
         playersObj.playerOne.damage = 0
         playersObj.playerOne.energy = 0
         playersObj.playerTwo.damage = 0
         playersObj.playerTwo.energy = 0
       }
       console.log('PLAYERS OBJ ====>', playersObj)
-
-      // socket.broadcast.emit('new-message', message)
-      // console.log('socket.broadcast: >>>>>>>>>>>>>>>>>>>>', socket.broadcast)
-      // console.log('MOVE SETS', moveSets)
-      // socket.broadcast.emit('broadcast', message)
     })
 
     socket.on('disconnect', () => {
