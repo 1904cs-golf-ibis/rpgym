@@ -330,6 +330,23 @@ form div {
 
 /* BATTLE ROOM CSS */
 
+/* #battleRoom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://i.ytimg.com/vi/ucjk7FByCq8/maxresdefault.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 60%;
+  height: 800px;
+  margin: auto;
+  border: 5px solid white;
+  border-radius: 5px;
+  border: 1px solid red;
+} */
+
 #battleRoom {
   display: flex;
   flex-direction: column;
