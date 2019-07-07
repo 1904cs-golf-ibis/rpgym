@@ -290,7 +290,9 @@ form div {
 
 #battleRoom {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-image: url('https://i.ytimg.com/vi/ucjk7FByCq8/maxresdefault.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -355,56 +357,88 @@ form div {
 #container {
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin: auto;
+  padding: 5%;
+  border: 1px solid red;
+}
+
+#battleInfoStatsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 95%;
+  padding: 2%;
+  margin: auto;
+  border: 1px solid red;
+}
+
+#battleInfoStats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+  border: 1px solid red;
+}
+
+#yourBattleStatsBox {
+  display: flex;
+  /* flex-direction: column; */
+  /* align-content: space-between; */
+  /* justify-content: space-evenly; */
+  background-color: rgba(103, 103, 103, 0.9);
+  border: 5px solid white;
+  border-radius: 5px;
+  width: 45%;
+  padding: 2%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+.battleStatsImage {
+  display: flex;
+  flex-direction: column;
   justify-items: center;
-  align-self: center;
-  width: 100%;
+  width: 25%;
   margin: auto;
-  padding: 5%;
-  /* border: 1px solid red; */
 }
 
-#battleStageContainer {
+.battleStatsNameAndLvl {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+  width: 25%;
+  align-self: bottom;
   margin: auto;
-  /* border: 1px solid red; */
 }
 
-#infoStats {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: auto;
-  /* border: 1px solid red; */
-}
-
-#battleStats {
+.battleStatsEnergy {
   display: flex;
   flex-direction: column;
+  width: 25%;
+  margin: auto;
+}
+
+.battleStatsSpeed {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: auto;
+}
+
+/* OPPONENT BATTLE STATS */
+
+#opponentStatsBox {
+  display: flex;
+  /* flex-direction: column; */
   /* align-content: space-between; */
   /* justify-content: space-evenly; */
   background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
   border-radius: 5px;
-  width: 50%;
-  padding: 5%;
+  width: 45%;
+  padding: 2%;
   margin: auto;
   /* border: 1px solid red; */
-}
-
-#opponentStats {
-  display: flex;
-  flex-direction: column;
-  /* align-content: space-between; */
-  /* justify-content: space-evenly; */
-  background-color: rgba(103, 103, 103, 0.9);
-  border: 5px solid white;
-  border-radius: 5px;
-  width: 50%;
-  padding: 5%;
-  margin: auto;
 }
 
 #battleMenu {
@@ -415,8 +449,9 @@ form div {
   background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
   /* border-width: 1px; */
-  width: 60%;
+  width: 25%;
   border-radius: 5px;
+  min-width: 200px;
   padding: 2%;
   margin: auto;
   /* border: 1px solid red; */

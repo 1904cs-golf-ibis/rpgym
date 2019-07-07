@@ -102,56 +102,55 @@ class BattleMessages extends Component {
 
     return (
       <div id="container">
-        <div id="battleStageContainer">
-          <div id="infoStats">
-            <div id="battleStats">
-              {/* <h1 align="center">My Stats</h1> */}
-              <div>
-                <img src={this.props.avatar.imgUrl} width="20%" />
+        <div id="battleInfoStatsContainer">
+          <div id="battleInfoStats">
+            <div id="yourBattleStatsBox">
+              <div className="battleStatsImage">
+                <img src={this.props.avatar.imgUrl} width="50%" />
               </div>
-              <h3>{this.state.myStats.nickname}</h3>
-              {/* <div>{`HP: ${this.state.myStats.curHp} / ${
-              this.props.avatar.hpTotal
-            }`}</div> */}
-              <div>{`HP: ${this.props.avatar.hpCurrent} / ${
-                this.props.avatar.hpTotal
-              }`}</div>
-              {/* <div>
-              {`Energy: ${this.state.myStats.curEnergy} / ${
-                this.props.avatar.energyTotal
-              }`}
-            </div> */}
-              <div>
+              <div className="battleStatsNameAndLvl">
+                <div>
+                  {this.state.myStats.nickname} {`Lv: ${this.props.avatar.lvl}`}
+                </div>
+                <div>
+                  {`HP: ${this.props.avatar.hpCurrent} / ${
+                    this.props.avatar.hpTotal
+                  }`}
+                </div>
+              </div>
+              <div className="battleStatsEnergy">
                 {`Energy: ${this.props.avatar.energyCurrent} / ${
                   this.props.avatar.energyTotal
                 }`}
               </div>
-              <div>{`Speed: ${this.props.avatar.speed}`}</div>
+              <div className="battleStatsSpeed">
+                {`Speed: ${this.props.avatar.speed}`}
+              </div>
             </div>
 
-            <div id="opponentStats">
-              <h3>Opponent</h3>
-              <h3>{this.state.opponentStats.nickname}</h3>
-              {/* <div>{`HP: ${this.state.opponentStats.curHp} / ${
-              this.props.opponent.hpTotal
-            }`}</div> */}
-              <div>
-                <img src={this.props.opponent.imgUrl} width="20%" />
+            <div id="opponentStatsBox">
+              <div className="battleStatsImage">
+                <img src={this.props.opponent.imgUrl} width="50%" />
               </div>
-              <div>{`HP: ${this.props.opponent.hpCurrent} / ${
-                this.props.opponent.hpTotal
-              }`}</div>
-              {/* <div>
-              {`Energy: ${this.state.opponentStats.curEnergy} / ${
-                this.props.avatar.energyTotal
-              }`}
-            </div> */}
-              <div>
+              <div className="battleStatsNameAndLvl">
+                <div>
+                  {this.state.opponentStats.nickname}{' '}
+                  {`Lv: ${this.state.opponentStats.lvl}`}
+                </div>
+                <div>
+                  {`HP: ${this.props.opponent.hpCurrent} / ${
+                    this.props.opponent.hpTotal
+                  }`}
+                </div>
+              </div>
+              <div className="battleStatsEnergy">
                 {`Energy: ${this.props.opponent.energyCurrent} / ${
                   this.props.avatar.energyTotal
                 }`}
               </div>
-              <div>{`Speed: ${this.props.opponent.speed}`}</div>
+              <div className="battleStatsSpeed">
+                {`Speed: ${this.props.opponent.speed}`}
+              </div>
             </div>
           </div>
 
