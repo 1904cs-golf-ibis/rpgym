@@ -131,12 +131,14 @@ class BattleMessages extends Component {
               </button>
               <br />
             </div>
-        {/* <div>
+            {/* <div>
           <h3>Battle Messages</h3>
           {this.props.messages.map((message, idx) => {
             return <h5 key={idx}>{message}</h5>
           })}
         </div> */}
+          </div>
+        </div>
       </div>
     )
   }

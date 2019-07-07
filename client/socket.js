@@ -45,6 +45,7 @@ socket.on('new-round', message => {
   } = message.data
 
   if (mySpeed > opponentSpeed) {
+    console.log('I AM ATTACKING FIRST')
     store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
     // implement some method of retrieving updated isDefeated status
     if (opponentIsDefeated) {
@@ -53,6 +54,7 @@ socket.on('new-round', message => {
       store.dispatch(updateMyStatsActionCreator(roundMe))
     }
   } else if (mySpeed < opponentSpeed) {
+    console.log('OPPONENT IS ATTACKING FIRST')
     store.dispatch(updateMyStatsActionCreator(roundMe))
     // implement some method of retrieving updated isDefeated status
     if (myIsDefeated) {
@@ -63,6 +65,7 @@ socket.on('new-round', message => {
   } else {
     const coinToss = Math.random() * 100
     if (coinToss >= 50) {
+      console.log('I AM ATTACKING FIRST BY COIN FLIP')
       store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
       // implement some method of retrieving updated isDefeated status
       if (opponentIsDefeated) {
@@ -71,6 +74,7 @@ socket.on('new-round', message => {
         store.dispatch(updateMyStatsActionCreator(roundMe))
       }
     } else {
+      console.log('OPPONENT IS ATTACKING FIRST BY COIN FLIP')
       store.dispatch(updateMyStatsActionCreator(roundMe))
       // implement some method of retrieving updated isDefeated status
       if (myIsDefeated) {
