@@ -9,26 +9,47 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      nickname: 'Vegeta',
+      nickname: 'S-classVii',
       speed: 60,
       lvl: 5,
       wins: 9,
       imgUrl:
-        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3316da0d-ec0c-47f0-a9d3-d6e0af5f9897/d9svkz1-5d6d659c-8926-4dfc-953e-eca24024b315.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzMzMTZkYTBkLWVjMGMtNDdmMC1hOWQzLWQ2ZTBhZjVmOTg5N1wvZDlzdmt6MS01ZDZkNjU5Yy04OTI2LTRkZmMtOTUzZS1lY2EyNDAyNGIzMTUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.03XuLSeqdsuZo_B9ZAgmDNEscCUWrvPukaIWtIh0L-w'
+        'https://www.sccpre.cat/mypng/full/148-1482585_cloud-kingdom-hearts-8-bit-cloud-strife.png'
     }),
     User.create({
-      nickname: 'Gohan',
+      nickname: 'ssj2Gohan',
       speed: 50,
       lvl: 2,
       wins: 6,
-      imgUrl: 'http://pixelartmaker.com/art/c2d4c72511f461e.png'
+      imgUrl: 'http://pixelartmaker.com/art/a060dd22d6e53a2.png'
     }),
     User.create({
-      nickname: 'Trunks',
+      nickname: 'yellowRodent',
+      speed: 50,
+      lvl: 2,
+      wins: 6,
+      imgUrl: 'https://thumbs.gfycat.com/UnpleasantAgonizingBettong.webp'
+    }),
+    User.create({
+      nickname: 'MegaManPXL',
       speed: 40,
       lvl: 3,
       wins: 7,
-      imgUrl: 'http://pixelartmaker.com/art/3bca430e007b849.png'
+      imgUrl: 'http://pixelartmaker.com/art/1e2484ec9da3bd6.png'
+    }),
+    User.create({
+      nickname: 'rightBack@YA',
+      speed: 40,
+      lvl: 3,
+      wins: 7,
+      imgUrl: 'https://avatarfiles.alphacoders.com/103/103109.gif'
+    }),
+    User.create({
+      nickname: 'iMB-man',
+      speed: 40,
+      lvl: 3,
+      wins: 7,
+      imgUrl: 'http://www.infinitymugenteam.com/images/BatmanStance.gif'
     })
   ])
 
