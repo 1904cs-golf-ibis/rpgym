@@ -87,7 +87,6 @@ class BattleMessages extends Component {
               </div>
             </div>
           </div>
-
           <br />
         </div>
         <div id="battleMenuAndMessageContainer">
