@@ -291,22 +291,32 @@ form div {
 #battleRoom {
   display: flex;
   justify-content: space-evenly;
+  background-image: url('https://i.ytimg.com/vi/ucjk7FByCq8/maxresdefault.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 60%;
+  height: 800px;
+  margin: auto;
+  border: 5px solid white;
+  border-radius: 5px;
+  /* border: 1px solid red; */
 }
 
-#arenaImage {
+/* #arenaImage {
   border: 5px solid white;
   border-radius: 5px;
   height: 150%;
   position: relative;
-}
+} */
 
-#arenaAvatar {
+/* #arenaAvatar {
   position: absolute;
   top: 680px;
   left: 1000px;
-}
+} */
 
-#imageSprite {
+/* #imageSprite {
   height: 256px;
   width: 256px;
   background: url('https://cdn.codeandweb.com/blog/2016/05/10/how-to-create-a-sprite-sheet/spritestrip.png')
@@ -340,6 +350,34 @@ form div {
   to {
     background-position: -1536px;
   }
+} */
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-self: center;
+  width: 100%;
+  margin: auto;
+  padding: 5%;
+  /* border: 1px solid red; */
+}
+
+#battleStageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+#infoStats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+  /* border: 1px solid red; */
 }
 
 #battleStats {
@@ -347,10 +385,10 @@ form div {
   flex-direction: column;
   /* align-content: space-between; */
   /* justify-content: space-evenly; */
-  background-color: rgba(103, 103, 103, 0.5);
+  background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
-  /* border-width: 1px; */
   border-radius: 5px;
+  width: 50%;
   padding: 5%;
   margin: auto;
   /* border: 1px solid red; */
@@ -361,11 +399,10 @@ form div {
   flex-direction: column;
   /* align-content: space-between; */
   /* justify-content: space-evenly; */
-  background-color: rgba(103, 103, 103, 0.5);
+  background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
-  /* border-width: 1px; */
   border-radius: 5px;
-  /* box-shadow: 5px 5px 5px grey; */
+  width: 50%;
   padding: 5%;
   margin: auto;
 }
@@ -375,9 +412,10 @@ form div {
   flex-direction: column;
   /* align-content: space-between; */
   /* justify-content: space-evenly; */
-  background-color: rgba(103, 103, 103, 0.5);
+  background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
   /* border-width: 1px; */
+  width: 60%;
   border-radius: 5px;
   padding: 2%;
   margin: auto;

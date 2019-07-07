@@ -101,108 +101,110 @@ class BattleMessages extends Component {
     }
 
     return (
-      <div>
-        <div>
-          <div id="battleStats">
-            {/* <h1 align="center">My Stats</h1> */}
-            <div>
-              <img src={this.props.avatar.imgUrl} width="20%" />
-            </div>
-            <h3>{this.state.myStats.nickname}</h3>
-            {/* <div>{`HP: ${this.state.myStats.curHp} / ${
+      <div id="container">
+        <div id="battleStageContainer">
+          <div id="infoStats">
+            <div id="battleStats">
+              {/* <h1 align="center">My Stats</h1> */}
+              <div>
+                <img src={this.props.avatar.imgUrl} width="20%" />
+              </div>
+              <h3>{this.state.myStats.nickname}</h3>
+              {/* <div>{`HP: ${this.state.myStats.curHp} / ${
               this.props.avatar.hpTotal
             }`}</div> */}
-            <div>{`HP: ${this.props.avatar.hpCurrent} / ${
-              this.props.avatar.hpTotal
-            }`}</div>
-            {/* <div>
+              <div>{`HP: ${this.props.avatar.hpCurrent} / ${
+                this.props.avatar.hpTotal
+              }`}</div>
+              {/* <div>
               {`Energy: ${this.state.myStats.curEnergy} / ${
                 this.props.avatar.energyTotal
               }`}
             </div> */}
-            <div>
-              {`Energy: ${this.props.avatar.energyCurrent} / ${
-                this.props.avatar.energyTotal
-              }`}
+              <div>
+                {`Energy: ${this.props.avatar.energyCurrent} / ${
+                  this.props.avatar.energyTotal
+                }`}
+              </div>
+              <div>{`Speed: ${this.props.avatar.speed}`}</div>
             </div>
-            <div>{`Speed: ${this.props.avatar.speed}`}</div>
-          </div>
-        </div>
 
-        <br />
-        <div id="battleMenu">
-          <h3 align="center">Commands</h3>
-          <div className="battleButtonSet">
-            <button
-              className="battleButton"
-              type="button"
-              value="charge"
-              onClick={this.handleClick}
-            >
-              Charge
-            </button>
-            <br />
-            <button
-              className="battleButton"
-              type="button"
-              value="kiBlast"
-              onClick={this.handleClick}
-            >
-              Ki Blast
-            </button>
-            <br />
-            <button
-              className="battleButton"
-              type="button"
-              value="kamehameha"
-              onClick={this.handleClick}
-            >
-              Kamehameha
-            </button>
-            <br />
-            <button
-              className="battleButton"
-              type="button"
-              value="spiritBomb"
-              onClick={this.handleClick}
-            >
-              Spirit Bomb
-            </button>
-            <br />
-          </div>
-        </div>
-
-        <br />
-
-        <div id="opponentStats">
-          <h3>Opponent</h3>
-          <h3>{this.state.opponentStats.nickname}</h3>
-          {/* <div>{`HP: ${this.state.opponentStats.curHp} / ${
+            <div id="opponentStats">
+              <h3>Opponent</h3>
+              <h3>{this.state.opponentStats.nickname}</h3>
+              {/* <div>{`HP: ${this.state.opponentStats.curHp} / ${
               this.props.opponent.hpTotal
             }`}</div> */}
-          <div>
-            <img src={this.props.opponent.imgUrl} width="20%" />
-          </div>
-          <div>{`HP: ${this.props.opponent.hpCurrent} / ${
-            this.props.opponent.hpTotal
-          }`}</div>
-          {/* <div>
+              <div>
+                <img src={this.props.opponent.imgUrl} width="20%" />
+              </div>
+              <div>{`HP: ${this.props.opponent.hpCurrent} / ${
+                this.props.opponent.hpTotal
+              }`}</div>
+              {/* <div>
               {`Energy: ${this.state.opponentStats.curEnergy} / ${
                 this.props.avatar.energyTotal
               }`}
             </div> */}
-          <div>
-            {`Energy: ${this.props.opponent.energyCurrent} / ${
-              this.props.avatar.energyTotal
-            }`}
+              <div>
+                {`Energy: ${this.props.opponent.energyCurrent} / ${
+                  this.props.avatar.energyTotal
+                }`}
+              </div>
+              <div>{`Speed: ${this.props.opponent.speed}`}</div>
+            </div>
           </div>
-          <div>{`Speed: ${this.props.opponent.speed}`}</div>
-        </div>
 
-        <div>
-          {/* {this.props.messages.map((message, idx) => {
+          <br />
+        </div>
+        <div id="battleMenuAndMessageContainer">
+          <div id="battleMenu">
+            <h3 align="center">Commands</h3>
+            <div className="battleButtonSet">
+              <button
+                className="battleButton"
+                type="button"
+                value="charge"
+                onClick={this.handleClick}
+              >
+                Charge
+              </button>
+              <br />
+              <button
+                className="battleButton"
+                type="button"
+                value="kiBlast"
+                onClick={this.handleClick}
+              >
+                Ki Blast
+              </button>
+              <br />
+              <button
+                className="battleButton"
+                type="button"
+                value="kamehameha"
+                onClick={this.handleClick}
+              >
+                Kamehameha
+              </button>
+              <br />
+              <button
+                className="battleButton"
+                type="button"
+                value="spiritBomb"
+                onClick={this.handleClick}
+              >
+                Spirit Bomb
+              </button>
+              <br />
+            </div>
+          </div>
+
+          <div>
+            {/* {this.props.messages.map((message, idx) => {
             return <h5 key={idx}>{message}</h5>
           })} */}
+          </div>
         </div>
       </div>
     )
