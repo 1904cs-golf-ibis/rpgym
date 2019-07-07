@@ -63,29 +63,30 @@ module.exports = io => {
       // console.log('IM SENDING THE MESSAGE!!!!!', socket.id)
       // console.log('IM THE MESSAGE!!!!!', message)
 
+      // destructure contents of message
+      const {
+        curAttack,
+        mySpeed,
+        myIsDefeated,
+        opponentSpeed,
+        opponentIsDefeated
+      } = message
+
       if (playersObj.playerOne.socketId === socket.id) {
         if (!playersObj.playerOne.energy) {
-          playersObj.playerOne.damage = moveSets[message].damage
-          playersObj.playerOne.energy = moveSets[message].energy
+          playersObj.playerOne.damage = moveSets[curAttack].damage
+          playersObj.playerOne.energy = moveSets[curAttack].energy
         }
       } else if (playersObj.playerTwo.socketId === socket.id) {
         if (!playersObj.playerTwo.energy) {
-          playersObj.playerTwo.damage = moveSets[message].damage
-          playersObj.playerTwo.energy = moveSets[message].energy
+          playersObj.playerTwo.damage = moveSets[curAttack].damage
+          playersObj.playerTwo.energy = moveSets[curAttack].energy
         }
       }
 
+      playersObj.data = message
+
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
-        // socket.broadcast.emit('broadcast', playersObj)
-        // socket.emit('new-round', playersObj)
-
-        // io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
-        // io.to(playersObj.playerTwo.socketId).emit('new-round', playersObj)
-
-        // socket.broadcast
-        //   .to(playersObj.playerOne.socketId)
-        //   .emit('new-round', playersObj)
-
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
 
         playersObj.playerOne.damage = 0
@@ -94,11 +95,6 @@ module.exports = io => {
         playersObj.playerTwo.energy = 0
       }
       console.log('PLAYERS OBJ ====>', playersObj)
-
-      // socket.broadcast.emit('new-message', message)
-      // console.log('socket.broadcast: >>>>>>>>>>>>>>>>>>>>', socket.broadcast)
-      // console.log('MOVE SETS', moveSets)
-      // socket.broadcast.emit('broadcast', message)
     })
 
     socket.on('disconnect', () => {

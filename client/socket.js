@@ -7,7 +7,6 @@ import {
 } from './store/battle'
 
 // const socket = io(window.location.origin)
-// const socket = io.connect('http://localhost:8080')
 const socket = io.connect('https://rpgym.herokuapp.com/')
 
 socket.on('connect', () => {
@@ -17,16 +16,11 @@ socket.on('connect', () => {
 socket.on('new-message', message => {
   console.log('message =====> ', message)
   store.dispatch(gotNewBattleMessageActionCreator(message))
-  // console.log('IN THE SOCKET.JS')
-  // console.log('socket: >>>>>>>>>>>>>>>>>>>>', socket)
-  // socket.broadcast.emit('broadcast', message)
 })
 
 socket.on('new-round', message => {
   console.log('THIS IS MY SOCKET ID ===>', socket.id)
   console.log('ROUND IN CLIENT ====>', message)
-  // const opponentSocketId = Object.keys(message).filter(currentSocketId => currentSocketId !== socket.id)[0]
-  // const opponentSocketId = message.playerOne.socketId === socket.id ? message.playerTwo.socketId : message.playOne.socketId
   console.log('MESSAGE SOCKET ID', message.playerOne)
 
   //Later on, we can input logic that tells us that playerOne has 'this' socket ID, but since we're not certain now,
@@ -42,15 +36,50 @@ socket.on('new-round', message => {
   console.log('MY ROUND DATA', roundMe)
   console.log('OPPONENT ROUND DATA', roundOpponent)
 
-  // console.log('This should be a truthy obj', message.playerOne[socket.id])
-  // store.dispatch(updateMyStatsActionCreator(message.playerOne[socket.id]))
-  // store.dispatch(updateOpponentStatsActionCreator(message.playerTwo[opponentSocketId]))
+  const {
+    curAttack,
+    mySpeed,
+    myIsDefeated,
+    opponentSpeed,
+    opponentIsDefeated
+  } = message.data
 
-  store.dispatch(updateMyStatsActionCreator(roundMe))
-  store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-
-  // if(message.playerOne.socketId === socket.id) {
-  // }
+  if (mySpeed > opponentSpeed) {
+    store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+    // implement some method of retrieving updated isDefeated status
+    if (opponentIsDefeated) {
+      // end battle with a win
+    } else {
+      store.dispatch(updateMyStatsActionCreator(roundMe))
+    }
+  } else if (mySpeed < opponentSpeed) {
+    store.dispatch(updateMyStatsActionCreator(roundMe))
+    // implement some method of retrieving updated isDefeated status
+    if (myIsDefeated) {
+      // end battle with a loss
+    } else {
+      store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+    }
+  } else {
+    const coinToss = Math.random() * 100
+    if (coinToss >= 50) {
+      store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+      // implement some method of retrieving updated isDefeated status
+      if (opponentIsDefeated) {
+        // end battle
+      } else {
+        store.dispatch(updateMyStatsActionCreator(roundMe))
+      }
+    } else {
+      store.dispatch(updateMyStatsActionCreator(roundMe))
+      // implement some method of retrieving updated isDefeated status
+      if (myIsDefeated) {
+        // end battle with a loss
+      } else {
+        store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+      }
+    }
+  }
 })
 
 export default socket
