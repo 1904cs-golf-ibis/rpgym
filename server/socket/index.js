@@ -84,17 +84,9 @@ module.exports = io => {
         }
       }
 
+      playersObj.data = message
+
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
-        // socket.broadcast.emit('broadcast', playersObj)
-        // socket.emit('new-round', playersObj)
-
-        // io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
-        // io.to(playersObj.playerTwo.socketId).emit('new-round', playersObj)
-
-        // socket.broadcast
-        //   .to(playersObj.playerOne.socketId)
-        //   .emit('new-round', playersObj)
-
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
 
         playersObj.playerOne.damage = 0
@@ -103,11 +95,6 @@ module.exports = io => {
         playersObj.playerTwo.energy = 0
       }
       console.log('PLAYERS OBJ ====>', playersObj)
-
-      // socket.broadcast.emit('new-message', message)
-      // console.log('socket.broadcast: >>>>>>>>>>>>>>>>>>>>', socket.broadcast)
-      // console.log('MOVE SETS', moveSets)
-      // socket.broadcast.emit('broadcast', message)
     })
 
     socket.on('disconnect', () => {

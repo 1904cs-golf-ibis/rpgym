@@ -8,7 +8,6 @@ import {
 class BattleMessages extends Component {
   handleClick = event => {
     // console.log(event.target.value)
-    // const curAttack = event.target.value
     const attackObj = {
       curAttack: event.target.value,
       mySpeed: this.props.avatar.speed,
@@ -16,7 +15,6 @@ class BattleMessages extends Component {
       opponentSpeed: this.props.opponent.speed,
       opponentIsDefeated: this.props.opponent.isDefeated
     }
-    // this.props.fetchNewMessage(curAttack)
     this.props.fetchNewMessage(attackObj)
     this.forceUpdate()
   }
