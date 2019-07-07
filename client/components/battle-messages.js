@@ -68,7 +68,7 @@ class BattleMessages extends Component {
               </div>
               <div className="battleStatsNameAndLvl">
                 <div>
-                  {this.state.opponentStats.nickname}{' '}
+                  {this.props.opponent.nickname}{' '}
                   {`Lv: ${this.props.opponent.lvl}`}
                 </div>
                 <div>
@@ -87,7 +87,6 @@ class BattleMessages extends Component {
               </div>
             </div>
           </div>
-
           <br />
         </div>
         <div id="battleMenuAndMessageContainer">
