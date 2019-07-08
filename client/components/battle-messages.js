@@ -8,12 +8,17 @@ import {
 class BattleMessages extends Component {
   handleClick = event => {
     // console.log(event.target.value)
+    // const attackObj = {
+    //   curAttack: event.target.value,
+    //   mySpeed: this.props.avatar.speed,
+    //   myIsDefeated: this.props.avatar.isDefeated,
+    //   opponentSpeed: this.props.opponent.speed,
+    //   opponentIsDefeated: this.props.opponent.isDefeated
+    // }
     const attackObj = {
       curAttack: event.target.value,
-      mySpeed: this.props.avatar.speed,
-      myIsDefeated: this.props.avatar.isDefeated,
-      opponentSpeed: this.props.opponent.speed,
-      opponentIsDefeated: this.props.opponent.isDefeated
+      myStats: this.props.avatar,
+      opponentStats: this.props.opponent
     }
     this.props.fetchNewMessage(attackObj)
     this.forceUpdate()
@@ -26,12 +31,14 @@ class BattleMessages extends Component {
         this.props.avatar.isDefeated
       )
       alert('YOU LOSE...')
+      // history.push('/win')
     } else if (this.props.opponent.isDefeated) {
       console.log(
         'this.props.opponent.isDefeated: ',
         this.props.opponent.isDefeated
       )
       alert('YOU WIN!')
+      // history.push('/loss')
     }
 
     return (

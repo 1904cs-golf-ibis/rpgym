@@ -11,6 +11,10 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     defaultValue: 'Goku'
   },
+  userToken: {
+    type: Sequelize.TEXT,
+    defaultValue: 0
+  },
   imgUrl: {
     type: Sequelize.TEXT,
     defaultValue: 'http://pixelartmaker.com/art/6bb9673b65fade0.png'
@@ -47,9 +51,13 @@ const User = db.define('user', {
     type: Sequelize.FLOAT,
     defaultValue: 0
   },
-  userToken: {
-    type: Sequelize.TEXT,
-    defaultValue: 0
+  isDefeated: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  isInBattle: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   wins: {
     type: Sequelize.INTEGER,

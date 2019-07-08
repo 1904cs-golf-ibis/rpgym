@@ -1,4 +1,5 @@
 const moveSets = require('../../client/data/moveSets')
+const {User} = require('../db/index')
 
 /*
  Player Object that holds the socketId, damage for the move they selected
@@ -8,11 +9,15 @@ class Battle {
   constructor() {
     this.playerOne = {
       socketId: '',
+      stravaId: '',
+      speed: 0,
       damage: 0,
       energy: 0
     }
     this.playerTwo = {
       socketId: '',
+      stravaId: '',
+      speed: 0,
       damage: 0,
       energy: 0
     }
@@ -20,6 +25,9 @@ class Battle {
 }
 
 const playersObj = new Battle()
+
+// place instance in object of instances by socket.ids and access it in io
+// const playersObj = new Battle()
 
 module.exports = io => {
   io.on('connection', socket => {
@@ -33,16 +41,15 @@ module.exports = io => {
     If other players join, we're just console logging on our side that the player is a spectator.
      ****As of right now, logic for spectators hasn't been implemented*****
     */
+
     if (!playersObj.playerOne.socketId) {
       playersObj.playerOne.socketId = socket.id
       // joining player one's default room
       socket.join(playersObj.playerOne.socketId)
-      //
     } else if (!playersObj.playerTwo.socketId) {
       playersObj.playerTwo.socketId = socket.id
       // joining player one's default room
       socket.join(playersObj.playerOne.socketId)
-      //
     }
     // else {
     //   // joining player one's default room
@@ -64,16 +71,22 @@ module.exports = io => {
       // console.log('IM THE MESSAGE!!!!!', message)
 
       // destructure contents of message
-      const {
-        curAttack,
-        mySpeed,
-        myIsDefeated,
-        opponentSpeed,
-        opponentIsDefeated
-      } = message
+      // const {
+      //   curAttack,
+      //   mySpeed,
+      //   myIsDefeated,
+      //   opponentSpeed,
+      //   opponentIsDefeated
+      // } = message
+
+      const {curAttack, myStats, opponentStats} = message
 
       if (playersObj.playerOne.socketId === socket.id) {
         if (!playersObj.playerOne.energy) {
+          playersObj.playerOne.stravaId = myStats.stravaId
+          playersObj.playerTwo.stravaId = opponentStats.stravaId
+          playersObj.playerOne.speed = myStats.speed
+          playersObj.playerTwo.speed = opponentStats.speed
           playersObj.playerOne.damage = moveSets[curAttack].damage
           playersObj.playerOne.energy = moveSets[curAttack].energy
         }
@@ -87,6 +100,145 @@ module.exports = io => {
       playersObj.data = message
 
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
+        // start battle logic from client side //
+        if (playersObj.playerOne.speed > playersObj.playerTwo.speed) {
+          console.log('PLAYER 1 IS ATTACKING FIRST')
+          const playerTwoUpdatedHp =
+            playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
+          const updatedPlayerTwo = User.update(
+            {
+              hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
+              isDefeated: !(playerTwoUpdatedHp > 0)
+            },
+            {where: {stravaId: playersObj.playerTwo.stravaId}}
+          )
+          const playerOneUpdatedEnergy =
+            playersObj.playerOne.energyCurrent - playersObj.playersOne.energy
+          const updatedPlayerOne = User.update(
+            {energyCurrent: playerOneUpdatedEnergy},
+            {
+              where: {
+                stravaId: playersObj.playerOne.stravaId
+              }
+            }
+          )
+          // store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+          // implement some method of retrieving updated isDefeated status
+          if (updatedPlayerTwo.isDefeated) {
+            // end battle with a win for player 1 and a loss for player 2
+            console.log('PLAYER 1 WON, PLAYER 2 LOST')
+          } else {
+            // store.dispatch(updateMyStatsActionCreator(roundMe))
+
+            console.log('PLAYER 2 IS ATTACKING SECOND')
+            const playerOneUpdatedHp =
+              playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
+            const updatedPlayerOne = User.update(
+              {
+                hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
+                isDefeated: !(playerOneUpdatedHp > 0)
+              },
+              {where: {stravaId: playersObj.playerOne.stravaId}}
+            )
+            const playerTwoUpdatedEnergy =
+              playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
+            const updatedPlayerTwo = User.update(
+              {energyCurrent: playerTwoUpdatedEnergy},
+              {
+                where: {
+                  stravaId: playersObj.playerTwo.stravaId
+                }
+              }
+            )
+            if (updatedPlayerOne.isDefeated) {
+              // end battle with a win for player 2 and a loss for player 1
+              console.log('PLAYER 2 WON, PLAYER 1 LOST')
+            } else {
+              // move on to next round
+              console.log('ROUND IS CONCLUDED')
+            }
+          }
+        } else if (playersObj.playerOne.speed < playersObj.playerTwo.speed) {
+          // store.dispatch(updateMyStatsActionCreator(roundMe))
+          console.log('PLAYER 2 IS ATTACKING FIRST')
+          const playerOneUpdatedHp =
+            playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
+          const updatedPlayerOne = User.update(
+            {
+              hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
+              isDefeated: !(playerOneUpdatedHp > 0)
+            },
+            {where: {stravaId: playersObj.playerOne.stravaId}}
+          )
+          const playerTwoUpdatedEnergy =
+            playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
+          const updatedPlayerTwo = User.update(
+            {energyCurrent: playerTwoUpdatedEnergy},
+            {
+              where: {
+                stravaId: playersObj.playerTwo.stravaId
+              }
+            }
+          )
+          if (updatedPlayerOne.isDefeated) {
+            // end battle with a win for player 2 and a loss for player 1
+            console.log('PLAYER 2 WON, PLAYER 1 LOST')
+          } else {
+            // end battle with a win for player 1 and a loss for player 2
+            console.log('PLAYER 1 WON, PLAYER 2 LOST')
+          }
+        } else {
+          console.log('PLAYER 1 IS ATTACKING FIRST')
+          const playerTwoUpdatedHp =
+            playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
+          const updatedPlayerTwo = User.update(
+            {
+              hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
+              isDefeated: !(playerTwoUpdatedHp > 0)
+            },
+            {where: {stravaId: playersObj.playerTwo.stravaId}}
+          )
+          const playerOneUpdatedEnergy =
+            playersObj.playerOne.energyCurrent - playersObj.playersOne.energy
+          const updatedPlayerOne = User.update(
+            {energyCurrent: playerOneUpdatedEnergy},
+            {
+              where: {
+                stravaId: playersObj.playerOne.stravaId
+              }
+            }
+          )
+          // store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+          // implement some method of retrieving updated isDefeated status
+          if (updatedPlayerTwo.isDefeated) {
+            // move on to next round
+            console.log('ROUND IS CONCLUDED')
+          }
+        }
+        // else {
+        //   const coinToss = Math.random() * 100
+        //   if (coinToss >= 50) {
+        //     console.log('I AM ATTACKING FIRST BY COIN FLIP')
+        //     store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+        //     // implement some method of retrieving updated isDefeated status
+        //     if (opponentIsDefeated) {
+        //       // end battle
+        //     } else {
+        //       store.dispatch(updateMyStatsActionCreator(roundMe))
+        //     }
+        //   } else {
+        //     console.log('OPPONENT IS ATTACKING FIRST BY COIN FLIP')
+        //     store.dispatch(updateMyStatsActionCreator(roundMe))
+        //     // implement some method of retrieving updated isDefeated status
+        //     if (myIsDefeated) {
+        //       // end battle with a loss
+        //     } else {
+        //       store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+        //     }
+        //   }
+        // }
+        // end battle logic from client side
+
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
 
         playersObj.playerOne.damage = 0

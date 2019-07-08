@@ -35,55 +35,6 @@ socket.on('new-round', message => {
       : message.playerTwo
   console.log('MY ROUND DATA', roundMe)
   console.log('OPPONENT ROUND DATA', roundOpponent)
-
-  const {
-    curAttack,
-    mySpeed,
-    myIsDefeated,
-    opponentSpeed,
-    opponentIsDefeated
-  } = message.data
-
-  if (mySpeed > opponentSpeed) {
-    console.log('I AM ATTACKING FIRST')
-    store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-    // implement some method of retrieving updated isDefeated status
-    if (opponentIsDefeated) {
-      // end battle with a win
-    } else {
-      store.dispatch(updateMyStatsActionCreator(roundMe))
-    }
-  } else if (mySpeed < opponentSpeed) {
-    console.log('OPPONENT IS ATTACKING FIRST')
-    store.dispatch(updateMyStatsActionCreator(roundMe))
-    // implement some method of retrieving updated isDefeated status
-    if (myIsDefeated) {
-      // end battle with a loss
-    } else {
-      store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-    }
-  } else {
-    const coinToss = Math.random() * 100
-    if (coinToss >= 50) {
-      console.log('I AM ATTACKING FIRST BY COIN FLIP')
-      store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-      // implement some method of retrieving updated isDefeated status
-      if (opponentIsDefeated) {
-        // end battle
-      } else {
-        store.dispatch(updateMyStatsActionCreator(roundMe))
-      }
-    } else {
-      console.log('OPPONENT IS ATTACKING FIRST BY COIN FLIP')
-      store.dispatch(updateMyStatsActionCreator(roundMe))
-      // implement some method of retrieving updated isDefeated status
-      if (myIsDefeated) {
-        // end battle with a loss
-      } else {
-        store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-      }
-    }
-  }
 })
 
 export default socket
