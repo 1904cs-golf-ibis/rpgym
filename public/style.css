@@ -22,7 +22,7 @@ body {
 }
 
 *:visited {
-  color: white;
+  color: black;
 }
 
 a {
@@ -43,8 +43,15 @@ form div {
   display: inline-block;
 }
 
-.navBar:hover {
-  background-color: blue;
+#navBar {
+  background-color: white;
+  color: black;
+}
+
+#navBarContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .homePage {
@@ -68,7 +75,7 @@ form div {
   align-content: center;
   /* background: linear-gradient(#424242, #ffffff); */
   background-color: rgba(103, 103, 103, 0.5);
-  border: 5px solid white;
+  /* border: 5px solid white; */
   /* border-width: 1px; */
   border-radius: 5px;
   width: 25%;
@@ -90,6 +97,10 @@ form div {
   border-radius: 5px;
   width: 65%;
   padding: 1%;
+
+  background-image: url('https://dgalywyr863hv.cloudfront.net/pictures/clubs/440372/8798648/1/large.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
   /* border: 1px solid red; */
 }
 
