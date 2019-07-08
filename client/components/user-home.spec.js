@@ -13,10 +13,12 @@ describe('UserHome', () => {
   let userHome
 
   beforeEach(() => {
-    userHome = shallow(<UserHome nickname="Goku" memberSince="test" />)
+    userHome = shallow(
+      <UserHome nickname="Cody" memberSince="test" lvl="1000" />
+    )
   })
 
-  it('renders the nick name in an h3', () => {
-    expect(userHome.find('h3').text()).to.be.equal('Welcome, Goku!')
+  it('renders the image in an h2', () => {
+    expect(userHome.find('h2').text()).to.be.equal('Cody')
   })
 })
