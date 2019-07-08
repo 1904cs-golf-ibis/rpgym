@@ -1,5 +1,5 @@
 const moveSets = require('../../client/data/moveSets')
-const {User} = require('../db/index')
+const {User} = require('../db/models/index')
 
 /*
  Player Object that holds the socketId, damage for the move they selected
@@ -66,7 +66,7 @@ module.exports = io => {
     console.log('connecting player ====>', playersObj)
 
     //Socket is receiving a new battle message
-    socket.on('new-message', message => {
+    socket.on('new-message', async message => {
       // console.log('IM SENDING THE MESSAGE!!!!!', socket.id)
       // console.log('IM THE MESSAGE!!!!!', message)
 
@@ -78,7 +78,7 @@ module.exports = io => {
       //   opponentSpeed,
       //   opponentIsDefeated
       // } = message
-
+      console.log('MESSAGE ====>', message)
       const {curAttack, myStats, opponentStats} = message
 
       if (playersObj.playerOne.socketId === socket.id) {
@@ -98,6 +98,7 @@ module.exports = io => {
       }
 
       playersObj.data = message
+      console.log('PLAYERS OBJ ===>', playersObj)
 
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
         // start battle logic from client side //
@@ -105,7 +106,8 @@ module.exports = io => {
           console.log('PLAYER 1 IS ATTACKING FIRST')
           const playerTwoUpdatedHp =
             playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
-          const updatedPlayerTwo = User.update(
+          console.log('PLAYER TWO UPDATED HP ===>', playerTwoUpdatedHp)
+          const updatedPlayerTwo = await User.update(
             {
               hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
               isDefeated: !(playerTwoUpdatedHp > 0)
@@ -113,8 +115,8 @@ module.exports = io => {
             {where: {stravaId: playersObj.playerTwo.stravaId}}
           )
           const playerOneUpdatedEnergy =
-            playersObj.playerOne.energyCurrent - playersObj.playersOne.energy
-          const updatedPlayerOne = User.update(
+            playersObj.playerOne.energyCurrent - playersObj.playerOne.energy
+          const updatedPlayerOne = await User.update(
             {energyCurrent: playerOneUpdatedEnergy},
             {
               where: {
@@ -133,7 +135,7 @@ module.exports = io => {
             console.log('PLAYER 2 IS ATTACKING SECOND')
             const playerOneUpdatedHp =
               playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
-            const updatedPlayerOne = User.update(
+            const updatedPlayerOne = await User.update(
               {
                 hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
                 isDefeated: !(playerOneUpdatedHp > 0)
@@ -142,7 +144,7 @@ module.exports = io => {
             )
             const playerTwoUpdatedEnergy =
               playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
-            const updatedPlayerTwo = User.update(
+            const updatedPlayerTwo = await User.update(
               {energyCurrent: playerTwoUpdatedEnergy},
               {
                 where: {
@@ -163,7 +165,7 @@ module.exports = io => {
           console.log('PLAYER 2 IS ATTACKING FIRST')
           const playerOneUpdatedHp =
             playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
-          const updatedPlayerOne = User.update(
+          const updatedPlayerOne = await User.update(
             {
               hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
               isDefeated: !(playerOneUpdatedHp > 0)
@@ -172,7 +174,7 @@ module.exports = io => {
           )
           const playerTwoUpdatedEnergy =
             playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
-          const updatedPlayerTwo = User.update(
+          const updatedPlayerTwo = await User.update(
             {energyCurrent: playerTwoUpdatedEnergy},
             {
               where: {
@@ -191,7 +193,7 @@ module.exports = io => {
           console.log('PLAYER 1 IS ATTACKING FIRST')
           const playerTwoUpdatedHp =
             playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
-          const updatedPlayerTwo = User.update(
+          const updatedPlayerTwo = await User.update(
             {
               hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
               isDefeated: !(playerTwoUpdatedHp > 0)
@@ -199,8 +201,8 @@ module.exports = io => {
             {where: {stravaId: playersObj.playerTwo.stravaId}}
           )
           const playerOneUpdatedEnergy =
-            playersObj.playerOne.energyCurrent - playersObj.playersOne.energy
-          const updatedPlayerOne = User.update(
+            playersObj.playerOne.energyCurrent - playersObj.playerOne.energy
+          const updatedPlayerOne = await User.update(
             {energyCurrent: playerOneUpdatedEnergy},
             {
               where: {

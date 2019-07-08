@@ -160,7 +160,8 @@ const mapStateToProps = state => ({
     energyCurrent: state.battle.myStats.energyCurrent,
     hpTotal: state.battle.myStats.hpTotal,
     hpCurrent: state.battle.myStats.hpCurrent,
-    isDefeated: state.battle.myStats.isDefeated
+    isDefeated: state.battle.myStats.isDefeated,
+    stravaId: state.user.singleUser.stravaId
   },
   opponent: {
     nickname: state.battle.opponentStats.nickname,
@@ -171,7 +172,8 @@ const mapStateToProps = state => ({
     energyTotal: state.battle.opponentStats.energyTotal,
     energyCurrent: state.battle.opponentStats.energyCurrent,
     hpTotal: state.battle.opponentStats.hpTotal,
-    hpCurrent: state.battle.opponentStats.hpCurrent
+    hpCurrent: state.battle.opponentStats.hpCurrent,
+    stravaId: state.battle.opponentStats.stravaId
   }
 })
 
