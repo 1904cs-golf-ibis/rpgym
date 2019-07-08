@@ -7,6 +7,10 @@ const User = db.define('user', {
     type: Sequelize.INTEGER
     // allowNull: false
   },
+  userToken: {
+    type: Sequelize.TEXT,
+    defaultValue: 0
+  },
   nickname: {
     type: Sequelize.STRING,
     defaultValue: 'Goku'
@@ -47,9 +51,9 @@ const User = db.define('user', {
     type: Sequelize.FLOAT,
     defaultValue: 0
   },
-  userToken: {
-    type: Sequelize.TEXT,
-    defaultValue: 0
+  isDefeated: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   wins: {
     type: Sequelize.INTEGER,

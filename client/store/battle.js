@@ -4,12 +4,8 @@ import axios from 'axios'
 
 //Initial State
 const initialState = {
-  myStats: {
-    isDefeated: false
-  },
-  opponentStats: {
-    isDefeated: false
-  },
+  myStats: {},
+  opponentStats: {},
   battleMessages: []
 }
 
@@ -18,8 +14,8 @@ const GOT_BATTLE_MESSAGES = 'GOT_BATTLE_MESSAGES'
 const NEW_BATTLE_MESSAGE = 'NEW_BATTLE_MESSAGE'
 const GOT_MY_STATS = 'GOT_MY_STATS'
 const GOT_OPPONENT_STATS = 'GOT_OPPONENT_STATS'
-const UPDATE_MY_STATS = 'UPDATE_MY_STATS'
-const UPDATE_OPPONENT_STATS = 'UPDATE_OPPONEN_STATS'
+const UPDATED_MY_STATS = 'UPDATED_MY_STATS'
+const UPDATED_OPPONENT_STATS = 'UPDATED_OPPONENT_STATS'
 
 //Action Creators
 export const gotBattleMessagesActionCreator = messages => ({
@@ -42,13 +38,13 @@ export const gotOpponentStatsActionCreator = stats => ({
   stats
 })
 
-export const updateMyStatsActionCreator = updatedStats => ({
-  type: UPDATE_MY_STATS,
+export const updatedMyStatsActionCreator = updatedStats => ({
+  type: UPDATED_MY_STATS,
   updatedStats
 })
 
-export const updateOpponentStatsActionCreator = updatedStats => ({
-  type: UPDATE_OPPONENT_STATS,
+export const updatedOpponentStatsActionCreator = updatedStats => ({
+  type: UPDATED_OPPONENT_STATS,
   updatedStats
 })
 
@@ -101,6 +97,28 @@ export const getOpponentStatsThunkCreator = stravaId => {
   }
 }
 
+export const updateMyStatsThunkCreator = (stravaId, updatedStats) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.update(`/api/users/${stravaId}`, updatedStats)
+      dispatch(updatedMyStatsActionCreator(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export const updateOpponentStatsThunkCreator = (stravaId, updatedStats) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.update(`/api/users/${stravaId}`, updatedStats)
+      dispatch(updatedMyStatsActionCreator(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 //Reducer
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -122,31 +140,16 @@ export default function(state = initialState, action) {
         opponentStats: {...state.opponentStats, ...action.stats}
       }
     }
-    case UPDATE_MY_STATS: {
-      const myUpdatedHp = state.myStats.hpCurrent - action.updatedStats.damage
+    case UPDATED_MY_STATS: {
       return {
         ...state,
-        myStats: {
-          ...state.myStats,
-          energyCurrent:
-            state.myStats.energyCurrent - action.updatedStats.energy,
-          hpCurrent: myUpdatedHp > 0 ? myUpdatedHp : 0,
-          isDefeated: !(myUpdatedHp > 0)
-        }
+        myStats: action.updatedStats
       }
     }
-    case UPDATE_OPPONENT_STATS: {
-      const opponentUpdatedHp =
-        state.opponentStats.hpCurrent - action.updatedStats.damage
+    case UPDATED_OPPONENT_STATS: {
       return {
         ...state,
-        opponentStats: {
-          ...state.opponentStats,
-          energyCurrent:
-            state.opponentStats.energyCurrent - action.updatedStats.energy,
-          hpCurrent: opponentUpdatedHp > 0 ? opponentUpdatedHp : 0,
-          isDefeated: !(opponentUpdatedHp > 0)
-        }
+        opponentStats: action.updatedStats
       }
     }
     default:

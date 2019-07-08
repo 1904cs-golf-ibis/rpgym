@@ -2,12 +2,13 @@ import io from 'socket.io-client'
 import store from './store'
 import {
   gotNewBattleMessageActionCreator,
-  updateMyStatsActionCreator,
-  updateOpponentStatsActionCreator
+  updatedMyStatsActionCreator,
+  updatedOpponentStatsActionCreator
 } from './store/battle'
 
 // const socket = io(window.location.origin)
-const socket = io.connect('https://rpgym.herokuapp.com/')
+const socket = io.connect('http://localhost:8080/')
+// const socket = io.connect('https://rpgym.herokuapp.com/')
 
 socket.on('connect', () => {
   console.log('Connected!')
@@ -44,46 +45,67 @@ socket.on('new-round', message => {
     opponentIsDefeated
   } = message.data
 
-  if (mySpeed > opponentSpeed) {
-    console.log('I AM ATTACKING FIRST')
-    store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-    // implement some method of retrieving updated isDefeated status
-    if (opponentIsDefeated) {
-      // end battle with a win
-    } else {
-      store.dispatch(updateMyStatsActionCreator(roundMe))
-    }
-  } else if (mySpeed < opponentSpeed) {
-    console.log('OPPONENT IS ATTACKING FIRST')
-    store.dispatch(updateMyStatsActionCreator(roundMe))
-    // implement some method of retrieving updated isDefeated status
-    if (myIsDefeated) {
-      // end battle with a loss
-    } else {
-      store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-    }
-  } else {
-    const coinToss = Math.random() * 100
-    if (coinToss >= 50) {
-      console.log('I AM ATTACKING FIRST BY COIN FLIP')
-      store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-      // implement some method of retrieving updated isDefeated status
-      if (opponentIsDefeated) {
-        // end battle
-      } else {
-        store.dispatch(updateMyStatsActionCreator(roundMe))
-      }
-    } else {
-      console.log('OPPONENT IS ATTACKING FIRST BY COIN FLIP')
-      store.dispatch(updateMyStatsActionCreator(roundMe))
-      // implement some method of retrieving updated isDefeated status
-      if (myIsDefeated) {
-        // end battle with a loss
-      } else {
-        store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-      }
-    }
-  }
+  // if (mySpeed > opponentSpeed) {
+  //   console.log('I AM ATTACKING FIRST')
+  //   store.dispatch(updatedOpponentStatsActionCreator(roundOpponent))
+  //   // implement some method of retrieving updated isDefeated status
+  //   if (opponentIsDefeated) {
+  //     // end battle with a win
+  //     console.log('YOU WIN!')
+  //   } else {
+  //     store.dispatch(updatedMyStatsActionCreator(roundMe))
+  //     if (myIsDefeated) {
+  //       // end battle with a loss
+  //       console.log('you lose...')
+  //     }
+  //   }
+  // } else if (mySpeed < opponentSpeed) {
+  //   console.log('OPPONENT IS ATTACKING FIRST')
+  //   store.dispatch(updatedMyStatsActionCreator(roundMe))
+  //   // implement some method of retrieving updated isDefeated status
+  //   if (myIsDefeated) {
+  //     // end battle with a loss
+  //     console.log('you lose...')
+  //   } else {
+  //     store.dispatch(updatedOpponentStatsActionCreator(roundOpponent))
+  //     if (opponentIsDefeated) {
+  //       // end battle with a win
+  //       console.log('YOU WIN!')
+  //     }
+  //   }
+  // }
+  // else {
+  //   const coinToss = Math.random() * 100
+  //   if (coinToss >= 50) {
+  //     console.log('I AM ATTACKING FIRST BY COIN FLIP')
+  //     store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+  //     // implement some method of retrieving updated isDefeated status
+  //     if (opponentIsDefeated) {
+  //       // end battle with a win
+  //       console.log('YOU WIN!')
+  //     } else {
+  //       store.dispatch(updateMyStatsActionCreator(roundMe))
+  //       if (myIsDefeated) {
+  //         // end battle with a loss
+  //         console.log('you lose...')
+  //       }
+  //     }
+  //   } else {
+  //     console.log('OPPONENT IS ATTACKING FIRST BY COIN FLIP')
+  //     store.dispatch(updateMyStatsActionCreator(roundMe))
+  //     // implement some method of retrieving updated isDefeated status
+  //     if (myIsDefeated) {
+  //       // end battle with a loss
+  //       console.log('you lose...')
+  //     } else {
+  //       store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
+  //       if (opponentIsDefeated) {
+  //         // end battle with a win
+  //         console.log('YOU WIN!')
+  //       }
+  //     }
+  //   }
+  // }
 })
 
 export default socket
