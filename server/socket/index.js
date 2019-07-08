@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+/* eslint-disable complexity */
 const moveSets = require('../../client/data/moveSets')
 const {User} = require('../db/models/index')
 
@@ -12,14 +14,18 @@ class Battle {
       stravaId: '',
       speed: 0,
       damage: 0,
-      energy: 0
+      energy: 0,
+      energyCurrent: 0,
+      hpCurrent: 0
     }
     this.playerTwo = {
       socketId: '',
       stravaId: '',
       speed: 0,
       damage: 0,
-      energy: 0
+      energy: 0,
+      energyCurrent: 0,
+      hpCurrent: 0
     }
   }
 }
@@ -89,24 +95,33 @@ module.exports = io => {
           playersObj.playerTwo.speed = opponentStats.speed
           playersObj.playerOne.damage = moveSets[curAttack].damage
           playersObj.playerOne.energy = moveSets[curAttack].energy
+          playersObj.playerOne.energyCurrent = myStats.energyCurrent
+          playersObj.playerOne.hpCurrent = myStats.hpCurrent
+          playersObj.playerTwo.energyCurrent = opponentStats.energyCurrent
+          playersObj.playerTwo.hpCurrent = opponentStats.hpCurrent
         }
       } else if (playersObj.playerTwo.socketId === socket.id) {
         if (!playersObj.playerTwo.energy) {
           playersObj.playerTwo.damage = moveSets[curAttack].damage
           playersObj.playerTwo.energy = moveSets[curAttack].energy
+          // playersObj.playerTwo.energyCurrent = myStats.energyCurrent
+          // playersObj.playerTwo.hpCurrent = myStats.hpCurrent
         }
       }
 
       playersObj.data = message
       console.log('PLAYERS OBJ ===>', playersObj)
 
+      //checking to see if both attacks were made
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
         // start battle logic from client side //
         if (playersObj.playerOne.speed > playersObj.playerTwo.speed) {
           console.log('PLAYER 1 IS ATTACKING FIRST')
+          //calculating player 2 hp by subtracting P2 HP current from P1 move damage
           const playerTwoUpdatedHp =
             playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
           console.log('PLAYER TWO UPDATED HP ===>', playerTwoUpdatedHp)
+          //update player two HP where strava ID matches user
           const updatedPlayerTwo = await User.update(
             {
               hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
@@ -114,8 +129,10 @@ module.exports = io => {
             },
             {where: {stravaId: playersObj.playerTwo.stravaId}}
           )
+          //calculating player 1 energy by subtracting
           const playerOneUpdatedEnergy =
             playersObj.playerOne.energyCurrent - playersObj.playerOne.energy
+          console.log('PLAYER ONE UPDATED ENERGY ==>', playerOneUpdatedEnergy)
           const updatedPlayerOne = await User.update(
             {energyCurrent: playerOneUpdatedEnergy},
             {
@@ -135,6 +152,7 @@ module.exports = io => {
             console.log('PLAYER 2 IS ATTACKING SECOND')
             const playerOneUpdatedHp =
               playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
+            console.log('playerOne updated HP ==>', playerOneUpdatedHp)
             const updatedPlayerOne = await User.update(
               {
                 hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
@@ -144,6 +162,7 @@ module.exports = io => {
             )
             const playerTwoUpdatedEnergy =
               playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
+            console.log('player two updated energy', playerTwoUpdatedEnergy)
             const updatedPlayerTwo = await User.update(
               {energyCurrent: playerTwoUpdatedEnergy},
               {
@@ -165,6 +184,7 @@ module.exports = io => {
           console.log('PLAYER 2 IS ATTACKING FIRST')
           const playerOneUpdatedHp =
             playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
+          console.log('playerOne updated hp', playerOneUpdatedHp)
           const updatedPlayerOne = await User.update(
             {
               hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
@@ -174,6 +194,7 @@ module.exports = io => {
           )
           const playerTwoUpdatedEnergy =
             playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
+          console.log('player two updated energy ==>', playerTwoUpdatedEnergy)
           const updatedPlayerTwo = await User.update(
             {energyCurrent: playerTwoUpdatedEnergy},
             {
@@ -193,6 +214,7 @@ module.exports = io => {
           console.log('PLAYER 1 IS ATTACKING FIRST')
           const playerTwoUpdatedHp =
             playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
+          console.log('player two updated hp ==>', playerTwoUpdatedHp)
           const updatedPlayerTwo = await User.update(
             {
               hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
@@ -202,6 +224,7 @@ module.exports = io => {
           )
           const playerOneUpdatedEnergy =
             playersObj.playerOne.energyCurrent - playersObj.playerOne.energy
+          console.log('player one updatd energy', playerOneUpdatedEnergy)
           const updatedPlayerOne = await User.update(
             {energyCurrent: playerOneUpdatedEnergy},
             {
