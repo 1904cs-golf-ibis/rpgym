@@ -78,7 +78,7 @@ form div {
 }
 
 /* .profileCard:hover {
-  border-left: 5px; 
+  border-left: 5px;
 } */
 
 .profileCardInfo {
@@ -535,7 +535,7 @@ form div {
 
 /* bounce animation */
 
-.ball {
+.bounce {
   animation: bounce 0.5s;
   animation-direction: alternate;
   animation-iteration-count: 2;
