@@ -57,7 +57,7 @@ export class UserHome extends Component {
               <h3>Lv: {lvl}</h3>
             </div>
             <div id="name">
-              <h3>{`${nickname}`}</h3>
+              <h2>{`${nickname}`}</h2>
             </div>
           </div>
           <div>
