@@ -16,6 +16,10 @@ socket.on('connect', () => {
   console.log('Connected!')
 })
 
+// socket.on('me', data => {
+//   console.log('HERE IS ME!!!', data)
+// })
+
 socket.on('new-message', message => {
   console.log('message =====> ', message)
   store.dispatch(gotNewBattleMessageActionCreator(message))

@@ -71,13 +71,27 @@ module.exports = io => {
 
     console.log('connecting player ====>', playersObj)
 
+    socket.on('me', async data => {
+      console.log('HERE IS ME!!!', data)
+      const addingUserSocketId = await User.update(
+        {
+          socketId: socket.id
+        },
+        {
+          where: {
+            stravaId: data
+          }
+        }
+      )
+    })
+
     socket.on('challenge-issued', msg => {
       const infoP1 = {
         message: msg,
         socketId: socket.id
       }
       console.log('IM THE INFO IN THE SERVER!', infoP1)
-      socket.broadcast('EMITTING the info to the client', infoP1)
+      socket.emit('EMITTING the info to the client', infoP1)
     })
 
     //Socket is receiving a new battle message
