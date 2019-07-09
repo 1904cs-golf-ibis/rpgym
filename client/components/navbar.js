@@ -77,6 +77,18 @@ class Navbar extends Component {
                   style={customStyles}
                   contentLabel="Example Modal"
                 >
+                  {this.props.notifications &&
+                  this.props.notifications.length ? (
+                    this.props.notifications.map((curNotification, idx) => (
+                      <div key={idx} style={{color: 'black'}}>
+                        {curNotification}
+                      </div>
+                    ))
+                  ) : (
+                    <div style={{color: 'black'}}>
+                      No notifications were found.
+                    </div>
+                  )}
                   <h2
                     ref={subtitle => {
                       this.subtitle = subtitle
