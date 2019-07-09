@@ -7,6 +7,9 @@ const User = db.define('user', {
     type: Sequelize.INTEGER
     // allowNull: false
   },
+  socketId: {
+    type: Sequelize.INTEGER
+  },
   nickname: {
     type: Sequelize.STRING,
     defaultValue: 'Goku'

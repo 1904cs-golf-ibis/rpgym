@@ -77,7 +77,7 @@ module.exports = io => {
         socketId: socket.id
       }
       console.log('IM THE INFO IN THE SERVER!', infoP1)
-      socket.emit('EMITTING the info to the client', infoP1)
+      socket.broadcast('EMITTING the info to the client', infoP1)
     })
 
     //Socket is receiving a new battle message
