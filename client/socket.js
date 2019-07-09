@@ -26,7 +26,7 @@ socket.on('new-message', message => {
 })
 
 socket.on('challenge-issued', msg => {
-  console.log('MESSAGE IN CLIENT ', msg)
+  console.log('CHALLENGE ISSUED IN THE CLIENT', msg)
 })
 
 socket.on('new-round', message => {

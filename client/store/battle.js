@@ -92,7 +92,7 @@ export const getOpponentStatsThunkCreator = stravaId => {
     try {
       const {data} = await axios.get(`/api/users/${stravaId}`)
       dispatch(gotOpponentStatsActionCreator(data))
-      socket.emit('challenge-issued', 'I challenge YOU!!!')
+      socket.emit('challenge-issued', data.stravaId)
     } catch (err) {
       console.log(err)
     }
