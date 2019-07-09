@@ -55,19 +55,21 @@ class BattleMessages extends Component {
                 <div>
                   {this.props.avatar.nickname} {`Lv: ${this.props.avatar.lvl}`}
                 </div>
-                <div>
+              </div>
+              <div className="battleStatsInfoContainer">
+                <div className="battleStatsHp">
                   {`HP: ${this.props.avatar.hpCurrent} / ${
                     this.props.avatar.hpTotal
                   }`}
                 </div>
-              </div>
-              <div className="battleStatsEnergy">
-                {`Energy: ${this.props.avatar.energyCurrent} / ${
-                  this.props.avatar.energyTotal
-                }`}
-              </div>
-              <div className="battleStatsSpeed">
-                {`Speed: ${this.props.avatar.speed}`}
+                <div className="battleStatsEnergy">
+                  {`Energy: ${this.props.avatar.energyCurrent} / ${
+                    this.props.avatar.energyTotal
+                  }`}
+                </div>
+                <div className="battleStatsSpeed">
+                  {`Speed: ${this.props.avatar.speed}`}
+                </div>
               </div>
             </div>
 
@@ -80,19 +82,23 @@ class BattleMessages extends Component {
                   {this.props.opponent.nickname}{' '}
                   {`Lv: ${this.props.opponent.lvl}`}
                 </div>
-                <div>
+              </div>
+
+              <div className="battleStatsInfoContainer">
+                <div className="battleStatsHp">
                   {`HP: ${this.props.opponent.hpCurrent} / ${
                     this.props.opponent.hpTotal
                   }`}
                 </div>
-              </div>
-              <div className="battleStatsEnergy">
-                {`Energy: ${this.props.opponent.energyCurrent} / ${
-                  this.props.opponent.energyTotal
-                }`}
-              </div>
-              <div className="battleStatsSpeed">
-                {`Speed: ${this.props.opponent.speed}`}
+
+                <div className="battleStatsEnergy">
+                  {`Energy: ${this.props.opponent.energyCurrent} / ${
+                    this.props.opponent.energyTotal
+                  }`}
+                </div>
+                <div className="battleStatsSpeed">
+                  {`Speed: ${this.props.opponent.speed}`}
+                </div>
               </div>
             </div>
           </div>
