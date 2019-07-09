@@ -635,3 +635,14 @@ form div {
     transform: translate3d(0, 200px, 0);
   }
 }
+
+.win_lose_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.win_lose_containee {
+  flex: 1;
+}
