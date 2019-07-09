@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {
   getNewBattleMessageThunkCreator,
-  gotMyStatsActionCreator
+  gotMyStatsActionCreator,
+  updateMyStatsThunkCreator
 } from '../store/battle'
-
 import Arena from '../components/arena'
+import YouWin from './you-win'
+import YouLose from './you-lose'
 
 class BattleMessages extends Component {
   handleClick = event => {
@@ -28,21 +30,33 @@ class BattleMessages extends Component {
 
   render() {
     if (this.props.avatar.isDefeated) {
-      console.log(
-        'this.props.avatar.isDefeated: ',
-        this.props.avatar.isDefeated
-      )
-      alert('YOU LOSE...')
+      // this.props.updateMyStats(this.props.avatar.stravaId, {
+      //   hpCurrent: this.props.avatar.hpTotal,
+      //   isDefeated: false
+      // })
+      return <YouLose />
+
+      // console.log(
+      //   'this.props.avatar.isDefeated: ',
+      //   this.props.avatar.isDefeated
+      // )
+      // alert('YOU LOSE...')
+
       // history.push('/win')
     } else if (this.props.opponent.isDefeated) {
-      console.log(
-        'this.props.opponent.isDefeated: ',
-        this.props.opponent.isDefeated
-      )
-      alert('YOU WIN!')
+      // this.props.updateMyStats(this.props.avatar.stravaId, {
+      //   hpCurrent: this.props.avatar.hpTotal
+      // })
+      return <YouWin />
+
+      // console.log(
+      //   'this.props.opponent.isDefeated: ',
+      //   this.props.opponent.isDefeated
+      // )
+      // alert('YOU WIN!')
+
       // history.push('/loss')
     }
-
     return (
       <div id="theBattleContainer">
         <div id="battleInfoStatsContainer">
@@ -193,7 +207,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchNewMessage: message =>
     dispatch(getNewBattleMessageThunkCreator(message)),
-  fetchMyStats: myStats => dispatch(gotMyStatsActionCreator(myStats))
+  fetchMyStats: myStats => dispatch(gotMyStatsActionCreator(myStats)),
+  updateMyStats: (stravaId, updatedStats) =>
+    dispatch(updateMyStatsThunkCreator(stravaId, updatedStats))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BattleMessages)
