@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import socket from '../socket'
 
 /**
  * ACTION TYPES
@@ -32,6 +33,9 @@ export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || initialState.singleUser))
+    socket.emit('connection', res.data)
+    console.log('IN THE REDUCER USER')
+    console.log('socket: >>>>>>>>>>>>>>>>>>>>', socket)
   } catch (err) {
     console.error(err)
   }

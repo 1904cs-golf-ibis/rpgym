@@ -2,33 +2,13 @@
 /* eslint-disable complexity */
 const moveSets = require('../../client/data/moveSets')
 const {User} = require('../db/models/index')
+const Battle = require('./battle')
+const BattleInstances = require('./battle-instances')
 
 /*
  Player Object that holds the socketId, damage for the move they selected
  and energy cost for the move they selected
 */
-class Battle {
-  constructor() {
-    this.playerOne = {
-      socketId: '',
-      stravaId: '',
-      speed: 0,
-      damage: 0,
-      energy: 0,
-      energyCurrent: 0,
-      hpCurrent: 0
-    }
-    this.playerTwo = {
-      socketId: '',
-      stravaId: '',
-      speed: 0,
-      damage: 0,
-      energy: 0,
-      energyCurrent: 0,
-      hpCurrent: 0
-    }
-  }
-}
 
 const playersObj = new Battle()
 
@@ -49,9 +29,13 @@ module.exports = io => {
     */
 
     if (!playersObj.playerOne.socketId) {
+      const newBattle = new Battle()
+
       playersObj.playerOne.socketId = socket.id
       // joining player one's default room
+
       socket.join(playersObj.playerOne.socketId)
+      BattleInstances[socket.id] = newBattle
     } else if (!playersObj.playerTwo.socketId) {
       playersObj.playerTwo.socketId = socket.id
       // joining player one's default room

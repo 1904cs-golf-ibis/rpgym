@@ -8,11 +8,11 @@ import {
   getOpponentStatsThunkCreator
 } from './store/battle'
 
-// const socket = io(window.location.origin)
-const socket = io.connect('https://rpgym.herokuapp.com/')
+const socket = io(window.location.origin)
+// const socket = io.connect('https://rpgym.herokuapp.com/')
 
-socket.on('connect', () => {
-  console.log('Connected!')
+socket.on('connect', me => {
+  console.log('Connected!', me)
 })
 
 socket.on('new-message', message => {
