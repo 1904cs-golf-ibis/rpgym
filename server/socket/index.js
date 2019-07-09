@@ -90,15 +90,16 @@ module.exports = io => {
       if (playersObj.playerOne.socketId === socket.id) {
         if (!playersObj.playerOne.energy) {
           playersObj.playerOne.stravaId = myStats.stravaId
-          playersObj.playerTwo.stravaId = opponentStats.stravaId
           playersObj.playerOne.speed = myStats.speed
-          playersObj.playerTwo.speed = opponentStats.speed
           playersObj.playerOne.damage = moveSets[curAttack].damage
           playersObj.playerOne.energy = moveSets[curAttack].energy
           playersObj.playerOne.energyCurrent = myStats.energyCurrent
           playersObj.playerOne.hpCurrent = myStats.hpCurrent
+
           playersObj.playerTwo.energyCurrent = opponentStats.energyCurrent
           playersObj.playerTwo.hpCurrent = opponentStats.hpCurrent
+          playersObj.playerTwo.stravaId = opponentStats.stravaId
+          playersObj.playerTwo.speed = opponentStats.speed
         }
       } else if (playersObj.playerTwo.socketId === socket.id) {
         if (!playersObj.playerTwo.energy) {
@@ -114,52 +115,67 @@ module.exports = io => {
 
       //checking to see if both attacks were made
       if (playersObj.playerOne.energy && playersObj.playerTwo.energy) {
-        // start battle logic from client side //
+        //if player 1 is faster than player 2, player 1 attacks first
         if (playersObj.playerOne.speed > playersObj.playerTwo.speed) {
           console.log('PLAYER 1 IS ATTACKING FIRST')
           //calculating player 2 hp by subtracting P2 HP current from P1 move damage
           const playerTwoUpdatedHp =
             playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
           console.log('PLAYER TWO UPDATED HP ===>', playerTwoUpdatedHp)
-          //update player two HP where strava ID matches user
+          //update player two HP in database where strava ID matches user
+          //update P2 isDefeated status by taking boolean value of "P2 HP > 0"
           const updatedPlayerTwo = await User.update(
             {
               hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
-              isDefeated: !(playerTwoUpdatedHp > 0)
+              isDefeated: playerTwoUpdatedHp <= 0
             },
-            {where: {stravaId: playersObj.playerTwo.stravaId}}
+            {
+              where: {stravaId: playersObj.playerTwo.stravaId},
+              returning: true,
+              plain: true
+            }
           )
-          //calculating player 1 energy by subtracting
+          const updatedPlayerTwoObj = updatedPlayerTwo[1]
+          //calculating player 1 energy by subtracting P1 Current Energy by P1 move energy cost
           const playerOneUpdatedEnergy =
             playersObj.playerOne.energyCurrent - playersObj.playerOne.energy
           console.log('PLAYER ONE UPDATED ENERGY ==>', playerOneUpdatedEnergy)
+          //update player one energy in database where strava ID matches user
           const updatedPlayerOne = await User.update(
             {energyCurrent: playerOneUpdatedEnergy},
             {
               where: {
                 stravaId: playersObj.playerOne.stravaId
-              }
+              },
+              returning: true,
+              plain: true
             }
           )
-          // store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-          // implement some method of retrieving updated isDefeated status
-          if (updatedPlayerTwo.isDefeated) {
+          //After P1 attacks, we check if P2 isDefeated
+          if (updatedPlayerTwoObj.isDefeated) {
             // end battle with a win for player 1 and a loss for player 2
             console.log('PLAYER 1 WON, PLAYER 2 LOST')
           } else {
-            // store.dispatch(updateMyStatsActionCreator(roundMe))
-
+            //P2 now attacks after P1
             console.log('PLAYER 2 IS ATTACKING SECOND')
+            //calculating player 1 hp by subtracting P1 HP current from P2 move damage
             const playerOneUpdatedHp =
               playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
             console.log('playerOne updated HP ==>', playerOneUpdatedHp)
+            //update player one HP in database where strava ID matches user
+            //update P1 isDefeated status by taking boolean value of "P1 HP > 0"
             const updatedPlayerOne = await User.update(
               {
                 hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
-                isDefeated: !(playerOneUpdatedHp > 0)
+                isDefeated: playerOneUpdatedHp <= 0
               },
-              {where: {stravaId: playersObj.playerOne.stravaId}}
+              {
+                where: {stravaId: playersObj.playerOne.stravaId},
+                returning: true,
+                plain: true
+              }
             )
+            const updatedPlayerOneObj = updatedPlayerOne[1]
             const playerTwoUpdatedEnergy =
               playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
             console.log('player two updated energy', playerTwoUpdatedEnergy)
@@ -171,7 +187,7 @@ module.exports = io => {
                 }
               }
             )
-            if (updatedPlayerOne.isDefeated) {
+            if (updatedPlayerOneObj.isDefeated) {
               // end battle with a win for player 2 and a loss for player 1
               console.log('PLAYER 2 WON, PLAYER 1 LOST')
             } else {
@@ -179,65 +195,94 @@ module.exports = io => {
               console.log('ROUND IS CONCLUDED')
             }
           }
+          //if player 2 is faster than player 1, player 2 attacks first
         } else if (playersObj.playerOne.speed < playersObj.playerTwo.speed) {
-          // store.dispatch(updateMyStatsActionCreator(roundMe))
           console.log('PLAYER 2 IS ATTACKING FIRST')
+          //calculating player 1 hp by subtracting P1 HP current from P2 move damage
           const playerOneUpdatedHp =
             playersObj.playerOne.hpCurrent - playersObj.playerTwo.damage
           console.log('playerOne updated hp', playerOneUpdatedHp)
+          //update player one HP in database where strava ID matches user
+          //update P1 isDefeated status by taking boolean value of "P1 HP > 0"
           const updatedPlayerOne = await User.update(
             {
               hpCurrent: playerOneUpdatedHp > 0 ? playerOneUpdatedHp : 0,
-              isDefeated: !(playerOneUpdatedHp > 0)
+              isDefeated: playerOneUpdatedHp <= 0
             },
-            {where: {stravaId: playersObj.playerOne.stravaId}}
+            {
+              where: {stravaId: playersObj.playerOne.stravaId},
+              returning: true,
+              plain: true
+            }
           )
+          console.log('UPDATED PLAYER ONE ============>', updatedPlayerOne)
+          const updatedPlayerOneObj = updatedPlayerOne[1]
+          console.log('UPDATED PLAYER ONE OBJ =====>', updatedPlayerOneObj)
+          //calculating player 2 energy by subtracting P2 Current Energy by P2 move energy cost
           const playerTwoUpdatedEnergy =
             playersObj.playerTwo.energyCurrent - playersObj.playerTwo.energy
           console.log('player two updated energy ==>', playerTwoUpdatedEnergy)
+          //updated player two energy in database where strava ID matches user
           const updatedPlayerTwo = await User.update(
             {energyCurrent: playerTwoUpdatedEnergy},
             {
               where: {
                 stravaId: playersObj.playerTwo.stravaId
-              }
+              },
+              returning: true,
+              plain: true
             }
           )
-          if (updatedPlayerOne.isDefeated) {
+          //After P2 attacks, we check if P1 is defeated
+          if (updatedPlayerOneObj.isDefeated) {
             // end battle with a win for player 2 and a loss for player 1
             console.log('PLAYER 2 WON, PLAYER 1 LOST')
           } else {
-            // end battle with a win for player 1 and a loss for player 2
-            console.log('PLAYER 1 WON, PLAYER 2 LOST')
-          }
-        } else {
-          console.log('PLAYER 1 IS ATTACKING FIRST')
-          const playerTwoUpdatedHp =
-            playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
-          console.log('player two updated hp ==>', playerTwoUpdatedHp)
-          const updatedPlayerTwo = await User.update(
-            {
-              hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
-              isDefeated: !(playerTwoUpdatedHp > 0)
-            },
-            {where: {stravaId: playersObj.playerTwo.stravaId}}
-          )
-          const playerOneUpdatedEnergy =
-            playersObj.playerOne.energyCurrent - playersObj.playerOne.energy
-          console.log('player one updatd energy', playerOneUpdatedEnergy)
-          const updatedPlayerOne = await User.update(
-            {energyCurrent: playerOneUpdatedEnergy},
-            {
-              where: {
-                stravaId: playersObj.playerOne.stravaId
+            console.log('PLAYER 1 IS ATTACKING SECOND')
+            //calculating player 2 hp by subtracting P2 HP current by P1 move damage
+            const playerTwoUpdatedHp =
+              playersObj.playerTwo.hpCurrent - playersObj.playerOne.damage
+            console.log('player two updated hp ==>', playerTwoUpdatedHp)
+            //update player two HP in database where strava ID matches user
+            //update P2 isDefeated status by taking boolean value of "P2 HP > 0"
+            const updatedPlayerTwo = await User.update(
+              {
+                hpCurrent: playerTwoUpdatedHp > 0 ? playerTwoUpdatedHp : 0,
+                isDefeated: playerTwoUpdatedHp <= 0
+              },
+              {
+                where: {stravaId: playersObj.playerTwo.stravaId},
+                returning: true,
+                plain: true
               }
+            )
+            console.log('UPDATED PLAYER TWO =====>', updatedPlayerTwo)
+            const updatedPlayerTwoObj = updatedPlayerTwo[1]
+            console.log('UPDATED PLAYER TWO OBJ', updatedPlayerTwoObj)
+            //calculating player 1 energy by subtracting P1 Current Energy by P1 move energy cost
+            const playerOneUpdatedEnergy =
+              playersObj.playerOne.energyCurrent - playersObj.playerOne.energy
+            console.log('player one updatd energy', playerOneUpdatedEnergy)
+            //update player one energy in database where strava ID matches user
+            const updatedPlayerOne = await User.update(
+              {energyCurrent: playerOneUpdatedEnergy},
+              {
+                where: {
+                  stravaId: playersObj.playerOne.stravaId
+                },
+                returning: true,
+                plain: true
+              }
+            )
+
+            //After P1 attacks, we check if P2 isDefeated
+            if (updatedPlayerTwoObj.isDefeated) {
+              // end battle with a win for player 1 and a loss for player 2
+              console.log('PLAYER 1 WON, PLAYER 2 LOST')
+            } else {
+              // move on to next round
+              console.log('ROUND IS CONCLUDED')
             }
-          )
-          // store.dispatch(updateOpponentStatsActionCreator(roundOpponent))
-          // implement some method of retrieving updated isDefeated status
-          if (updatedPlayerTwo.isDefeated) {
-            // move on to next round
-            console.log('ROUND IS CONCLUDED')
           }
         }
         // else {
@@ -263,7 +308,6 @@ module.exports = io => {
         //   }
         // }
         // end battle logic from client side
-
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
 
         playersObj.playerOne.damage = 0
