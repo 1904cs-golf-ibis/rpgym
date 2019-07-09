@@ -7,10 +7,13 @@ import {
   getMyStatsThunkCreator
 } from '../store/battle'
 import history from '../history'
+import socket from '../socket'
+import io from 'socket.io-client'
 
 class Users extends Component {
   componentDidMount() {
     this.props.fetchAllUsers()
+    socket.emit('me', this.props.singleUser.stravaId)
   }
   handleClick = event => {
     const myStravaId = this.props.singleUser.stravaId
