@@ -29,11 +29,6 @@ class Users extends Component {
         <h2 align="center">Opponent</h2>
         <div className="leaderBoardList">
           {users.map((user, index) => {
-            console.log('user.stravaId: ', user.stravaId)
-            console.log(
-              'this.props.notifications: ',
-              this.props.notifications[0].stravaId
-            )
             if (user.stravaId === this.props.notifications[0].stravaId) {
               return (
                 <div key={user.id}>

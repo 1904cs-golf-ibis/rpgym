@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import Modal from 'react-modal'
 import history from '../history'
+import {removeAllNotificationsActionCreator} from '../store/user'
 
 const customStyles = {
   content: {
@@ -40,11 +41,13 @@ class Navbar extends Component {
 
   closeModal() {
     this.setState({modalIsOpen: false})
+    this.props.removeAllNotifications()
   }
 
   closeModalOnAgree() {
     this.setState({modalIsOpen: false})
     history.push('/opponentleaderboard')
+    // this.props.removeAllNotifications()
   }
 
   render() {
@@ -155,6 +158,9 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+    },
+    removeAllNotifications() {
+      dispatch(removeAllNotificationsActionCreator())
     }
   }
 }

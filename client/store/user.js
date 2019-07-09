@@ -9,6 +9,7 @@ const REMOVE_USER = 'REMOVE_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const UPDATE_USER_SPEED = 'UPDATE_USER_SPEED'
 const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS'
+const REMOVE_NOTIFICATIONS = 'REMOVE_NOTIFICATIONS'
 
 /**
  * INITIAL STATE
@@ -23,12 +24,20 @@ const initialState = {
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+
 const removeUser = () => ({type: REMOVE_USER})
+
 const getAllUsers = users => ({type: GET_ALL_USERS, users})
+
 const updateUserSpeed = speed => ({type: UPDATE_USER_SPEED, speed})
-const getAllNotifications = notifications => ({
+
+export const getAllNotifications = notifications => ({
   type: GET_NOTIFICATIONS,
   notifications
+})
+
+export const removeAllNotificationsActionCreator = () => ({
+  type: REMOVE_NOTIFICATIONS
 })
 
 /**
@@ -102,6 +111,8 @@ export default function(state = initialState, action) {
       return {...state, singleUser: {}}
     case GET_NOTIFICATIONS:
       return {...state, notifications: action.notifications}
+    case REMOVE_NOTIFICATIONS:
+      return {...state, notifications: []}
     default:
       return state
   }
