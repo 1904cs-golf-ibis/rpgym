@@ -16,7 +16,7 @@ const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS'
 const initialState = {
   allUsers: [],
   singleUser: {},
-  notifications: []
+  notifications: [{nickname: 'Daphne', stravaId: 43675229}]
 }
 
 /**

@@ -26,33 +26,21 @@ class Users extends Component {
     console.log('users', users)
     return (
       <div>
-        <h2 align="center">Global Users</h2>
-        <div className="leaderBoardTabs">
-          <Link to="/leaderboard">Top Wins</Link>
-          <Link to="/toplvl">Top Level</Link>
-          <Link to="/topspeed">Top Speed</Link>
-        </div>
+        <h2 align="center">Opponent</h2>
         <div className="leaderBoardList">
-          {users
-            .sort((a, b) => {
-              let keyA = a.wins
-              let keyB = b.wins
-              if (keyA > keyB) {
-                return -1
-              }
-              if (keyA < keyB) {
-                return 1
-              } else {
-                return 0
-              }
-            })
-            .map((user, index) => {
+          {users.map((user, index) => {
+            console.log('user.stravaId: ', user.stravaId)
+            console.log(
+              'this.props.notifications: ',
+              this.props.notifications[0].stravaId
+            )
+            if (user.stravaId === this.props.notifications[0].stravaId) {
               return (
                 <div key={user.id}>
                   <div className="lbUserTabs">
                     <div className="rankingNum">
                       {/* <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" /> */}
-                      <h2>{index + 1}</h2>
+                      {/* <h2>{index + 1}</h2> */}
                     </div>
                     <div className="lbUserTabsImage">
                       <img src={user.imgUrl} width="35%" />
@@ -100,7 +88,8 @@ class Users extends Component {
                   <br />
                 </div>
               )
-            })}
+            }
+          })}
         </div>
       </div>
     )
@@ -109,7 +98,8 @@ class Users extends Component {
 
 const mapStateToProps = state => ({
   users: state.user.allUsers,
-  singleUser: state.user.singleUser
+  singleUser: state.user.singleUser,
+  notifications: state.user.notifications
 })
 
 const mapDispatchToProps = dispatch => ({

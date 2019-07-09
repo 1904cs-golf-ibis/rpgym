@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import Modal from 'react-modal'
+import history from '../history'
 
 const customStyles = {
   content: {
@@ -25,6 +26,7 @@ class Navbar extends Component {
     this.openModal = this.openModal.bind(this)
     this.afterOpenModal = this.afterOpenModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.closeModalOnAgree = this.closeModalOnAgree.bind(this)
   }
 
   openModal() {
@@ -38,6 +40,11 @@ class Navbar extends Component {
 
   closeModal() {
     this.setState({modalIsOpen: false})
+  }
+
+  closeModalOnAgree() {
+    this.setState({modalIsOpen: false})
+    history.push('/opponentleaderboard')
   }
 
   render() {
@@ -71,6 +78,7 @@ class Navbar extends Component {
                   </span>
                 </button>
                 <Modal
+                  ariaHideApp={false}
                   isOpen={this.state.modalIsOpen}
                   onAfterOpen={this.afterOpenModal}
                   onRequestClose={this.closeModal}
@@ -81,7 +89,7 @@ class Navbar extends Component {
                   this.props.notifications.length ? (
                     this.props.notifications.map((curNotification, idx) => (
                       <div key={idx} style={{color: 'black'}}>
-                        {curNotification}
+                        {curNotification.nickname} challenged you to a battle!
                       </div>
                     ))
                   ) : (
@@ -94,12 +102,12 @@ class Navbar extends Component {
                       this.subtitle = subtitle
                     }}
                   >
-                    <span style={{color: 'black'}}>
+                    {/* <span style={{color: 'black'}}>
                       R-no challenged you to a battle!
-                    </span>
+                    </span> */}
                   </h2>
                   <button
-                    onClick={this.closeModal}
+                    onClick={this.closeModalOnAgree}
                     type="button"
                     className="notification"
                   >
