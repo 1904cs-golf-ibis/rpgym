@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
@@ -59,13 +58,18 @@ class Navbar extends Component {
               <a href="#" onClick={this.props.handleClick}>
                 Logout
               </a>
-              {/* <a href="#" class="notification">
-              <span>Notifications</span>
-              <span class="badge">{this.props.notifications.length}</span>
-            </a> */}
 
               <div>
-                <button onClick={this.openModal}>Notifications</button>
+                <button
+                  className="notification"
+                  onClick={this.openModal}
+                  type="button"
+                >
+                  Notifications
+                  <span className="badge">
+                    {this.props.notifications.length}
+                  </span>
+                </button>
                 <Modal
                   isOpen={this.state.modalIsOpen}
                   onAfterOpen={this.afterOpenModal}
@@ -73,16 +77,30 @@ class Navbar extends Component {
                   style={customStyles}
                   contentLabel="Example Modal"
                 >
-                  <h2 ref={subtitle => (this.subtitle = subtitle)}>Hello</h2>
-                  <button onClick={this.closeModal}>close</button>
-                  <div>I am a modal</div>
-                  <form>
-                    <input />
-                    <button>tab navigation</button>
-                    <button>stays</button>
-                    <button>inside</button>
-                    <button>the modal</button>
-                  </form>
+                  <h2
+                    ref={subtitle => {
+                      this.subtitle = subtitle
+                    }}
+                  >
+                    <span style={{color: 'black'}}>
+                      R-no challenged you to a battle!
+                    </span>
+                  </h2>
+                  <button
+                    onClick={this.closeModal}
+                    type="button"
+                    className="notification"
+                  >
+                    Agree
+                  </button>
+                  <span> </span>
+                  <button
+                    onClick={this.closeModal}
+                    type="button"
+                    className="notification"
+                  >
+                    Decline
+                  </button>
                 </Modal>
               </div>
             </div>
@@ -122,12 +140,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Navbar)
-
-/**
- * PROP TYPES
- */
-// Navbar.propTypes = {
-//   handleClick: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired,
-//   notifications: PropTypes.array.isRequired
-// }
