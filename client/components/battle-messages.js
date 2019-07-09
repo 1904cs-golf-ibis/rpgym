@@ -5,6 +5,8 @@ import {
   gotMyStatsActionCreator
 } from '../store/battle'
 
+import Arena from '../components/arena'
+
 class BattleMessages extends Component {
   handleClick = event => {
     // console.log(event.target.value)
@@ -96,6 +98,11 @@ class BattleMessages extends Component {
           </div>
           <br />
         </div>
+
+        <Arena />
+
+        <br />
+
         <div id="battleMenuAndMessageContainer">
           <div id="battleMenu">
             <h3 align="center">Commands</h3>
