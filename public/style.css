@@ -75,7 +75,7 @@ form div {
   align-content: center;
   /* background: linear-gradient(#424242, #ffffff); */
   background-color: rgba(103, 103, 103, 0.5);
-  /* border: 5px solid white; */
+  border: 5px solid white;
   /* border-width: 1px; */
   border-radius: 5px;
   width: 25%;
@@ -97,7 +97,7 @@ form div {
   border-radius: 5px;
   width: 65%;
   padding: 1%;
-
+  border: 5px solid white;
   background-image: url('https://dgalywyr863hv.cloudfront.net/pictures/clubs/440372/8798648/1/large.jpg');
   background-repeat: no-repeat;
   background-position: center;
@@ -473,7 +473,7 @@ form div {
   display: flex;
   /* flex-direction: column; */
   /* align-content: space-between; */
-  /* justify-content: space-evenly; */
+  justify-content: space-between;
   background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
   border-radius: 5px;
@@ -486,31 +486,71 @@ form div {
 .battleStatsImage {
   display: flex;
   flex-direction: column;
-  justify-items: center;
-  width: 25%;
+  /* justify-items: center; */
+  align-items: center;
+  width: 20%;
   margin: auto;
+  /* border: 1px solid red; */
 }
 
 .battleStatsNameAndLvl {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 20%;
   align-self: bottom;
   margin: auto;
+  /* border: 1px solid red; */
+}
+
+.battleStatsInfoContainer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  width: 60%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+.battleStatsHp {
+  display: flex;
+  /* flex-direction: column; */
+  border: 1px solid white;
+  border-radius: 3px;
+  width: 80%;
+  padding: 2%;
+  margin: auto;
+}
+
+.battleStatsHp:hover {
+  color: #fc4c02;
 }
 
 .battleStatsEnergy {
   display: flex;
-  flex-direction: column;
-  width: 25%;
+  /* flex-direction: column; */
+  border: 1px solid white;
+  border-radius: 3px;
+  width: 80%;
+  padding: 2%;
   margin: auto;
+}
+
+.battleStatsEnergy:hover {
+  color: #fc4c02;
 }
 
 .battleStatsSpeed {
   display: flex;
-  flex-direction: column;
-  width: 25%;
+  /* flex-direction: column; */
+  border: 1px solid white;
+  border-radius: 3px;
+  width: 80%;
+  padding: 2%;
   margin: auto;
+}
+
+.battleStatsSpeed:hover {
+  color: #fc4c02;
 }
 
 /* OPPONENT BATTLE STATS */
