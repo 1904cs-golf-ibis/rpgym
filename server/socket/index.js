@@ -71,6 +71,15 @@ module.exports = io => {
 
     console.log('connecting player ====>', playersObj)
 
+    socket.on('challenge-issued', msg => {
+      const infoP1 = {
+        message: msg,
+        socketId: socket.id
+      }
+      console.log('IM THE INFO IN THE SERVER!', infoP1)
+      socket.emit('EMITTING the info to the client', infoP1)
+    })
+
     //Socket is receiving a new battle message
     socket.on('new-message', async message => {
       // console.log('IM SENDING THE MESSAGE!!!!!', socket.id)

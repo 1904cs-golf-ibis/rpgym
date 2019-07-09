@@ -21,6 +21,10 @@ socket.on('new-message', message => {
   store.dispatch(gotNewBattleMessageActionCreator(message))
 })
 
+socket.on('challenge-issued', msg => {
+  console.log('MESSAGE IN CLIENT ', msg)
+})
+
 socket.on('new-round', message => {
   console.log('THIS IS MY SOCKET ID ===>', socket.id)
   console.log('ROUND IN CLIENT ====>', message)
