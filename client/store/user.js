@@ -8,13 +8,15 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const UPDATE_USER_SPEED = 'UPDATE_USER_SPEED'
+const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS'
 
 /**
  * INITIAL STATE
  */
 const initialState = {
   allUsers: [],
-  singleUser: {}
+  singleUser: {},
+  notifications: []
 }
 
 /**
@@ -24,6 +26,10 @@ const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const getAllUsers = users => ({type: GET_ALL_USERS, users})
 const updateUserSpeed = speed => ({type: UPDATE_USER_SPEED, speed})
+const getAllNotifications = notifications => ({
+  type: GET_NOTIFICATIONS,
+  notifications
+})
 
 /**
  * THUNK CREATORS
@@ -94,6 +100,8 @@ export default function(state = initialState, action) {
       return {...state, allUsers: action.users}
     case REMOVE_USER:
       return {...state, singleUser: {}}
+    case GET_NOTIFICATIONS:
+      return {...state, notifications: action.notifications}
     default:
       return state
   }
