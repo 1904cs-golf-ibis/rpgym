@@ -9,8 +9,8 @@ import {
 } from './store/battle'
 
 // const socket = io(window.location.origin)
-const socket = io('http://localhost:8080')
-// const socket = io.connect('https://rpgym.herokuapp.com/')
+// const socket = io('http://localhost:8080')
+const socket = io.connect('https://rpgym.herokuapp.com/')
 
 socket.on('connect', () => {
   console.log('Connected!')
