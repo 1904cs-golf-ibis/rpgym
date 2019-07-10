@@ -18,7 +18,7 @@ const REMOVE_NOTIFICATIONS = 'REMOVE_NOTIFICATIONS'
 const initialState = {
   allUsers: [],
   singleUser: {},
-  notifications: [{nickname: 'Daphne', stravaId: 43675229}]
+  notifications: []
 }
 
 /**
@@ -111,7 +111,7 @@ export default function(state = initialState, action) {
     case REMOVE_USER:
       return {...state, singleUser: {}}
     case GET_NOTIFICATIONS:
-      return {...state, notifications: action.notifications}
+      return {...state, notifications: [action.notifications]}
     case REMOVE_NOTIFICATIONS:
       return {...state, notifications: []}
     default:

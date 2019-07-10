@@ -86,16 +86,12 @@ module.exports = io => {
     })
 
     socket.on('challenge-issued', async stravaId => {
-      const infoP1 = {
-        message: 'I CHALLENGE YOU'
-      }
-
       const myData = await User.findOne({
         where: {
           socketId: socket.id
         }
       })
-      infoP1.playerOne = myData.dataValues
+      const infoP1 = myData.dataValues
       console.log('IM THE INFO IN THE SERVER!', infoP1)
       // console.log('CHALLENGE ISSSUED ME DATA', myData.dataValues)
       const opponent = await User.findOne({
