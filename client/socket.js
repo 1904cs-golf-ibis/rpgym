@@ -7,10 +7,11 @@ import {
   getMyStatsThunkCreator,
   getOpponentStatsThunkCreator
 } from './store/battle'
+import {getAllNotifications} from './store/user'
 
 // const socket = io(window.location.origin)
-// const socket = io('http://localhost:8080')
-const socket = io.connect('https://rpgym.herokuapp.com/')
+const socket = io('http://localhost:8080')
+// const socket = io.connect('https://rpgym.herokuapp.com/')
 
 socket.on('connect', () => {
   console.log('Connected!')
@@ -27,6 +28,7 @@ socket.on('new-message', message => {
 
 socket.on('challenge-issued', msg => {
   console.log('CHALLENGE ISSUED IN THE CLIENT', msg)
+  store.dispatch(getAllNotifications(msg))
 })
 
 socket.on('new-round', message => {
