@@ -61,13 +61,13 @@ class Users extends Component {
                       <img src={user.imgUrl} width="35%" />
                     </div>
                     <div className="lbUserTabsName">
-                      <h2>{user.nickname}</h2>
+                      <h4>{user.nickname}</h4>
                     </div>
 
                     <div className="lbUserInfoContainer">
                       <div className="lbUserInfo">
                         <img src="https://img.icons8.com/nolan/64/000000/crown.png" />
-                        <p align="center">Wins: {user.wins}</p>
+                        <p align="center">{user.wins}</p>
                       </div>
                       {/* {this.props.singleUser.stravaId !== user.stravaId ? (
                         <button

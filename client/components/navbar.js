@@ -138,7 +138,6 @@ class Navbar extends Component {
             </div>
           )}
         </nav>
-        <hr />
       </div>
     )
   }

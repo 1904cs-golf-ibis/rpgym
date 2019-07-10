@@ -47,13 +47,13 @@ class TopLvl extends Component {
                       <img src={user.imgUrl} width="35%" />
                     </div>
                     <div className="lbUserTabsName">
-                      <h2>{user.nickname}</h2>
+                      <h4>{user.nickname}</h4>
                     </div>
 
                     <div className="lbUserInfoContainer">
                       <div className="lbUserInfo">
                         <img src="https://img.icons8.com/nolan/64/000000/collapse-arrow.png" />
-                        <p align="center">Level:{user.lvl}</p>
+                        <p align="center">{user.lvl}</p>
                       </div>
                       {/* {this.props.singleUser.stravaId !== user.stravaId ? (
                       <button

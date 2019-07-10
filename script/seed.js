@@ -50,6 +50,14 @@ async function seed() {
       lvl: 3,
       wins: 7,
       imgUrl: 'http://www.infinitymugenteam.com/images/BatmanStance.gif'
+    }),
+    User.create({
+      nickname: 'V_JOE<3',
+      speed: 25,
+      lvl: 90,
+      wins: 52,
+      imgUrl:
+        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/8e630ee8-95bb-4b93-9b1a-7813eaeb9e4c/d3aepa9-e2542e78-8926-4b7e-b416-b274c1ba6d53.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzhlNjMwZWU4LTk1YmItNGI5My05YjFhLTc4MTNlYWViOWU0Y1wvZDNhZXBhOS1lMjU0MmU3OC04OTI2LTRiN2UtYjQxNi1iMjc0YzFiYTZkNTMuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.mrpt5iyTVvikG_Y5z6vqsUMU7J3688Zo8Jf7oyBAsA4'
     })
   ])
 
