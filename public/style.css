@@ -377,17 +377,19 @@ form div {
 
 #arena {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-end;
   background-image: url('https://i.ytimg.com/vi/ucjk7FByCq8/maxresdefault.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
   /* border: 5px solid white; */
+  /* width: 800px; */
   height: 300px;
   border-radius: 5px;
   margin: auto;
   position: relative;
+  /* border: 1px solid red; */
 }
 
 /* #arenaAvatar {
