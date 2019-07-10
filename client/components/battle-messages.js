@@ -119,7 +119,10 @@ class BattleMessages extends Component {
           <br />
         </div>
 
-        <Arena />
+        <Arena
+          avatar={this.props.avatar.imgUrl}
+          opponentAvatar={this.props.avatar.imgUrl}
+        />
 
         <br />
 

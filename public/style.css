@@ -1,22 +1,24 @@
-/* @import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
 
 * {
   font-family: 'Press Start 2P';
-} */
-
-/* @font-face {
-  font-family: SAO, Sans-serif;
-  src: url("./SAOWelcome-Regular.otf") format("opentype");
 }
 
+@font-face {
+  font-family: SAO;
+  src: url('./SAOUI-Regular.otf') format('opentype');
+}
+/* 
 body{
-  font-family:SAO;
+  font-family:SAO, Sans-serif;
   color: white;
+  font-size: 25px;
+  font-stretch: ultra-expanded;
   background-color: #212121;
 } */
 
 body {
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
   color: white;
   background-color: #212121;
 }
@@ -186,7 +188,8 @@ form div {
 .leaderBoardTabs {
   display: flex;
   justify-content: space-evenly;
-  background-color: rgba(103, 103, 103, 0.5);
+  /* background-color: rgba(103, 103, 103, 0.5); */
+  background-color: rgba(255, 255, 255, 0.5);
   /* opacity: 0.5; */
   border: 5px;
   border-width: 1px;
@@ -377,17 +380,19 @@ form div {
 
 #arena {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-end;
   background-image: url('https://i.ytimg.com/vi/ucjk7FByCq8/maxresdefault.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
   /* border: 5px solid white; */
-  height: 300px;
+  /* width: 800px; */
+  height: 400px;
   border-radius: 5px;
   margin: auto;
   position: relative;
+  /* border: 1px solid red; */
 }
 
 /* #arenaAvatar {
