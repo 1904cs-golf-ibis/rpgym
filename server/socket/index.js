@@ -71,6 +71,45 @@ module.exports = io => {
 
     console.log('connecting player ====>', playersObj)
 
+    socket.on('me', async data => {
+      console.log('HERE IS ME!!!', data)
+      const addingUserSocketId = await User.update(
+        {
+          socketId: socket.id
+        },
+        {
+          where: {
+            stravaId: data
+          }
+        }
+      )
+    })
+
+    socket.on('challenge-issued', async stravaId => {
+      const infoP1 = {
+        message: 'I CHALLENGE YOU'
+      }
+
+      const myData = await User.findOne({
+        where: {
+          socketId: socket.id
+        }
+      })
+      infoP1.playerOne = myData.dataValues
+      console.log('IM THE INFO IN THE SERVER!', infoP1)
+      // console.log('CHALLENGE ISSSUED ME DATA', myData.dataValues)
+      const opponent = await User.findOne({
+        where: {
+          stravaId: stravaId
+        },
+        returning: true,
+        plain: true
+      })
+      console.log('I AM THE OPPONENT', opponent.dataValues)
+      // socket.emit('EMITTING the info to the client', infoP1)
+      io.to(opponent.dataValues.socketId).emit('challenge-issued', infoP1)
+    })
+
     //Socket is receiving a new battle message
     socket.on('new-message', async message => {
       // console.log('IM SENDING THE MESSAGE!!!!!', socket.id)

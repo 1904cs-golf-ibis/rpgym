@@ -7,6 +7,7 @@ import {
   Signup,
   UserHome,
   Leaderboard,
+  OpponentLeaderboard,
   BattleRoom,
   TopLvl,
   TopSpeed
@@ -37,6 +38,10 @@ class Routes extends Component {
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/toplvl" component={TopLvl} />
             <Route path="/topspeed" component={TopSpeed} />
+            <Route
+              path="/opponentleaderboard"
+              component={OpponentLeaderboard}
+            />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
