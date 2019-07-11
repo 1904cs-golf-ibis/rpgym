@@ -20,9 +20,12 @@ export default class YouWin extends Component {
     console.log('updateWins stravaId: >>>>>>>> ', curUserStravaId)
     const curUserData = await axios.get(`/api/users/${curUserStravaId}`)
     const curUserWins = curUserData.data.wins
+    const curUserXpCurrent = curUserData.data.xpCurrent
     console.log('updateWins curUserWins: ', curUserWins)
+    console.log('updateWins curUserXpCurrent: ', curUserXpCurrent)
     const updatedUserData = await axios.put(`/api/users/${curUserStravaId}`, {
-      wins: curUserWins + 1
+      wins: curUserWins + 1,
+      xpCurrent: curUserXpCurrent + 500
     })
     console.log('updateWins data: >>>>>>>>>>', updatedUserData.data)
   }
@@ -34,7 +37,7 @@ export default class YouWin extends Component {
           Congratulations! You won the battle.
         </div>
         <br />
-        <div className="win_lose_containee">You gained 570 XP</div>
+        <div className="win_lose_containee">You gained 500 XP</div>
         <br />
         <div className="win_lose_containee">
           Your health has been fully restored.
