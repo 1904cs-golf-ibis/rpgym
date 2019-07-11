@@ -3,16 +3,6 @@ import history from '../history'
 import socket from '../socket'
 
 /**
- * ACTION TYPES
- */
-const GET_USER = 'GET_USER'
-const REMOVE_USER = 'REMOVE_USER'
-const GET_ALL_USERS = 'GET_ALL_USERS'
-const UPDATE_USER_SPEED = 'UPDATE_USER_SPEED'
-const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS'
-const REMOVE_NOTIFICATIONS = 'REMOVE_NOTIFICATIONS'
-
-/**
  * INITIAL STATE
  */
 const initialState = {
@@ -20,6 +10,17 @@ const initialState = {
   singleUser: {},
   notifications: []
 }
+
+/**
+ * ACTION TYPES
+ */
+const GET_USER = 'GET_USER'
+const REMOVE_USER = 'REMOVE_USER'
+const GET_ALL_USERS = 'GET_ALL_USERS'
+const UPDATE_USER_SPEED = 'UPDATE_USER_SPEED'
+const UPDATE_USER_STATS = 'UPDATE_USER_SPEED'
+const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS'
+const REMOVE_NOTIFICATIONS = 'REMOVE_NOTIFICATIONS'
 
 /**
  * ACTION CREATORS

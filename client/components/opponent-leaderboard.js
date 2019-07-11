@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {allUsersThunk} from '../store/user'
-import {Link} from 'react-router-dom'
 import {
-  getOpponentStatsThunkCreator,
-  getMyStatsThunkCreator
+  getMyStatsThunkCreator,
+  getChallengerStatsThunkCreator
 } from '../store/battle'
 import history from '../history'
 
@@ -100,7 +99,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(allUsersThunk()),
   fetchOpponentStats: stravaId =>
-    dispatch(getOpponentStatsThunkCreator(stravaId)),
+    dispatch(getChallengerStatsThunkCreator(stravaId)),
   fetchMyStats: stravaId => dispatch(getMyStatsThunkCreator(stravaId))
 })
 

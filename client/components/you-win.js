@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {me} from '../store/user'
 
-export default class YouWin extends Component {
+class YouWin extends Component {
   constructor() {
     super()
     this.updateWins = this.updateWins.bind(this)
@@ -23,11 +25,16 @@ export default class YouWin extends Component {
     const curUserXpCurrent = curUserData.data.xpCurrent
     console.log('updateWins curUserWins: ', curUserWins)
     console.log('updateWins curUserXpCurrent: ', curUserXpCurrent)
-    const updatedUserData = await axios.put(`/api/users/${curUserStravaId}`, {
+    const updatedStats = {
       wins: curUserWins + 1,
       xpCurrent: curUserXpCurrent + 500
-    })
+    }
+    const updatedUserData = await axios.put(
+      `/api/users/${curUserStravaId}`,
+      updatedStats
+    )
     console.log('updateWins data: >>>>>>>>>>', updatedUserData.data)
+    this.props.updateMyStats(updatedStats)
   }
 
   render() {
@@ -52,3 +59,9 @@ export default class YouWin extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  updateMyStats: updatedStats => dispatch(me(updatedStats))
+})
+
+export default connect(null, mapDispatchToProps)(YouWin)

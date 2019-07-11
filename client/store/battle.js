@@ -99,6 +99,17 @@ export const getOpponentStatsThunkCreator = stravaId => {
   }
 }
 
+export const getChallengerStatsThunkCreator = stravaId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/users/${stravaId}`)
+      dispatch(gotOpponentStatsActionCreator(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 export const updateMyStatsThunkCreator = (stravaId, updatedStats) => {
   return async dispatch => {
     try {
@@ -145,7 +156,7 @@ export default function(state = initialState, action) {
     case UPDATED_MY_STATS: {
       return {
         ...state,
-        myStats: action.updatedStats
+        myStats: {...state.myStats, ...action.updatedStats}
       }
     }
     case UPDATED_OPPONENT_STATS: {
