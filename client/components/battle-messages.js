@@ -5,7 +5,6 @@ import {
   gotMyStatsActionCreator,
   updateMyStatsThunkCreator
 } from '../store/battle'
-import {removeAllNotificationsActionCreator} from '../store/user'
 import Arena from '../components/arena'
 import YouWin from './you-win'
 import YouLose from './you-lose'
@@ -33,10 +32,6 @@ class BattleMessages extends Component {
     if (this.props.avatar.isDefeated) {
       // this.props.updateMyStats(this.props.avatar.stravaId, {
       //   hpCurrent: this.props.avatar.hpTotal,
-      //   isDefeated: false
-      // })
-
-      // this.props.updateMyStats(this.props.avatar.stravaId, {
       //   isDefeated: false
       // })
       return <YouLose stravaId={this.props.avatar.stravaId} />
@@ -217,8 +212,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getNewBattleMessageThunkCreator(message)),
   fetchMyStats: myStats => dispatch(gotMyStatsActionCreator(myStats)),
   updateMyStats: (stravaId, updatedStats) =>
-    dispatch(updateMyStatsThunkCreator(stravaId, updatedStats)),
-  removeAllNotifications: () => dispatch(removeAllNotificationsActionCreator)
+    dispatch(updateMyStatsThunkCreator(stravaId, updatedStats))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BattleMessages)

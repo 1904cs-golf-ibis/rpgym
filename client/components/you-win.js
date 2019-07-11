@@ -1,15 +1,31 @@
 import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
+import axios from 'axios'
 
-import {removeAllNotificationsActionCreator} from '../store/user'
+export default class YouWin extends Component {
+  // constructor() {
+  //   super()
+  //   this.updateWins = this.updateWins.bind(this)
+  // }
 
-class YouWin extends Component {
+  // componentDidMount() {
+  //   console.log(
+  //     'componentDidMount this.props.stravaId: >>>>>>>>',
+  //     this.props.stravaId
+  //   )
+  //   this.updateWins(this.props.stravaId)
+  // }
+
+  // async updateWins(curUserStravaId) {
+  //   console.log('updateWins stravaId: >>>>>>>> ', curUserStravaId)
+
+  //   const {data} = await axios.put(`/api/users/${curUserStravaId}`, {
+  //     isDefeated: false
+  //   })
+  //   console.log('updateWins data: >>>>>>>>>>', data)
+  // }
+
   render() {
-    if (this.props.removeAllNotifications) {
-      console.log('removeAllNotifications exists')
-      this.props.removeAllNotifications()
-    }
     return (
       <div className="win_lose_container">
         <div className="win_lose_containee">
@@ -23,6 +39,7 @@ class YouWin extends Component {
         </div>
         <br />
         <br />
+        <br />
         <NavLink className="win_lose_containee" to="/leaderboard">
           Back to Leaderboard
         </NavLink>
@@ -30,9 +47,3 @@ class YouWin extends Component {
     )
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  removeAllNotifications: () => dispatch(removeAllNotificationsActionCreator)
-})
-
-export default connect(null, mapDispatchToProps)(YouWin)

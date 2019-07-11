@@ -1,23 +1,30 @@
 import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
+import axios from 'axios'
 
-import {updateMyStatsThunkCreator} from '../store/battle'
-import {removeAllNotificationsActionCreator} from '../store/user'
+export default class YouLose extends Component {
+  constructor() {
+    super()
+    this.resetIsDefeated = this.resetIsDefeated.bind(this)
+  }
 
-class YouLose extends Component {
   componentDidMount() {
-    console.log('CDM props: ', this.props)
-    this.props.updateMyStats(this.props.stravaId, {
+    console.log(
+      'componentDidMount this.props.stravaId: >>>>>>>>',
+      this.props.stravaId
+    )
+    this.resetIsDefeated(this.props.stravaId)
+  }
+
+  async resetIsDefeated(curUserStravaId) {
+    console.log('resetIsDefeated stravaId: >>>>>>>> ', curUserStravaId)
+    const {data} = await axios.put(`/api/users/${curUserStravaId}`, {
       isDefeated: false
     })
+    console.log('resetIsDefeated data: >>>>>>>>>>', data)
   }
 
   render() {
-    if (this.props.removeAllNotifications) {
-      console.log('removeAllNotifications exists')
-      this.props.removeAllNotifications()
-    }
     return (
       <div className="win_lose_container">
         <div className="win_lose_containee">You lost the battle...</div>
@@ -31,6 +38,7 @@ class YouLose extends Component {
         </div>
         <br />
         <br />
+        <br />
         <NavLink className="win_lose_containee" to="/leaderboard">
           Back to Leaderboard
         </NavLink>
@@ -38,11 +46,3 @@ class YouLose extends Component {
     )
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  updateMyStats: (stravaId, updatedStats) =>
-    dispatch(updateMyStatsThunkCreator(stravaId, updatedStats)),
-  removeAllNotifications: () => dispatch(removeAllNotificationsActionCreator)
-})
-
-export default connect(null, mapDispatchToProps)(YouLose)

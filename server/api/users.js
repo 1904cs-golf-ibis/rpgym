@@ -60,10 +60,22 @@ router.get('/:stravaId', async (req, res, next) => {
 
 router.put('/:stravaId', async (req, res, next) => {
   try {
+    let updatedUserData
     const curUserStravaId = req.params.stravaId
-    const updatedUserData = {
-      speed: req.body.speed
+    if (req.body.isDefeated === false) {
+      updatedUserData = {
+        isDefeated: false
+      }
+    } else if (req.body.wins) {
+      updatedUserData = {
+        wins: req.body.wins
+      }
+    } else {
+      updatedUserData = {
+        speed: req.body.speed
+      }
     }
+
     const updatedCurUser = await User.update(updatedUserData, {
       where: {stravaId: curUserStravaId},
       returning: true,
