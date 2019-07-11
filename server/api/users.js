@@ -66,7 +66,7 @@ router.put('/:stravaId', async (req, res, next) => {
       updatedUserData = {
         isDefeated: false
       }
-    } else if (req.body.wins) {
+    } else if (req.body.wins >= 0) {
       updatedUserData = {
         wins: req.body.wins
       }

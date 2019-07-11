@@ -3,27 +3,29 @@ import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
 export default class YouWin extends Component {
-  // constructor() {
-  //   super()
-  //   this.updateWins = this.updateWins.bind(this)
-  // }
+  constructor() {
+    super()
+    this.updateWins = this.updateWins.bind(this)
+  }
 
-  // componentDidMount() {
-  //   console.log(
-  //     'componentDidMount this.props.stravaId: >>>>>>>>',
-  //     this.props.stravaId
-  //   )
-  //   this.updateWins(this.props.stravaId)
-  // }
+  componentDidMount() {
+    console.log(
+      'componentDidMount this.props.stravaId: >>>>>>>>',
+      this.props.stravaId
+    )
+    this.updateWins(this.props.stravaId)
+  }
 
-  // async updateWins(curUserStravaId) {
-  //   console.log('updateWins stravaId: >>>>>>>> ', curUserStravaId)
-
-  //   const {data} = await axios.put(`/api/users/${curUserStravaId}`, {
-  //     isDefeated: false
-  //   })
-  //   console.log('updateWins data: >>>>>>>>>>', data)
-  // }
+  async updateWins(curUserStravaId) {
+    console.log('updateWins stravaId: >>>>>>>> ', curUserStravaId)
+    const curUserData = await axios.get(`/api/users/${curUserStravaId}`)
+    const curUserWins = curUserData.data.wins
+    console.log('updateWins curUserWins: ', curUserWins)
+    const updatedUserData = await axios.put(`/api/users/${curUserStravaId}`, {
+      wins: curUserWins + 1
+    })
+    console.log('updateWins data: >>>>>>>>>>', updatedUserData.data)
+  }
 
   render() {
     return (

@@ -47,7 +47,7 @@ class BattleMessages extends Component {
       // this.props.updateMyStats(this.props.avatar.stravaId, {
       //   hpCurrent: this.props.avatar.hpTotal
       // })
-      return <YouWin />
+      return <YouWin stravaId={this.props.avatar.stravaId} />
 
       // console.log(
       //   'this.props.opponent.isDefeated: ',
