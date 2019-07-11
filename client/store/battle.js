@@ -102,7 +102,7 @@ export const getOpponentStatsThunkCreator = stravaId => {
 export const updateMyStatsThunkCreator = (stravaId, updatedStats) => {
   return async dispatch => {
     try {
-      const {data} = await axios.update(`/api/users/${stravaId}`, updatedStats)
+      const {data} = await axios.put(`/api/users/${stravaId}`, updatedStats)
       dispatch(updatedMyStatsActionCreator(data))
     } catch (err) {
       console.log(err)
@@ -113,7 +113,7 @@ export const updateMyStatsThunkCreator = (stravaId, updatedStats) => {
 export const updateOpponentStatsThunkCreator = (stravaId, updatedStats) => {
   return async dispatch => {
     try {
-      const {data} = await axios.update(`/api/users/${stravaId}`, updatedStats)
+      const {data} = await axios.put(`/api/users/${stravaId}`, updatedStats)
       dispatch(updatedMyStatsActionCreator(data))
     } catch (err) {
       console.log(err)

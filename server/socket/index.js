@@ -190,6 +190,30 @@ module.exports = io => {
           if (updatedPlayerTwoObj.isDefeated) {
             // end battle with a win for player 1 and a loss for player 2
             console.log('PLAYER 1 WON, PLAYER 2 LOST')
+            const updatePlayerOneHp = await User.update(
+              {
+                hpCurrent: 100,
+                // temporary addition for friends and family night:
+                energyCurrent: 300
+              },
+              {
+                where: {
+                  stravaId: playersObj.playerOne.stravaId
+                }
+              }
+            )
+            const updatePlayerTwoHp = await User.update(
+              {
+                hpCurrent: 100,
+                // temporary addition for friends and family night:
+                energyCurrent: 300
+              },
+              {
+                where: {
+                  stravaId: playersObj.playerTwo.stravaId
+                }
+              }
+            )
           } else {
             //P2 now attacks after P1
             console.log('PLAYER 2 IS ATTACKING SECOND')
@@ -225,6 +249,30 @@ module.exports = io => {
             if (updatedPlayerOneObj.isDefeated) {
               // end battle with a win for player 2 and a loss for player 1
               console.log('PLAYER 2 WON, PLAYER 1 LOST')
+              const updatePlayerOneHp = await User.update(
+                {
+                  hpCurrent: 100,
+                  // temporary addition for friends and family night:
+                  energyCurrent: 300
+                },
+                {
+                  where: {
+                    stravaId: playersObj.playerOne.stravaId
+                  }
+                }
+              )
+              const updatePlayerTwoHp = await User.update(
+                {
+                  hpCurrent: 100,
+                  // temporary addition for friends and family night:
+                  energyCurrent: 300
+                },
+                {
+                  where: {
+                    stravaId: playersObj.playerTwo.stravaId
+                  }
+                }
+              )
             } else {
               // move on to next round
               console.log('ROUND IS CONCLUDED')
@@ -272,6 +320,30 @@ module.exports = io => {
           if (updatedPlayerOneObj.isDefeated) {
             // end battle with a win for player 2 and a loss for player 1
             console.log('PLAYER 2 WON, PLAYER 1 LOST')
+            const updatePlayerOneHp = await User.update(
+              {
+                hpCurrent: 100,
+                // temporary addition for friends and family night:
+                energyCurrent: 300
+              },
+              {
+                where: {
+                  stravaId: playersObj.playerOne.stravaId
+                }
+              }
+            )
+            const updatePlayerTwoHp = await User.update(
+              {
+                hpCurrent: 100,
+                // temporary addition for friends and family night:
+                energyCurrent: 300
+              },
+              {
+                where: {
+                  stravaId: playersObj.playerTwo.stravaId
+                }
+              }
+            )
           } else {
             console.log('PLAYER 1 IS ATTACKING SECOND')
             //calculating player 2 hp by subtracting P2 HP current by P1 move damage
@@ -314,6 +386,30 @@ module.exports = io => {
             if (updatedPlayerTwoObj.isDefeated) {
               // end battle with a win for player 1 and a loss for player 2
               console.log('PLAYER 1 WON, PLAYER 2 LOST')
+              const updatePlayerOneHp = await User.update(
+                {
+                  hpCurrent: 100,
+                  // temporary addition for friends and family night:
+                  energyCurrent: 300
+                },
+                {
+                  where: {
+                    stravaId: playersObj.playerOne.stravaId
+                  }
+                }
+              )
+              const updatePlayerTwoHp = await User.update(
+                {
+                  hpCurrent: 100,
+                  // temporary addition for friends and family night:
+                  energyCurrent: 300
+                },
+                {
+                  where: {
+                    stravaId: playersObj.playerTwo.stravaId
+                  }
+                }
+              )
             } else {
               // move on to next round
               console.log('ROUND IS CONCLUDED')
