@@ -17,9 +17,12 @@ export class UserHome extends Component {
 
   async componentDidMount() {
     try {
+      let maxSpeed = 0
       const {data} = await axios.get(`/api/activities/${this.props.stravaId}`)
-      const speedData = data.map(el => el.max_speed)
-      const maxSpeed = Math.max(...speedData)
+      if (data.length) {
+        const speedData = data.map(el => el.max_speed)
+        maxSpeed = Math.max(...speedData)
+      }
       const speedObj = {
         stravaId: this.props.stravaId,
         speed: maxSpeed
