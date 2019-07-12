@@ -137,11 +137,30 @@ class BattleMessages extends Component {
               <br />
             </div>
             <div>
-              <h3>Battle Messages:</h3>
+              <h3 style={{textAlign: 'center'}}>Battle Messages:</h3>
               <div style={{height: '80px'}}>
                 {this.props.messages.map((message, idx) => {
                   console.log('BATTLE MESSAGES ====>', message)
-                  return <h5 key={idx}>{message}</h5>
+                  let newMessage
+                  const messageSliceToCheck = message.slice(-4)
+                  if (messageSliceToCheck === 'arge') {
+                    newMessage = message.split(' ')
+                    newMessage[newMessage.length - 1] = 'Charge'
+                    newMessage = newMessage.join(' ')
+                  } else if (messageSliceToCheck === 'last') {
+                    newMessage = message.split(' ')
+                    newMessage[newMessage.length - 1] = 'Ki Blast'
+                    newMessage = newMessage.join(' ')
+                  } else if (messageSliceToCheck === 'meha') {
+                    newMessage = message.split(' ')
+                    newMessage[newMessage.length - 1] = 'Kamehameha'
+                    newMessage = newMessage.join(' ')
+                  } else if (messageSliceToCheck === 'Bomb') {
+                    newMessage = message.split(' ')
+                    newMessage[newMessage.length - 1] = 'Spirit Bomb'
+                    newMessage = newMessage.join(' ')
+                  }
+                  return <h5 key={idx}>{newMessage}</h5>
                 })}
               </div>
             </div>
