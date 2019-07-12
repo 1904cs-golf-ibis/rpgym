@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 
 import {logout} from '../store'
 import history from '../history'
-import {removeAllNotificationsActionCreator} from '../store/user'
+import {removeAllNotifications} from '../store/user'
 
 const customStyles = {
   content: {
@@ -42,7 +42,7 @@ class Navbar extends Component {
 
   closeModal() {
     this.setState({modalIsOpen: false})
-    this.props.removeAllNotifications()
+    this.props.removeNotifications()
   }
 
   closeModalOnAgree() {
@@ -164,8 +164,8 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    removeAllNotifications() {
-      dispatch(removeAllNotificationsActionCreator())
+    removeNotifications() {
+      dispatch(removeAllNotifications())
     }
   }
 }

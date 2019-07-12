@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
 
-import {me} from '../store/user'
+import {me, removeAllNotifications} from '../store/user'
 
 class YouWin extends Component {
   constructor() {
@@ -28,6 +28,7 @@ class YouWin extends Component {
       updatedStats
     )
     this.props.updateMyStats(updatedStats)
+    this.props.removeNotifications()
   }
 
   render() {
@@ -54,7 +55,10 @@ class YouWin extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateMyStats: updatedStats => dispatch(me(updatedStats))
+  updateMyStats: updatedStats => dispatch(me(updatedStats)),
+  removeNotifications() {
+    dispatch(removeAllNotifications())
+  }
 })
 
 export default connect(null, mapDispatchToProps)(YouWin)

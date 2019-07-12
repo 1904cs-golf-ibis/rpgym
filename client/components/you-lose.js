@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
+import {connect} from 'react-redux'
 import axios from 'axios'
 
-export default class YouLose extends Component {
+import {removeAllNotifications} from '../store/user'
+
+class YouLose extends Component {
   constructor() {
     super()
     this.resetIsDefeated = this.resetIsDefeated.bind(this)
@@ -16,6 +19,7 @@ export default class YouLose extends Component {
     const {data} = await axios.put(`/api/users/${curUserStravaId}`, {
       isDefeated: false
     })
+    this.props.removeNotifications()
   }
 
   render() {
@@ -40,3 +44,11 @@ export default class YouLose extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  removeNotifications() {
+    dispatch(removeAllNotifications())
+  }
+})
+
+export default connect(null, mapDispatchToProps)(YouLose)

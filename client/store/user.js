@@ -37,7 +37,7 @@ export const getAllNotifications = notifications => ({
   notifications
 })
 
-export const removeAllNotificationsActionCreator = () => ({
+export const removeAllNotifications = () => ({
   type: REMOVE_NOTIFICATIONS
 })
 
