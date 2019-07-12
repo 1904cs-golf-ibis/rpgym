@@ -2,18 +2,32 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import history from '../../history'
+import socket from '../../socket'
 import {allUsersThunk} from '../../store/user'
+import {
+  getOpponentStatsThunkCreator,
+  getMyStatsThunkCreator
+} from '../../store/battle'
 
-class TopSpeed extends Component {
+class Users extends Component {
   componentDidMount() {
     this.props.fetchAllUsers()
+    socket.emit('me', this.props.singleUser.stravaId)
+  }
+
+  handleClick = event => {
+    const myStravaId = this.props.singleUser.stravaId
+    this.props.fetchMyStats(myStravaId)
+    const currentOpponentStravaId = event.target.value
+    this.props.fetchOpponentStats(currentOpponentStravaId)
+    history.push('/battle')
   }
 
   render() {
     const {users} = this.props
     return (
       <div>
-        <h1 align="center">Leaderboard</h1>
         <h2 align="center">Global Users</h2>
         <div className="leaderBoardTabs">
           <Link to="/leaderboard">Top Wins</Link>
@@ -39,7 +53,6 @@ class TopSpeed extends Component {
                 <div key={user.id}>
                   <div className="lbUserTabs">
                     <div className="rankingNum">
-                      {/* <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" /> */}
                       <h2>{index + 1}</h2>
                     </div>
                     <div className="lbUserTabsImage">
@@ -54,34 +67,27 @@ class TopSpeed extends Component {
                         <img src="https://img.icons8.com/nolan/64/000000/fast-forward.png" />
                         <p align="center">Spd: {user.speed}</p>
                       </div>
-                      {/* {this.props.singleUser.stravaId !== user.stravaId ? (
-                        <button
-                          className="challengeButton"
-                          type="button"
-                          onClick={this.handleClick}
-                          value={user.stravaId}
-                        >
-                          Battle!
-                        </button>
-                      ) : null} */}
+
                       <div id="lbUserButtons">
-                        <button
+                        {/* <button
                           className="messageButton"
                           type="button"
                           onClick={this.handleClick}
                           value={user.stravaId}
-                        >
+                          >
                           Message
-                        </button>
-                        <br />
-                        <button
-                          className="challengeButton"
-                          type="button"
-                          onClick={this.handleClick}
-                          value={user.stravaId}
-                        >
-                          Battle!
-                        </button>
+                          </button>
+                        <br /> */}
+                        {this.props.singleUser.stravaId !== user.stravaId ? (
+                          <button
+                            className="challengeButton"
+                            type="button"
+                            onClick={this.handleClick}
+                            value={user.stravaId}
+                          >
+                            Battle!
+                          </button>
+                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -96,11 +102,15 @@ class TopSpeed extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.user.allUsers
+  users: state.user.allUsers,
+  singleUser: state.user.singleUser
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllUsers: () => dispatch(allUsersThunk())
+  fetchAllUsers: () => dispatch(allUsersThunk()),
+  fetchOpponentStats: stravaId =>
+    dispatch(getOpponentStatsThunkCreator(stravaId)),
+  fetchMyStats: stravaId => dispatch(getMyStatsThunkCreator(stravaId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopSpeed)
+export default connect(mapStateToProps, mapDispatchToProps)(Users)
