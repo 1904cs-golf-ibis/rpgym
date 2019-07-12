@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 
 import {removeAllNotifications} from '../store/user'
+import {resetAttackMessages} from '../store/battle'
 
 class YouLose extends Component {
   constructor() {
@@ -19,6 +20,7 @@ class YouLose extends Component {
     const {data} = await axios.put(`/api/users/${curUserStravaId}`, {
       isDefeated: false
     })
+    this.props.resetAttacks()
     this.props.removeNotifications()
   }
 
@@ -48,6 +50,9 @@ class YouLose extends Component {
 const mapDispatchToProps = dispatch => ({
   removeNotifications() {
     dispatch(removeAllNotifications())
+  },
+  resetAttacks() {
+    dispatch(resetAttackMessages())
   }
 })
 

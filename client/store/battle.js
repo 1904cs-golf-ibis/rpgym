@@ -6,7 +6,8 @@ import socket from '../socket'
 const initialState = {
   myStats: {},
   opponentStats: {},
-  battleMessages: []
+  battleMessages: [],
+  attackMessages: []
 }
 
 //Action Types
@@ -16,6 +17,8 @@ const GOT_MY_STATS = 'GOT_MY_STATS'
 const GOT_OPPONENT_STATS = 'GOT_OPPONENT_STATS'
 const UPDATED_MY_STATS = 'UPDATED_MY_STATS'
 const UPDATED_OPPONENT_STATS = 'UPDATED_OPPONENT_STATS'
+const GOT_NEW_ATTACK_MESSAGE = 'GOT_NEW_ATTACK_MESSAGE'
+const RESET_ATTACK_MESSAGES = 'RESET_ATTACK_MESSAGES'
 
 //Action Creators
 export const gotBattleMessagesActionCreator = messages => ({
@@ -46,6 +49,18 @@ export const updatedMyStatsActionCreator = updatedStats => ({
 export const updatedOpponentStatsActionCreator = updatedStats => ({
   type: UPDATED_OPPONENT_STATS,
   updatedStats
+})
+
+export const gotNewAttackMessageActionCreator = attackMessage => ({
+  type: GOT_NEW_ATTACK_MESSAGE,
+  attackMessage
+})
+
+export const resetAttackMessages = (
+  defaultMessage = ['Awaiting Attacks From Both Players...']
+) => ({
+  type: RESET_ATTACK_MESSAGES,
+  defaultMessage
 })
 
 //Thunks
@@ -158,6 +173,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         opponentStats: action.updatedStats
+      }
+    }
+    case GOT_NEW_ATTACK_MESSAGE: {
+      return {
+        ...state,
+        attackMessages: action.attackMessage
+      }
+    }
+    case RESET_ATTACK_MESSAGES: {
+      return {
+        ...state,
+        attackMessages: []
       }
     }
     default:

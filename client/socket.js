@@ -3,7 +3,9 @@ import store from './store'
 import {
   gotNewBattleMessageActionCreator,
   getMyStatsThunkCreator,
-  getOpponentStatsThunkCreator
+  getOpponentStatsThunkCreator,
+  gotNewAttackMessageActionCreator,
+  resetAttackMessages
 } from './store/battle'
 import {getAllNotifications} from './store/user'
 
@@ -16,11 +18,36 @@ socket.on('connect', () => {
 })
 
 socket.on('new-message', message => {
-  store.dispatch(gotNewBattleMessageActionCreator(message))
+  // store.dispatch(gotNewBattleMessageActionCreator(message))
 })
 
 socket.on('challenge-issued', msg => {
   store.dispatch(getAllNotifications(msg))
+})
+
+socket.on('opponent-attack-message', attackObj => {
+  console.log('I AM THE ATTACK OBJECT IN THE CLIENT', attackObj)
+  //break up object into two different messages. one for you, one for opponent and dispatch them to the battle messages part of the store
+  const myAttack =
+    attackObj.playerOne.socketId === socket.id
+      ? `${attackObj.playerOne.name} used ${attackObj.playerOne.attackUsed}`
+      : `${attackObj.playerTwo.name} used ${attackObj.playerTwo.attackUsed}`
+  const opponentAttack =
+    attackObj.playerOne.socketId !== socket.id
+      ? `${attackObj.playerOne.name} used ${attackObj.playerOne.attackUsed}`
+      : `${attackObj.playerTwo.name} used ${attackObj.playerTwo.attackUsed}`
+  console.log('MY ATTACK IN THE CLIENT ', myAttack)
+  console.log('OPPONENT ATTACK IN THE CLIENT ', opponentAttack)
+  store.dispatch(resetAttackMessages())
+  setTimeout(
+    () =>
+      store.dispatch(
+        gotNewAttackMessageActionCreator([myAttack, opponentAttack])
+      ),
+    500
+  )
+  // store.dispatch(gotNewAttackMessageActionCreator([myAttack, opponentAttack]))
+  // store.dispatch(gotNewAttackMessageActionCreator(opponentAttack))
 })
 
 socket.on('new-round', message => {
