@@ -181,7 +181,7 @@ class BattleMessages extends Component {
 }
 
 const mapStateToProps = state => ({
-  messages: state.battle.BattleMessages,
+  messages: state.battle.battleMessages,
   avatar: {
     nickname: state.user.singleUser.nickname,
     lvl: state.user.singleUser.lvl,

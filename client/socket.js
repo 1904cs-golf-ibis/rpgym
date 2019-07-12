@@ -31,12 +31,13 @@ socket.on('challenge-issued', msg => {
   store.dispatch(getAllNotifications(msg))
 })
 
-socket.on('attack-message', attackMessage => {
+socket.on('opponent-attack-message', attackMessage => {
   console.log('I AM THE ATTACK MESSAGE IN THE CLIENT', attackMessage)
   //not sure if this is similar to line 24. Not entirely sure if 'new-message' in the
   //client is actually doing anything. Maybe I just rewrote code...
   //also, my need to extract just the message in the attackMessage obj before sending it
-  store.dispatch(gotNewBattleMessageActionCreator(attackMessage))
+  const sendingJustText = attackMessage.text
+  store.dispatch(gotNewBattleMessageActionCreator(sendingJustText))
 })
 
 socket.on('new-round', message => {

@@ -349,7 +349,7 @@ module.exports = io => {
         //assuming here that myStats is 'me' not matter if I am P1 or P2
         //this is then just me sending my attack message over to the other player
         const attackMessage = {
-          attackMessage: `${myStats.nickname} used ${curAttack}`,
+          text: `${myStats.nickname} used ${curAttack}`,
           opponent: myStats
         }
         console.log('I AM THE ATTACK MESSAGE IN THE SERVER', attackMessage)
@@ -357,10 +357,10 @@ module.exports = io => {
         socket.id === playersObj.playerOne.socketId
           ? io
               .to(playersObj.playerTwo.socketId)
-              .emit('attack-message', attackMessage)
+              .emit('opponent-attack-message', attackMessage)
           : io
               .to(playersObj.playerOne.socketId)
-              .emit('attack-message', attackMessage)
+              .emit('opponent-attack-message', attackMessage)
 
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
 
