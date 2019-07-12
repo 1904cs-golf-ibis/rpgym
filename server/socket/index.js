@@ -130,16 +130,22 @@ module.exports = io => {
           playersObj.playerOne.energy = moveSets[curAttack].energy
           playersObj.playerOne.energyCurrent = myStats.energyCurrent
           playersObj.playerOne.hpCurrent = myStats.hpCurrent
+          //New line for opponent Attack Messages and Name
+          playersObj.playerOne.attack = curAttack
+          playersObj.playerOne.name = myStats.nickname
 
           playersObj.playerTwo.energyCurrent = opponentStats.energyCurrent
           playersObj.playerTwo.hpCurrent = opponentStats.hpCurrent
           playersObj.playerTwo.stravaId = opponentStats.stravaId
           playersObj.playerTwo.speed = opponentStats.speed
+          playersObj.playerTwo.name = opponentStats.nickname
         }
       } else if (playersObj.playerTwo.socketId === socket.id) {
         if (!playersObj.playerTwo.energy) {
           playersObj.playerTwo.damage = moveSets[curAttack].damage
           playersObj.playerTwo.energy = moveSets[curAttack].energy
+          //New line for opponent Attack Message
+          playersObj.playerTwo.attack = curAttack
           // playersObj.playerTwo.energyCurrent = myStats.energyCurrent
           // playersObj.playerTwo.hpCurrent = myStats.hpCurrent
         }
@@ -345,22 +351,53 @@ module.exports = io => {
         // end battle logic from client side
 
         //building attack-message
-        //sending 'myStats' just in case it is needed
-        //assuming here that myStats is 'me' not matter if I am P1 or P2
-        //this is then just me sending my attack message over to the other player
-        const attackMessage = {
-          text: `${myStats.nickname} used ${curAttack}`,
-          opponent: myStats
-        }
-        console.log('I AM THE ATTACK MESSAGE IN THE SERVER', attackMessage)
+        // const attackMessage = {
+        //   text: `${myStats.nickname} used ${curAttack}`,
+        //   opponent: myStats
+        // }
+        // const attackMessage = socket.id === playersObj.playerOne.socketId ?
+        //   `Opponent used ${playersObj.playerTwo.attack}` :
+        //   `Opponent used ${playersObj.playerOne.attack}`
+
         //If socket.id is playerOne, send attack message to playerTwo. Else, send attack message to playerOne
-        socket.id === playersObj.playerOne.socketId
-          ? io
-              .to(playersObj.playerTwo.socketId)
-              .emit('opponent-attack-message', attackMessage)
-          : io
-              .to(playersObj.playerOne.socketId)
-              .emit('opponent-attack-message', attackMessage)
+        // socket.id === playersObj.playerOne.socketId
+        //   ? io
+        //     .to(playersObj.playerTwo.socketId)
+        //     .emit('opponent-attack-message', attackMessage)
+        //   : io
+        //     .to(playersObj.playerOne.socketId)
+        //     .emit('opponent-attack-message', attackMessage)
+        //If you are player one
+
+        // if (socket.id === playersObj.playerOne.socketId) {
+        //   //send your attack message to player two
+        //   const attackMsg = playersObj.playerOne.attack
+        //   console.log('I AM THE P1 ATTACK MESSAGE IN THE SERVER', attackMsg)
+        //   socket.broadcast.emit('opponent-attack-message', `Opponent used ${attackMsg}`)
+        // } else {
+        //   //Else you are player two and you are sending your attack message to player one
+        //   const attackMsg = playersObj.playerTwo.attack
+        //   console.log('I AM THE P2 ATTACK MESSAGE IN THE SERVER', attackMsg)
+        //   socket.broadcast.emit('opponent-attack-message', `Opponent used ${attackMsg}`)
+        // }
+
+        const attackObj = {
+          playerOne: {
+            stravaId: playersObj.playerOne.stravaId,
+            attackUsed: playersObj.playerOne.attack,
+            socketId: playersObj.playerOne.socketId,
+            name: playersObj.playerOne.name
+          },
+          playerTwo: {
+            stravaId: playersObj.playerTwo.stravaId,
+            attackUsed: playersObj.playerTwo.attack,
+            socketId: playersObj.playerTwo.socketId,
+            name: playersObj.playerTwo.name
+          }
+        }
+        io
+          .to(playersObj.playerOne.socketId)
+          .emit('opponent-attack-message', attackObj)
 
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
 

@@ -21,23 +21,31 @@ socket.on('connect', () => {
 //   console.log('HERE IS ME!!!', data)
 // })
 
-socket.on('new-message', message => {
-  console.log('message =====> ', message)
-  store.dispatch(gotNewBattleMessageActionCreator(message))
-})
+// socket.on('new-message', message => {
+//   console.log('message =====> ', message)
+//   store.dispatch(gotNewBattleMessageActionCreator(message))
+// })
 
 socket.on('challenge-issued', msg => {
   console.log('CHALLENGE ISSUED IN THE CLIENT', msg)
   store.dispatch(getAllNotifications(msg))
 })
 
-socket.on('opponent-attack-message', attackMessage => {
-  console.log('I AM THE ATTACK MESSAGE IN THE CLIENT', attackMessage)
-  //not sure if this is similar to line 24. Not entirely sure if 'new-message' in the
-  //client is actually doing anything. Maybe I just rewrote code...
-  //also, my need to extract just the message in the attackMessage obj before sending it
-  const sendingJustText = attackMessage.text
-  store.dispatch(gotNewBattleMessageActionCreator(sendingJustText))
+socket.on('opponent-attack-message', attackObj => {
+  console.log('I AM THE ATTACK OBJECT IN THE CLIENT', attackObj)
+  //break up object into two different messages. one for you, one for opponent and dispatch them to the battle messages part of the store
+  const myAttack =
+    attackObj.playerOne.socketId === socket.id
+      ? `${attackObj.playerOne.name} used ${attackObj.playerOne.attackUsed}`
+      : `${attackObj.playerTwo.name} used ${attackObj.playerTwo.attackUsed}`
+  const opponentAttack =
+    attackObj.playerOne.socketId !== socket.id
+      ? `${attackObj.playerOne.name} used ${attackObj.playerOne.attackUsed}`
+      : `${attackObj.playerTwo.name} used ${attackObj.playerTwo.attackUsed}`
+  console.log('MY ATTACK IN THE CLIENT ', myAttack)
+  console.log('OPPONENT ATTACK IN THE CLIENT ', opponentAttack)
+  store.dispatch(gotNewBattleMessageActionCreator(myAttack))
+  store.dispatch(gotNewBattleMessageActionCreator(opponentAttack))
 })
 
 socket.on('new-round', message => {
