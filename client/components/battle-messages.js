@@ -167,12 +167,12 @@ class BattleMessages extends Component {
               </button>
               <br />
             </div>
-            {/* <div>
-          <h3>Battle Messages</h3>
-          {this.props.messages.map((message, idx) => {
-            return <h5 key={idx}>{message}</h5>
-          })}
-        </div> */}
+            <div>
+              <h3>Battle Messages</h3>
+              {this.props.messages.map((message, idx) => {
+                return <h5 key={idx}>{message}</h5>
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -181,6 +181,7 @@ class BattleMessages extends Component {
 }
 
 const mapStateToProps = state => ({
+  messages: state.battle.BattleMessages,
   avatar: {
     nickname: state.user.singleUser.nickname,
     lvl: state.user.singleUser.lvl,

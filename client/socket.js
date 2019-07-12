@@ -10,8 +10,8 @@ import {
 import {getAllNotifications} from './store/user'
 
 // const socket = io(window.location.origin)
-// const socket = io('http://localhost:8080')
-const socket = io.connect('https://rpgym.herokuapp.com/')
+const socket = io('http://localhost:8080')
+// const socket = io.connect('https://rpgym.herokuapp.com/')
 
 socket.on('connect', () => {
   console.log('Connected!')
@@ -29,6 +29,14 @@ socket.on('new-message', message => {
 socket.on('challenge-issued', msg => {
   console.log('CHALLENGE ISSUED IN THE CLIENT', msg)
   store.dispatch(getAllNotifications(msg))
+})
+
+socket.on('attack-message', attackMessage => {
+  console.log('I AM THE ATTACK MESSAGE IN THE CLIENT', attackMessage)
+  //not sure if this is similar to line 24. Not entirely sure if 'new-message' in the
+  //client is actually doing anything. Maybe I just rewrote code...
+  //also, my need to extract just the message in the attackMessage obj before sending it
+  store.dispatch(gotNewBattleMessageActionCreator(attackMessage))
 })
 
 socket.on('new-round', message => {

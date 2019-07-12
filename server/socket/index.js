@@ -343,6 +343,25 @@ module.exports = io => {
         //   }
         // }
         // end battle logic from client side
+
+        //building attack-message
+        //sending 'myStats' just in case it is needed
+        //assuming here that myStats is 'me' not matter if I am P1 or P2
+        //this is then just me sending my attack message over to the other player
+        const attackMessage = {
+          attackMessage: `${myStats.nickname} used ${curAttack}`,
+          opponent: myStats
+        }
+        console.log('I AM THE ATTACK MESSAGE IN THE SERVER', attackMessage)
+        //If socket.id is playerOne, send attack message to playerTwo. Else, send attack message to playerOne
+        socket.id === playersObj.playerOne.socketId
+          ? io
+              .to(playersObj.playerTwo.socketId)
+              .emit('attack-message', attackMessage)
+          : io
+              .to(playersObj.playerOne.socketId)
+              .emit('attack-message', attackMessage)
+
         io.to(playersObj.playerOne.socketId).emit('new-round', playersObj)
 
         playersObj.playerOne.damage = 0
