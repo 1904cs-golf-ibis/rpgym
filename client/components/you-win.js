@@ -37,7 +37,7 @@ class YouWin extends Component {
           Congratulations! You won the battle.
         </div>
         <br />
-        <div className="win_lose_containee">You gained 500 XP</div>
+        <div className="win_lose_containee">You gained 500 XP!</div>
         <br />
         <div className="win_lose_containee">
           Your health has been fully restored.

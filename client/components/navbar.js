@@ -58,7 +58,6 @@ class Navbar extends Component {
             <div id="navBarContainer">
               {/* The navbar will show these links after you log in */}
               <b>RPGym</b>
-              {/* <img src="https://img.icons8.com/ios-filled/100/000000/strava.png"/> */}
               <Link to="/home">Home</Link>
               <Link to="/leaderboard">Leaderboard</Link>
               <a href="#" onClick={this.props.handleClick}>
@@ -101,21 +100,36 @@ class Navbar extends Component {
                       this.subtitle = subtitle
                     }}
                   />
-                  <button
-                    onClick={this.closeModalOnAgree}
-                    type="button"
-                    className="notification"
-                  >
-                    Agree
-                  </button>
-                  <span> </span>
-                  <button
-                    onClick={this.closeModal}
-                    type="button"
-                    className="notification"
-                  >
-                    Decline
-                  </button>
+                  {this.props.notifications &&
+                  this.props.notifications.length ? (
+                    <div>
+                      <button
+                        onClick={this.closeModalOnAgree}
+                        type="button"
+                        className="notification"
+                      >
+                        Agree
+                      </button>
+                      <span> </span>
+                      <button
+                        onClick={this.closeModal}
+                        type="button"
+                        className="notification"
+                      >
+                        Decline
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <button
+                        onClick={this.closeModal}
+                        type="button"
+                        className="notification"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  )}
                 </Modal>
               </div>
             </div>
