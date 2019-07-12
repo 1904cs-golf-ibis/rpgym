@@ -32,22 +32,14 @@ class Battle {
 
 const playersObj = new Battle()
 
-// place instance in object of instances by socket.ids and access it in io
-// const playersObj = new Battle()
-
 module.exports = io => {
   io.on('connection', socket => {
-    // io.of('/battle').on('connection', socket => {
-    //   socket.emit('Welcome', 'This is the Battle Room!')
-
     console.log(`A socket connection to the server has been made: ${socket.id}`)
-
     /*
     This simulates joining a lobby. If a player 1 or player 2 haven't joined, add them to the playerObj.
     If other players join, we're just console logging on our side that the player is a spectator.
      ****As of right now, logic for spectators hasn't been implemented*****
     */
-
     if (!playersObj.playerOne.socketId) {
       playersObj.playerOne.socketId = socket.id
       // joining player one's default room
@@ -93,7 +85,6 @@ module.exports = io => {
       })
       const infoP1 = myData.dataValues
       console.log('IM THE INFO IN THE SERVER!', infoP1)
-      // console.log('CHALLENGE ISSSUED ME DATA', myData.dataValues)
       const opponent = await User.findOne({
         where: {
           stravaId: stravaId
@@ -102,23 +93,11 @@ module.exports = io => {
         plain: true
       })
       console.log('I AM THE OPPONENT', opponent.dataValues)
-      // socket.emit('EMITTING the info to the client', infoP1)
       io.to(opponent.dataValues.socketId).emit('challenge-issued', infoP1)
     })
 
     //Socket is receiving a new battle message
     socket.on('new-message', async message => {
-      // console.log('IM SENDING THE MESSAGE!!!!!', socket.id)
-      // console.log('IM THE MESSAGE!!!!!', message)
-
-      // destructure contents of message
-      // const {
-      //   curAttack,
-      //   mySpeed,
-      //   myIsDefeated,
-      //   opponentSpeed,
-      //   opponentIsDefeated
-      // } = message
       console.log('MESSAGE ====>', message)
       const {curAttack, myStats, opponentStats} = message
 
@@ -140,8 +119,6 @@ module.exports = io => {
         if (!playersObj.playerTwo.energy) {
           playersObj.playerTwo.damage = moveSets[curAttack].damage
           playersObj.playerTwo.energy = moveSets[curAttack].energy
-          // playersObj.playerTwo.energyCurrent = myStats.energyCurrent
-          // playersObj.playerTwo.hpCurrent = myStats.hpCurrent
         }
       }
 

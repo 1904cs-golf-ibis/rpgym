@@ -1,6 +1,6 @@
 import axios from 'axios'
+
 import history from '../history'
-import socket from '../socket'
 
 /**
  * INITIAL STATE
@@ -18,7 +18,6 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const UPDATE_USER_SPEED = 'UPDATE_USER_SPEED'
-const UPDATE_USER_STATS = 'UPDATE_USER_SPEED'
 const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS'
 const REMOVE_NOTIFICATIONS = 'REMOVE_NOTIFICATIONS'
 
@@ -49,8 +48,8 @@ export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || initialState.singleUser))
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    console.error(error)
   }
 }
 
@@ -58,8 +57,8 @@ export const allUsersThunk = () => async dispatch => {
   try {
     const res = await axios.get('/api/users')
     dispatch(getAllUsers(res.data))
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    console.error(error)
   }
 }
 
@@ -74,8 +73,8 @@ export const auth = (email, password, method) => async dispatch => {
   try {
     dispatch(getUser(res.data))
     history.push('/home')
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr)
+  } catch (dispatchOrHistoryError) {
+    console.error(dispatchOrHistoryError)
   }
 }
 
@@ -84,8 +83,8 @@ export const logout = () => async dispatch => {
     await axios.post('/auth/logout')
     dispatch(removeUser())
     history.push('/login')
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    console.error(error)
   }
 }
 
@@ -95,8 +94,8 @@ export const updateSpeedThunkCreator = speedObj => async dispatch => {
       speed: speedObj.speed
     })
     dispatch(updateUserSpeed(speedObj.speed))
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    console.error(error)
   }
 }
 

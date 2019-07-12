@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
+
 import {updateSpeedThunkCreator} from '../store/user'
 
 /**
@@ -32,7 +32,7 @@ export class UserHome extends Component {
         speed: maxSpeed
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -128,10 +128,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(UserHome)
-
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}

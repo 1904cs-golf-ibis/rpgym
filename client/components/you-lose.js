@@ -9,19 +9,13 @@ export default class YouLose extends Component {
   }
 
   componentDidMount() {
-    console.log(
-      'componentDidMount this.props.stravaId: >>>>>>>>',
-      this.props.stravaId
-    )
     this.resetIsDefeated(this.props.stravaId)
   }
 
   async resetIsDefeated(curUserStravaId) {
-    console.log('resetIsDefeated stravaId: >>>>>>>> ', curUserStravaId)
     const {data} = await axios.put(`/api/users/${curUserStravaId}`, {
       isDefeated: false
     })
-    console.log('resetIsDefeated data: >>>>>>>>>>', data)
   }
 
   render() {

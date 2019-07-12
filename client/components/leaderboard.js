@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import {connect} from 'react-redux'
+
 import GlobalUsers from './global-ldb-users'
 
 export default class Leaderboard extends Component {

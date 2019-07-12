@@ -1,32 +1,31 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {allUsersThunk} from '../store/user'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+import history from '../history'
+import socket from '../socket'
+import {allUsersThunk} from '../store/user'
 import {
   getOpponentStatsThunkCreator,
   getMyStatsThunkCreator
 } from '../store/battle'
-import history from '../history'
-import socket from '../socket'
-import io from 'socket.io-client'
 
 class Users extends Component {
   componentDidMount() {
     this.props.fetchAllUsers()
     socket.emit('me', this.props.singleUser.stravaId)
   }
+
   handleClick = event => {
     const myStravaId = this.props.singleUser.stravaId
     this.props.fetchMyStats(myStravaId)
     const currentOpponentStravaId = event.target.value
-    // console.log(currentOpponentStravaId)
     this.props.fetchOpponentStats(currentOpponentStravaId)
     history.push('/battle')
   }
+
   render() {
-    // console.log('PROPS!!', this.props)
     const {users} = this.props
-    console.log('users', users)
     return (
       <div>
         <h2 align="center">Global Users</h2>
@@ -54,7 +53,6 @@ class Users extends Component {
                 <div key={user.id}>
                   <div className="lbUserTabs">
                     <div className="rankingNum">
-                      {/* <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" /> */}
                       <h2>{index + 1}</h2>
                     </div>
                     <div className="lbUserTabsImage">
@@ -69,34 +67,27 @@ class Users extends Component {
                         <img src="https://img.icons8.com/nolan/64/000000/crown.png" />
                         <p align="center">{user.wins}</p>
                       </div>
-                      {/* {this.props.singleUser.stravaId !== user.stravaId ? (
-                        <button
-                          className="challengeButton"
-                          type="button"
-                          onClick={this.handleClick}
-                          value={user.stravaId}
-                        >
-                          Battle!
-                        </button>
-                      ) : null} */}
+
                       <div id="lbUserButtons">
-                        <button
+                        {/* <button
                           className="messageButton"
                           type="button"
                           onClick={this.handleClick}
                           value={user.stravaId}
-                        >
+                          >
                           Message
-                        </button>
-                        <br />
-                        <button
-                          className="challengeButton"
-                          type="button"
-                          onClick={this.handleClick}
-                          value={user.stravaId}
-                        >
-                          Battle!
-                        </button>
+                          </button>
+                        <br /> */}
+                        {this.props.singleUser.stravaId !== user.stravaId ? (
+                          <button
+                            className="challengeButton"
+                            type="button"
+                            onClick={this.handleClick}
+                            value={user.stravaId}
+                          >
+                            Battle!
+                          </button>
+                        ) : null}
                       </div>
                     </div>
                   </div>

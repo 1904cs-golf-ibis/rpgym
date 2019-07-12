@@ -1,7 +1,9 @@
 const passport = require('passport')
 const router = require('express').Router()
 const StravaStrategy = require('passport-strava-oauth2').Strategy
+
 const {User} = require('../db/models')
+
 module.exports = router
 
 if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {

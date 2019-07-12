@@ -1,7 +1,8 @@
 const router = require('express').Router()
-// const axios = require('axios')
 const strava = require('strava-v3')
+
 const {User} = require('../db/models')
+
 module.exports = router
 
 router.get('/', (req, res, next) => {
