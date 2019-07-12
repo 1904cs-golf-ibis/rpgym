@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
+
 import {updateSpeedThunkCreator} from '../store/user'
 
 /**
@@ -17,9 +17,12 @@ export class UserHome extends Component {
 
   async componentDidMount() {
     try {
+      let maxSpeed = 0
       const {data} = await axios.get(`/api/activities/${this.props.stravaId}`)
-      const speedData = data.map(el => el.max_speed)
-      const maxSpeed = Math.max(...speedData)
+      if (data.length) {
+        const speedData = data.map(el => el.max_speed)
+        maxSpeed = Math.max(...speedData)
+      }
       const speedObj = {
         stravaId: this.props.stravaId,
         speed: maxSpeed
@@ -29,7 +32,7 @@ export class UserHome extends Component {
         speed: maxSpeed
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -125,10 +128,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(UserHome)
-
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}

@@ -11,14 +11,6 @@ import YouLose from './you-lose'
 
 class BattleMessages extends Component {
   handleClick = event => {
-    // console.log(event.target.value)
-    // const attackObj = {
-    //   curAttack: event.target.value,
-    //   mySpeed: this.props.avatar.speed,
-    //   myIsDefeated: this.props.avatar.isDefeated,
-    //   opponentSpeed: this.props.opponent.speed,
-    //   opponentIsDefeated: this.props.opponent.isDefeated
-    // }
     const attackObj = {
       curAttack: event.target.value,
       myStats: this.props.avatar,
@@ -30,32 +22,9 @@ class BattleMessages extends Component {
 
   render() {
     if (this.props.avatar.isDefeated) {
-      // this.props.updateMyStats(this.props.avatar.stravaId, {
-      //   hpCurrent: this.props.avatar.hpTotal,
-      //   isDefeated: false
-      // })
-      return <YouLose />
-
-      // console.log(
-      //   'this.props.avatar.isDefeated: ',
-      //   this.props.avatar.isDefeated
-      // )
-      // alert('YOU LOSE...')
-
-      // history.push('/win')
+      return <YouLose stravaId={this.props.avatar.stravaId} />
     } else if (this.props.opponent.isDefeated) {
-      // this.props.updateMyStats(this.props.avatar.stravaId, {
-      //   hpCurrent: this.props.avatar.hpTotal
-      // })
-      return <YouWin />
-
-      // console.log(
-      //   'this.props.opponent.isDefeated: ',
-      //   this.props.opponent.isDefeated
-      // )
-      // alert('YOU WIN!')
-
-      // history.push('/loss')
+      return <YouWin stravaId={this.props.avatar.stravaId} />
     }
     return (
       <div id="theBattleContainer">

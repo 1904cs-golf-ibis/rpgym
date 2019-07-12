@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
 import Modal from 'react-modal'
+
+import {logout} from '../store'
 import history from '../history'
-import {removeAllNotificationsActionCreator} from '../store/user'
+import {removeAllNotifications} from '../store/user'
 
 const customStyles = {
   content: {
@@ -41,13 +42,12 @@ class Navbar extends Component {
 
   closeModal() {
     this.setState({modalIsOpen: false})
-    this.props.removeAllNotifications()
+    this.props.removeNotifications()
   }
 
   closeModalOnAgree() {
     this.setState({modalIsOpen: false})
     history.push('/opponentleaderboard')
-    // this.props.removeAllNotifications()
   }
 
   render() {
@@ -57,13 +57,8 @@ class Navbar extends Component {
           {this.props.isLoggedIn ? (
             <div id="navBarContainer">
               {/* The navbar will show these links after you log in */}
-              {/* <Link to="/home">
               <b>RPGym</b>
-            </Link> */}
-              <b>RPGym</b>
-              {/* <img src="https://img.icons8.com/ios-filled/100/000000/strava.png"/> */}
               <Link to="/home">Home</Link>
-              {/* <Link to="/battle">Battle</Link> */}
               <Link to="/leaderboard">Leaderboard</Link>
               <a href="#" onClick={this.props.handleClick}>
                 Logout
@@ -104,26 +99,37 @@ class Navbar extends Component {
                     ref={subtitle => {
                       this.subtitle = subtitle
                     }}
-                  >
-                    {/* <span style={{color: 'black'}}>
-                      R-no challenged you to a battle!
-                    </span> */}
-                  </h2>
-                  <button
-                    onClick={this.closeModalOnAgree}
-                    type="button"
-                    className="notification"
-                  >
-                    Agree
-                  </button>
-                  <span> </span>
-                  <button
-                    onClick={this.closeModal}
-                    type="button"
-                    className="notification"
-                  >
-                    Decline
-                  </button>
+                  />
+                  {this.props.notifications &&
+                  this.props.notifications.length ? (
+                    <div>
+                      <button
+                        onClick={this.closeModalOnAgree}
+                        type="button"
+                        className="notification"
+                      >
+                        Agree
+                      </button>
+                      <span> </span>
+                      <button
+                        onClick={this.closeModal}
+                        type="button"
+                        className="notification"
+                      >
+                        Decline
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <button
+                        onClick={this.closeModal}
+                        type="button"
+                        className="notification"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  )}
                 </Modal>
               </div>
             </div>
@@ -158,8 +164,8 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    removeAllNotifications() {
-      dispatch(removeAllNotificationsActionCreator())
+    removeNotifications() {
+      dispatch(removeAllNotifications())
     }
   }
 }

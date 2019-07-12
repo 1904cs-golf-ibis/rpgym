@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {allUsersThunk} from '../store/user'
-import {Link} from 'react-router-dom'
-import {
-  getOpponentStatsThunkCreator,
-  getMyStatsThunkCreator
-} from '../store/battle'
+
 import history from '../history'
+import {allUsersThunk} from '../store/user'
+import {
+  getMyStatsThunkCreator,
+  getChallengerStatsThunkCreator
+} from '../store/battle'
 
 class Users extends Component {
   componentDidMount() {
@@ -16,27 +16,21 @@ class Users extends Component {
     const myStravaId = this.props.singleUser.stravaId
     this.props.fetchMyStats(myStravaId)
     const currentOpponentStravaId = event.target.value
-    // console.log(currentOpponentStravaId)
     this.props.fetchOpponentStats(currentOpponentStravaId)
     history.push('/battle')
   }
   render() {
-    // console.log('PROPS!!', this.props)
     const {users} = this.props
-    console.log('users', users)
     return (
       <div>
         <h2 align="center">Opponent</h2>
         <div className="leaderBoardList">
-          {users.map((user, index) => {
+          {users.map(user => {
             if (user.stravaId === this.props.notifications[0].stravaId) {
               return (
                 <div key={user.id}>
                   <div className="lbUserTabs">
-                    <div className="rankingNum">
-                      {/* <img src="https://img.icons8.com/nolan/64/000000/best-seller.png" /> */}
-                      {/* <h2>{index + 1}</h2> */}
-                    </div>
+                    <div className="rankingNum" />
                     <div className="lbUserTabsImage">
                       <img src={user.imgUrl} width="35%" />
                     </div>
@@ -49,34 +43,27 @@ class Users extends Component {
                         <img src="https://img.icons8.com/nolan/64/000000/crown.png" />
                         <p align="center">Wins: {user.wins}</p>
                       </div>
-                      {/* {this.props.singleUser.stravaId !== user.stravaId ? (
-                        <button
-                          className="challengeButton"
-                          type="button"
-                          onClick={this.handleClick}
-                          value={user.stravaId}
-                        >
-                          Battle!
-                        </button>
-                      ) : null} */}
+
                       <div id="lbUserButtons">
-                        <button
+                        {/* <button
                           className="messageButton"
                           type="button"
                           onClick={this.handleClick}
                           value={user.stravaId}
-                        >
+                          >
                           Message
                         </button>
-                        <br />
-                        <button
-                          className="challengeButton"
-                          type="button"
-                          onClick={this.handleClick}
-                          value={user.stravaId}
-                        >
-                          Battle!
-                        </button>
+                        <br /> */}
+                        {this.props.singleUser.stravaId !== user.stravaId ? (
+                          <button
+                            className="challengeButton"
+                            type="button"
+                            onClick={this.handleClick}
+                            value={user.stravaId}
+                          >
+                            Battle!
+                          </button>
+                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -100,7 +87,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchAllUsers: () => dispatch(allUsersThunk()),
   fetchOpponentStats: stravaId =>
-    dispatch(getOpponentStatsThunkCreator(stravaId)),
+    dispatch(getChallengerStatsThunkCreator(stravaId)),
   fetchMyStats: stravaId => dispatch(getMyStatsThunkCreator(stravaId))
 })
 

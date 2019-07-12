@@ -1,5 +1,7 @@
 const router = require('express').Router()
+
 const {User} = require('../db/models')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -19,29 +21,11 @@ router.get('/', async (req, res, next) => {
       ]
     })
     res.json(users)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    console.error(error)
+    next(error)
   }
 })
-
-// router.post('/', async (req, res, next) => {
-//   try {
-//     const newUserData = {
-//       id: req.body.id,
-//       stravaId: req.body.stravaId,
-//       lvl: req.body.lvl,
-//       nickname: req.body.nickname,
-//       speed: req.body.speed,
-//       wins: req.body.wins,
-//       imgUrl: req.body.imgUrl
-//     }
-//     const newUser = await User.create(newUserData)
-//     res.json(newUser)
-//   } catch (error) {
-//     console.error(error)
-//     next(error)
-//   }
-// })
 
 router.get('/:stravaId', async (req, res, next) => {
   try {
@@ -60,10 +44,23 @@ router.get('/:stravaId', async (req, res, next) => {
 
 router.put('/:stravaId', async (req, res, next) => {
   try {
+    let updatedUserData
     const curUserStravaId = req.params.stravaId
-    const updatedUserData = {
-      speed: req.body.speed
+    if (req.body.isDefeated === false) {
+      updatedUserData = {
+        isDefeated: false
+      }
+    } else if (req.body.wins >= 0 && req.body.xpCurrent >= 0) {
+      updatedUserData = {
+        wins: req.body.wins,
+        xpCurrent: req.body.xpCurrent
+      }
+    } else {
+      updatedUserData = {
+        speed: req.body.speed
+      }
     }
+
     const updatedCurUser = await User.update(updatedUserData, {
       where: {stravaId: curUserStravaId},
       returning: true,

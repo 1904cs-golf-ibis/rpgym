@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {allUsersThunk} from '../../store/user'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+import {allUsersThunk} from '../../store/user'
 
 class TopSpeed extends Component {
   componentDidMount() {
@@ -9,9 +10,7 @@ class TopSpeed extends Component {
   }
 
   render() {
-    // console.log('PROPS!!', this.props)
     const {users} = this.props
-    console.log('users', users)
     return (
       <div>
         <h1 align="center">Leaderboard</h1>
