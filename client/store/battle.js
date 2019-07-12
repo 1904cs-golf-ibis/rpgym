@@ -7,7 +7,7 @@ const initialState = {
   myStats: {},
   opponentStats: {},
   battleMessages: [],
-  attackMessages: ['Awaiting Attacks From Both Players...']
+  attackMessages: []
 }
 
 //Action Types
@@ -178,13 +178,13 @@ export default function(state = initialState, action) {
     case GOT_NEW_ATTACK_MESSAGE: {
       return {
         ...state,
-        attackMessages: [...state.attackMessages, action.attackMessage]
+        attackMessages: action.attackMessage
       }
     }
     case RESET_ATTACK_MESSAGES: {
       return {
         ...state,
-        attackMessages: action.defaultMessage
+        attackMessages: []
       }
     }
     default:

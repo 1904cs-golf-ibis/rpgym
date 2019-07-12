@@ -4,7 +4,8 @@ import {
   gotNewBattleMessageActionCreator,
   getMyStatsThunkCreator,
   getOpponentStatsThunkCreator,
-  gotNewAttackMessageActionCreator
+  gotNewAttackMessageActionCreator,
+  resetAttackMessages
 } from './store/battle'
 import {getAllNotifications} from './store/user'
 
@@ -37,8 +38,16 @@ socket.on('opponent-attack-message', attackObj => {
       : `${attackObj.playerTwo.name} used ${attackObj.playerTwo.attackUsed}`
   console.log('MY ATTACK IN THE CLIENT ', myAttack)
   console.log('OPPONENT ATTACK IN THE CLIENT ', opponentAttack)
-  store.dispatch(gotNewAttackMessageActionCreator(myAttack))
-  store.dispatch(gotNewAttackMessageActionCreator(opponentAttack))
+  store.dispatch(resetAttackMessages())
+  setTimeout(
+    () =>
+      store.dispatch(
+        gotNewAttackMessageActionCreator([myAttack, opponentAttack])
+      ),
+    500
+  )
+  // store.dispatch(gotNewAttackMessageActionCreator([myAttack, opponentAttack]))
+  // store.dispatch(gotNewAttackMessageActionCreator(opponentAttack))
 })
 
 socket.on('new-round', message => {

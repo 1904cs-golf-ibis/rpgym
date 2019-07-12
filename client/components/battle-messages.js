@@ -137,11 +137,13 @@ class BattleMessages extends Component {
               <br />
             </div>
             <div>
-              <h3>Battle Messages</h3>
-              {this.props.messages.map((message, idx) => {
-                console.log('BATTLE MESSAGES ====>', message)
-                return <h5 key={idx}>{message}</h5>
-              })}
+              <h3>Battle Messages:</h3>
+              <div style={{height: '80px'}}>
+                {this.props.messages.map((message, idx) => {
+                  console.log('BATTLE MESSAGES ====>', message)
+                  return <h5 key={idx}>{message}</h5>
+                })}
+              </div>
             </div>
           </div>
         </div>

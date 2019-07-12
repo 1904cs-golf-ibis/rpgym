@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 
 import {me, removeAllNotifications} from '../store/user'
+import {resetAttackMessages} from '../store/battle'
 
 class YouWin extends Component {
   constructor() {
@@ -28,6 +29,7 @@ class YouWin extends Component {
       updatedStats
     )
     this.props.updateMyStats(updatedStats)
+    this.props.resetAttacks()
     this.props.removeNotifications()
   }
 
@@ -58,6 +60,9 @@ const mapDispatchToProps = dispatch => ({
   updateMyStats: updatedStats => dispatch(me(updatedStats)),
   removeNotifications() {
     dispatch(removeAllNotifications())
+  },
+  resetAttacks() {
+    dispatch(resetAttackMessages())
   }
 })
 
