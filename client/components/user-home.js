@@ -94,9 +94,7 @@ export class UserHome extends Component {
             10
           )}.`}</div>
         </div>
-        <div className="profileCardInfo">
-          {`You have been a member since ${memberSince.slice(0, 10)}.`}
-        </div>
+        <div className="profileCardInfo" />
       </div>
     )
   }
