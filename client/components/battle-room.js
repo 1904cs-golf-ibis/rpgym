@@ -5,9 +5,9 @@ import BattleMessages from './battle-messages'
 export default class BattleRoom extends Component {
   render() {
     return (
-      <div>
-        <h1 align="center">Battle Room</h1>
+      <div id="battleRoomDiv">
         <div id="battleRoom">
+          <h1 align="center">Battle Arena</h1>
           <div>
             <BattleMessages />
           </div>
