@@ -211,19 +211,23 @@ class BattleMessages extends Component {
                 const messageSliceToCheck = message.slice(-4)
                 if (messageSliceToCheck === 'arge') {
                   newMessage = message.split(' ')
-                  newMessage[newMessage.length - 1] = 'Charge'
+                  newMessage[newMessage.length - 1] =
+                    'Charge! They regained a small amount of energy.'
                   newMessage = newMessage.join(' ')
                 } else if (messageSliceToCheck === 'last') {
                   newMessage = message.split(' ')
-                  newMessage[newMessage.length - 1] = 'Ki Blast'
+                  newMessage[newMessage.length - 1] =
+                    'Ki Blast! It was a direct hit!'
                   newMessage = newMessage.join(' ')
                 } else if (messageSliceToCheck === 'meha') {
                   newMessage = message.split(' ')
-                  newMessage[newMessage.length - 1] = 'Kamehameha'
+                  newMessage[newMessage.length - 1] =
+                    'Kamehameha! It was a direct hit!'
                   newMessage = newMessage.join(' ')
                 } else if (messageSliceToCheck === 'Bomb') {
                   newMessage = message.split(' ')
-                  newMessage[newMessage.length - 1] = 'Spirit Bomb'
+                  newMessage[newMessage.length - 1] =
+                    'Spirit Bomb! It was a direct hit!'
                   newMessage = newMessage.join(' ')
                 }
                 return <h5 key={idx}>{newMessage}</h5>
