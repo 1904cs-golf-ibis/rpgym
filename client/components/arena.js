@@ -6,7 +6,7 @@ import BattleMessages from './battle-messages'
 export default class Arena extends Component {
   render() {
     return (
-      <div>
+      <div id="arenaContainer">
         <div id="arena">
           <div id="arenaAvatar">
             <img

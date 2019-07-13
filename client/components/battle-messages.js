@@ -36,19 +36,52 @@ class BattleMessages extends Component {
               </div>
               <div className="battleStatsNameAndLvl">
                 <div>
-                  {this.props.avatar.nickname} {`Lv: ${this.props.avatar.lvl}`}
+                  <h3>{this.props.avatar.nickname}</h3>
                 </div>
+                <div>{`Lv: ${this.props.avatar.lvl}`}</div>
               </div>
               <div className="battleStatsInfoContainer">
                 <div className="battleStatsHp">
-                  {`HP: ${this.props.avatar.hpCurrent} / ${
+                  {/* {`HP: ${this.props.avatar.hpCurrent} / ${
                     this.props.avatar.hpTotal
-                  }`}
+                  }`} */}
+                  <div className="bar">
+                    HP:
+                    <div className="barAndDigits">
+                      <progress
+                        id="health"
+                        value={this.props.avatar.hpCurrent}
+                        max={this.props.avatar.hpTotal}
+                      />
+                      <br />
+                      <div className="barDigits">
+                        {this.props.avatar.hpCurrent} /{' '}
+                        {this.props.avatar.hpTotal}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="battleStatsEnergy">
-                  {`Energy: ${this.props.avatar.energyCurrent} / ${
+                  {/* {`Energy: ${this.props.avatar.energyCurrent} / ${
                     this.props.avatar.energyTotal
-                  }`}
+                  }`} */}
+                  <div className="bar">
+                    EP:
+                    <div className="barAndDigits">
+                      <progress
+                        id="energy"
+                        value={this.props.avatar.energyCurrent}
+                        max={this.props.avatar.energyTotal}
+                      >
+                        hp
+                      </progress>
+                      <br />
+                      <div className="barDigits">
+                        {this.props.avatar.energyCurrent} /{' '}
+                        {this.props.avatar.energyTotal}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="battleStatsSpeed">
                   {`Speed: ${this.props.avatar.speed}`}
@@ -62,22 +95,54 @@ class BattleMessages extends Component {
               </div>
               <div className="battleStatsNameAndLvl">
                 <div>
-                  {this.props.opponent.nickname}{' '}
-                  {`Lv: ${this.props.opponent.lvl}`}
+                  <h3>{this.props.opponent.nickname}</h3>
                 </div>
+                <div>{`Lv: ${this.props.opponent.lvl}`}</div>
               </div>
 
               <div className="battleStatsInfoContainer">
                 <div className="battleStatsHp">
-                  {`HP: ${this.props.opponent.hpCurrent} / ${
+                  {/* {`HP: ${this.props.opponent.hpCurrent} / ${
                     this.props.opponent.hpTotal
-                  }`}
+                  }`} */}
+                  <div className="bar">
+                    HP:
+                    <div className="barAndDigits">
+                      <progress
+                        id="health"
+                        value={this.props.opponent.hpCurrent}
+                        max={this.props.opponent.hpTotal}
+                      />
+                      <br />
+                      <div className="barDigits">
+                        {this.props.opponent.hpCurrent} /{' '}
+                        {this.props.opponent.hpTotal}
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="battleStatsEnergy">
-                  {`Energy: ${this.props.opponent.energyCurrent} / ${
+                  {/* {`Energy: ${this.props.opponent.energyCurrent} / ${
                     this.props.opponent.energyTotal
-                  }`}
+                  }`} */}
+                  <div className="bar">
+                    EP:
+                    <div className="barAndDigits">
+                      <progress
+                        id="energy"
+                        value={this.props.opponent.energyCurrent}
+                        max={this.props.opponent.energyTotal}
+                      >
+                        hp
+                      </progress>
+                      <br />
+                      <div className="barDigits">
+                        {this.props.opponent.energyCurrent} /{' '}
+                        {this.props.opponent.energyTotal}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="battleStatsSpeed">
                   {`Speed: ${this.props.opponent.speed}`}
@@ -97,7 +162,7 @@ class BattleMessages extends Component {
 
         <div id="battleMenuAndMessageContainer">
           <div id="battleMenu">
-            <h3 align="center">Commands</h3>
+            <h2 align="center">Commands</h2>
             <div className="battleButtonSet">
               <button
                 className="battleButton"
@@ -136,33 +201,33 @@ class BattleMessages extends Component {
               </button>
               <br />
             </div>
-            <div>
-              <h3 style={{textAlign: 'center'}}>Battle Messages:</h3>
-              <div style={{height: '80px'}}>
-                {this.props.messages.map((message, idx) => {
-                  console.log('BATTLE MESSAGES ====>', message)
-                  let newMessage
-                  const messageSliceToCheck = message.slice(-4)
-                  if (messageSliceToCheck === 'arge') {
-                    newMessage = message.split(' ')
-                    newMessage[newMessage.length - 1] = 'Charge'
-                    newMessage = newMessage.join(' ')
-                  } else if (messageSliceToCheck === 'last') {
-                    newMessage = message.split(' ')
-                    newMessage[newMessage.length - 1] = 'Ki Blast'
-                    newMessage = newMessage.join(' ')
-                  } else if (messageSliceToCheck === 'meha') {
-                    newMessage = message.split(' ')
-                    newMessage[newMessage.length - 1] = 'Kamehameha'
-                    newMessage = newMessage.join(' ')
-                  } else if (messageSliceToCheck === 'Bomb') {
-                    newMessage = message.split(' ')
-                    newMessage[newMessage.length - 1] = 'Spirit Bomb'
-                    newMessage = newMessage.join(' ')
-                  }
-                  return <h5 key={idx}>{newMessage}</h5>
-                })}
-              </div>
+          </div>
+          <div id="attackMessages">
+            <h3 style={{textAlign: 'center'}}>Battle Messages:</h3>
+            <div style={{height: '80px'}}>
+              {this.props.messages.map((message, idx) => {
+                console.log('BATTLE MESSAGES ====>', message)
+                let newMessage
+                const messageSliceToCheck = message.slice(-4)
+                if (messageSliceToCheck === 'arge') {
+                  newMessage = message.split(' ')
+                  newMessage[newMessage.length - 1] = 'Charge'
+                  newMessage = newMessage.join(' ')
+                } else if (messageSliceToCheck === 'last') {
+                  newMessage = message.split(' ')
+                  newMessage[newMessage.length - 1] = 'Ki Blast'
+                  newMessage = newMessage.join(' ')
+                } else if (messageSliceToCheck === 'meha') {
+                  newMessage = message.split(' ')
+                  newMessage[newMessage.length - 1] = 'Kamehameha'
+                  newMessage = newMessage.join(' ')
+                } else if (messageSliceToCheck === 'Bomb') {
+                  newMessage = message.split(' ')
+                  newMessage[newMessage.length - 1] = 'Spirit Bomb'
+                  newMessage = newMessage.join(' ')
+                }
+                return <h5 key={idx}>{newMessage}</h5>
+              })}
             </div>
           </div>
         </div>
