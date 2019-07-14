@@ -170,7 +170,10 @@ class BattleMessages extends Component {
                 value="charge"
                 onClick={this.handleClick}
               >
-                Charge
+                <div id="chargeButton">
+                  Charge
+                  <span id="chargeInfo">+5 EP</span>
+                </div>
               </button>
               <br />
               <button
@@ -179,7 +182,10 @@ class BattleMessages extends Component {
                 value="kiBlast"
                 onClick={this.handleClick}
               >
-                Ki Blast
+                <div id="kiBlastButton">
+                  Ki Blast
+                  <span id="kiBlastInfo">-5 EP</span>
+                </div>
               </button>
               <br />
               <button
@@ -188,7 +194,10 @@ class BattleMessages extends Component {
                 value="kamehameha"
                 onClick={this.handleClick}
               >
-                Kamehameha
+                <div id="kamehamehaButton">
+                  Kamehameha
+                  <span id="kamehamehaInfo">-10 EP</span>
+                </div>
               </button>
               <br />
               <button
@@ -197,13 +206,16 @@ class BattleMessages extends Component {
                 value="spiritBomb"
                 onClick={this.handleClick}
               >
-                Spirit Bomb
+                <div id="spiritBombButton">
+                  Spirit Bomb
+                  <span id="spiritBombInfo">-50 EP</span>
+                </div>
               </button>
               <br />
             </div>
           </div>
           <div id="attackMessages">
-            <h3 style={{textAlign: 'center'}}>Battle Messages:</h3>
+            <h3 align="center">Battle Messages:</h3>
             <div style={{height: '80px'}}>
               {this.props.messages.map((message, idx) => {
                 console.log('BATTLE MESSAGES ====>', message)
