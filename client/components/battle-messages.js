@@ -11,6 +11,7 @@ import YouLose from './you-lose'
 
 class BattleMessages extends Component {
   handleClick = event => {
+    console.log('event.target.value: ', event.target.value)
     const attackObj = {
       curAttack: event.target.value,
       myStats: this.props.avatar,
@@ -170,10 +171,11 @@ class BattleMessages extends Component {
                 value="charge"
                 onClick={this.handleClick}
               >
-                <div id="chargeButton">
+                Charge
+                {/* <div id="chargeButton">
                   Charge
                   <span id="chargeInfo">+5 EP</span>
-                </div>
+                </div> */}
               </button>
               <br />
               <button
@@ -182,10 +184,11 @@ class BattleMessages extends Component {
                 value="kiBlast"
                 onClick={this.handleClick}
               >
-                <div id="kiBlastButton">
+                Ki Blast
+                {/* <div id="kiBlastButton">
                   Ki Blast
                   <span id="kiBlastInfo">-5 EP</span>
-                </div>
+                </div> */}
               </button>
               <br />
               <button
@@ -194,10 +197,11 @@ class BattleMessages extends Component {
                 value="kamehameha"
                 onClick={this.handleClick}
               >
-                <div id="kamehamehaButton">
+                Kamehameha
+                {/* <div id="kamehamehaButton">
                   Kamehameha
                   <span id="kamehamehaInfo">-10 EP</span>
-                </div>
+                </div> */}
               </button>
               <br />
               <button
@@ -206,10 +210,11 @@ class BattleMessages extends Component {
                 value="spiritBomb"
                 onClick={this.handleClick}
               >
-                <div id="spiritBombButton">
+                Spirit Bomb
+                {/* <div id="spiritBombButton">
                   Spirit Bomb
                   <span id="spiritBombInfo">-50 EP</span>
-                </div>
+                </div> */}
               </button>
               <br />
             </div>
