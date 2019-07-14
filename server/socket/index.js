@@ -100,6 +100,7 @@ module.exports = io => {
     socket.on('new-message', async message => {
       console.log('MESSAGE ====>', message)
       const {curAttack, myStats, opponentStats} = message
+      console.log('curAttack >>>>>>>>>>>> ', curAttack)
 
       if (playersObj.playerOne.socketId === socket.id) {
         if (!playersObj.playerOne.energy) {
