@@ -591,6 +591,7 @@ form div {
   width: 80%;
   padding: 2%;
   margin: auto;
+  /* border: 1px solid red; */
 }
 
 .battleStatsSpeed:hover {
@@ -631,7 +632,7 @@ form div {
   background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
   /* border-width: 1px; */
-  width: 45%;
+  width: 40%;
   border-radius: 5px;
   min-width: 180px;
   min-height: 400px;
@@ -647,12 +648,14 @@ form div {
 
 #attackMessages {
   display: flex;
-  /* align-self: flex-start; */
+  flex-direction: column;
   background-color: rgba(103, 103, 103, 0.9);
   border: 5px solid white;
-  width: 45%;
+  width: 40%;
+  min-height: 400px;
   padding: 2%;
   margin: auto;
+  /* border: 1px solid red; */
 }
 
 .battleButtonSet {
@@ -676,6 +679,94 @@ form div {
   font-size: 12px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
+}
+
+/* CHARGE BUTTON */
+
+#chargeButton #chargeInfo {
+  visibility: hidden;
+  width: 120px;
+  background-color: yellow;
+  color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+#chargeButton:hover #chargeInfo {
+  visibility: visible;
+  /* top: -5px;
+  left: 105%; */
+}
+
+/* KIT BLAST BUTTON */
+
+#kiBlastButton #kiBlastInfo {
+  visibility: hidden;
+  width: 120px;
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+#kiBlastButton:hover #kiBlastInfo {
+  visibility: visible;
+  /* top: -5px;
+  left: 105%; */
+}
+
+/* KAMEHAMEHA BUTTON */
+
+#kamehamehaButton #kamehamehaInfo {
+  visibility: hidden;
+  width: 120px;
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+#kamehamehaButton:hover #kamehamehaInfo {
+  visibility: visible;
+  /* top: -5px;
+  left: 105%; */
+}
+
+/* SPIRT BOMB BUTTON */
+
+#spiritBombButton #spiritBombInfo {
+  visibility: hidden;
+  width: 120px;
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+#spiritBombButton:hover #spiritBombInfo {
+  visibility: visible;
+  /* top: -5px;
+  left: 105%; */
 }
 
 .battleButton:hover {
