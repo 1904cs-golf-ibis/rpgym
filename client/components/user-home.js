@@ -62,13 +62,27 @@ export class UserHome extends Component {
             <div id="name">
               <h2>{`${nickname}`}</h2>
             </div>
+            <div id="level">
+              <h3>Lv: {lvl}</h3>
+            </div>
           </div>
           <div>
             <h1 align="center">
               <img src={imgUrl} alt="Your Avatar" width="50%" />
             </h1>
           </div>
-          <div className="statsInfoBox">{`XP: ${xpCurrent}/${xpToNextLvl}`}</div>
+          <div className="xpInfoBox">
+            {/* {`XP: ${xpCurrent}/${xpToNextLvl}`} */}
+            <div>XP:</div>
+            <div className="barAndDigits">
+              <progress id="xp" value={xpCurrent} max={xpToNextLvl} />
+              <br />
+              <div className="barDigits">
+                {xpCurrent} / {xpToNextLvl}
+              </div>
+            </div>
+          </div>
+          <br />
           <div className="stats">
             <div className="eachCardStat">
               <div>
