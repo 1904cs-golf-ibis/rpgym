@@ -120,20 +120,32 @@ form div {
   /* border: 1px solid red; */
 }
 
-#lvlIcon {
+#leftArrow {
   width: 0;
   height: 0;
   border-bottom: 25px solid transparent; /* left arrow slant */
   border-top: 25px solid transparent; /* right arrow slant */
-  border-left: 25px solid #fc4c02; /* bottom, add background color here */
+  border-left: 40px solid #fc4c02; /* bottom, add background color here */
+  font-size: 0;
+  line-height: 0;
+}
+
+#rightArrow {
+  width: 0;
+  height: 0;
+  border-bottom: 25px solid transparent; /* left arrow slant */
+  border-top: 25px solid transparent; /* right arrow slant */
+  border-right: 40px solid #fc4c02; /* bottom, add background color here */
   font-size: 0;
   line-height: 0;
 }
 
 #name {
   display: flex;
-  align-content: space-between;
-  justify-content: space-evenly;
+  flex-direction: column;
+  /* align-content: space-between; */
+  justify-content: center;
+  align-items: center;
   /* background-color: rgba(103, 103, 103, 0.5); */
   border-width: 1px;
   /* border-radius: 5px; */
@@ -145,10 +157,72 @@ form div {
   /* border: 1px solid red; */
 }
 
+#xpInfoBox {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(103, 103, 103, 0.8);
+  border-width: 1px;
+  border-radius: 3px;
+  width: 50%;
+  padding: 1%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+#xpInfoBox:hover {
+  color: #fc4c02;
+}
+
+.xpBar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2%;
+  width: 80%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+#xp {
+  display: flex;
+  min-width: 200px;
+  margin: auto;
+  -webkit-appearance: none;
+  /* justify-content: flex-end;  */
+}
+
+#xp::-webkit-progress-value {
+  background-color: #fc4c02;
+}
+
+.xpHeader {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2%;
+  width: 25%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+.xpBarAndDigits {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  width: 75%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+.xpBarDigits {
+  display: flex;
+  justify-content: center;
+}
+
 .statsInfoBox {
   display: flex;
-  align-content: space-between;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(103, 103, 103, 0.8);
   border-width: 1px;
   border-radius: 3px;
@@ -550,6 +624,16 @@ form div {
 
 #energy::-webkit-progress-value {
   background-color: #51b5eb;
+}
+
+#speed {
+  display: flex;
+  -webkit-appearance: none;
+  /* justify-content: flex-end;  */
+}
+
+#speed::-webkit-progress-value {
+  background-color: yellow;
 }
 
 .battleStatsHp:hover {
