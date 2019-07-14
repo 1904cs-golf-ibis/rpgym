@@ -28,7 +28,9 @@ class Users extends Component {
     const {users} = this.props
     return (
       <div>
-        <h2 align="center">Global Users</h2>
+        <br />
+        <h1 align="center">Leaderboard</h1>
+        <h2 align="center">Global Users: TOP LEVEL</h2>
         <div className="leaderBoardTabs">
           <Link to="/leaderboard">Top Wins</Link>
           <Link to="/toplvl">Top Level</Link>
