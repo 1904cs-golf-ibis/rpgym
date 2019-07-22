@@ -2,7 +2,7 @@
 
 # Dev Team:
 
-Tal Luigi, Arnald Wong, Daphne Clyne, and Daniel Rivera
+Tal Luigi, Arnald Wong, Daphne Clyne, and Daniel Rivera.
 
 # Description:
 
