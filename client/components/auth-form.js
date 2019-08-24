@@ -12,6 +12,7 @@ const AuthForm = props => {
 
   return (
     <div>
+      <br />
       <a href="/auth/strava">{displayName} with Strava</a>
     </div>
   )
