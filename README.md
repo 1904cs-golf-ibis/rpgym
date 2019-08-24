@@ -16,6 +16,6 @@ The app was built using Node.js, Express.js, Sequelize.js, PostgreSQL on the bac
 
 # URL:
 
-rpgym.herokuapp.com
+https://rpgym.herokuapp.com
 
 ![Screen Shot 2019-07-17 at 12 08 40 PM](https://user-images.githubusercontent.com/17928340/61392101-199b3280-a88c-11e9-934d-7a5b5aa3363f.png)
