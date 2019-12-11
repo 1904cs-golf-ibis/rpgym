@@ -4,7 +4,7 @@
 
 ### Video Presentation:
 
-`video: https://m.youtube.com/watch?v=_LZ8R1KoTeQ`
+[![RPGym Video Presentation](https://img.youtube.com/vi/_LZ8R1KoTeQ/0.jpg)](https://m.youtube.com/watch?v=_LZ8R1KoTeQ)
 
 ### Deployed Web App:
 
