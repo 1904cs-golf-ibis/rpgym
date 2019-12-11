@@ -1,21 +1,28 @@
 # RPGym
 
-# Dev Team:
+![RPGym Screenshot](./public/screenshot.png)
 
-Tal Luigi, Arnald Wong, Daphne Clyne, and Daniel Rivera.
+### Video Presentation:
 
-# Description:
+`video: https://m.youtube.com/watch?v=_LZ8R1KoTeQ`
 
-RPGym is an app that combines gaming and fitness. By using a third-party fitness tracking app called Strava, we take a user's exercise data and translate it to levels and stats for their very own RPG character.
-
-A user is then able to use this character battle other users in a turn-based, real-time battle. The ultimate goal is to gamify fitness and incentivize gamers to go outside and get fit. Level up with RPGym!
-
-# Tech Stack:
-
-The app was built using Node.js, Express.js, Sequelize.js, PostgreSQL on the backend, React.js, Redux.js, and NES.css on the frontend, Socket.io on both ends of the stack, and utilizes the Strava API. It was completed using Agile methodologies in 14 days for a group project.
-
-# URL:
+### Deployed Web App:
 
 https://rpgym.herokuapp.com
 
-![Screen Shot 2019-07-17 at 12 08 40 PM](https://user-images.githubusercontent.com/17928340/61392101-199b3280-a88c-11e9-934d-7a5b5aa3363f.png)
+### Description:
+
+NES themed web app that gamifies fitness. The app allows users to create avatars based on the workout statistics recorded on their Strava accounts, and use them to battle one another. Strava is a free workout tracking app.
+
+MVP completed using Agile methodologies in 14 days for a group project.
+
+### Tech Stack:
+
+Built using the NERDS stack and utilizes Socket.io and the Strava API.
+
+### Dev Team:
+
+- Tal Luigi ([LinkedIn](https://www.linkedin.com/in/talluigi) | [GitHub](https://github.com/luigilegion))
+- Daniel Rivera ([LinkedIn](https://www.linkedin.com/in/daniel-rivera-) | [GitHub](https://github.com/driver620))
+- Arnald Wong ([LinkedIn](https://www.linkedin.com/in/arnald-wong) | [GitHub](https://github.com/ArnaldWong))
+- Daphne Clyne ([LinkedIn](https://www.linkedin.com/in/daphne-c) | [GitHub](https://github.com/daphne178))
