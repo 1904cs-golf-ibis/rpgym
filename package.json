@@ -1,9 +1,12 @@
 {
   "name": "rpgym",
-  "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "author": "Tal Luigi, Daniel Rivera, Arnald Wong, Daphne Clyne",
+  "license": "MIT",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": "12.11.1"
   },
   "main": "index.js",
   "scripts": {
@@ -38,8 +41,6 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
-  "license": "MIT",
   "dependencies": {
     "animate.css": "^3.7.2",
     "axios": "^0.18.1",
