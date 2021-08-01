@@ -14,11 +14,11 @@ describe('UserHome', () => {
 
   beforeEach(() => {
     userHome = shallow(
-      <UserHome nickname="Cody" memberSince="test" lvl="1000" />
+      <UserHome nickname="Cody" memberSince="2015-10-21" lvl="42" />
     )
   })
 
-  it('renders the image in an h2', () => {
-    expect(userHome.find('h2').text()).to.be.equal('Cody')
+  it('renders the nickname in an h1', () => {
+    expect(userHome.find('h1').text()).to.be.equal('Cody')
   })
 })
