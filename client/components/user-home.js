@@ -17,20 +17,25 @@ export class UserHome extends Component {
 
   async componentDidMount() {
     try {
-      let maxSpeed = 0
-      const {data} = await axios.get(`/api/activities/${this.props.stravaId}`)
-      if (data.length) {
-        const speedData = data.map(el => el.max_speed)
-        maxSpeed = Math.max(...speedData)
+      const {stravaId, updateSpeedThunk} = this.props
+
+      if (stravaId) {
+        const {data} = await axios.get(`/api/activities/${stravaId}`)
+        let maxSpeed = 0
+
+        if (data.length) {
+          const speedData = data.map(el => el.max_speed)
+          maxSpeed = Math.max(...speedData)
+        }
+
+        const speedObj = {
+          stravaId,
+          speed: maxSpeed
+        }
+
+        updateSpeedThunk(speedObj)
+        this.setState({speed: maxSpeed})
       }
-      const speedObj = {
-        stravaId: this.props.stravaId,
-        speed: maxSpeed
-      }
-      this.props.updateSpeedThunk(speedObj)
-      this.setState({
-        speed: maxSpeed
-      })
     } catch (error) {
       console.error(error)
     }
@@ -68,9 +73,9 @@ export class UserHome extends Component {
             </div>
           </div>
           <div>
-            <h1 align="center">
+            <div align="center">
               <img src={imgUrl} alt="Your Avatar" width="50%" />
-            </h1>
+            </div>
           </div>
           <div id="xpInfoBox">
             {/* {`XP: ${xpCurrent}/${xpToNextLvl}`} */}
